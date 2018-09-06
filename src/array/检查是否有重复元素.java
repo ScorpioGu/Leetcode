@@ -8,7 +8,7 @@ package array;
 import java.util.HashSet;
 import java.util.Set;
 
-public class ContainsDuplicate {
+public class 检查是否有重复元素 {
     public boolean containsDuplicate(int[] nums) {
     	if(nums == null||nums.length==0)
     		return false;

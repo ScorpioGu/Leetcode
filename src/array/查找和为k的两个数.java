@@ -12,7 +12,7 @@ Output: index1=1, index2=2
 import java.util.HashMap;
 import java.util.Map;
 
-public class TwoSumII {
+public class 查找和为k的两个数 {
     public int[] twoSum(int[] numbers, int target) {
     	if(numbers == null || numbers.length == 0)
 			return null;

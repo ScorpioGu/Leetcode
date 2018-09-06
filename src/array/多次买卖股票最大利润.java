@@ -7,7 +7,7 @@ Design an algorithm to find the maximum profit. You may complete as many transac
 However, you may not engage in multiple transactions at the same time 
 (ie, you must sell the stock before you buy again).
  */
-public class BestTimeToBuyAndSellII {
+public class 多次买卖股票最大利润 {
     public int maxProfit(int[] prices) {
     	int profit = 0;
         for(int i=1; i<prices.length; i++) {

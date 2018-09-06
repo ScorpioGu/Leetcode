@@ -3,7 +3,7 @@ package array;
 import java.util.LinkedList;
 import java.util.List;
 
-public class LetterCombinationsOfAPhoneNumber {
+public class 电话号码映射到手机键盘字符组合 {
     public List<String> letterCombinations(String digits) {
         LinkedList<String> queue = new LinkedList<String>();
         if (digits.length()==0){
