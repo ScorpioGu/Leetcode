@@ -1,6 +1,6 @@
 package array;
 
-public class LongestContinuousIncreasingSubsequence {
+public class 最长连续递增子序列 {
     public int findLengthOfLCIS(int[] nums) {
     	if(nums == null || nums.length == 0) return 0;
         int global = 1;

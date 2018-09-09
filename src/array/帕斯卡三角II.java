@@ -8,7 +8,7 @@ Return [1,3,3,1].
 import java.util.ArrayList;
 import java.util.List;
 
-public class PascalTriangelII {
+public class 帕斯卡三角II {
     public List<Integer> getRow(int rowIndex) {
         List<Integer> res = new ArrayList<Integer>();
         if(rowIndex < 0) 

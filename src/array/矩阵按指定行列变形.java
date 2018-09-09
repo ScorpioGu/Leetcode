@@ -2,7 +2,7 @@ package array;
 import java.util.*;
 
 
-public class ReshapeTheMatrix {
+public class 矩阵按指定行列变形 {
 
     public int[][] matrixReshape(int[][] nums, int r, int c) {
         if(nums == null || nums.length == 0)

@@ -4,7 +4,7 @@ package array;
  * You may assume that nums1 has enough space (size that is greater or equal to m + n) to hold additional elements from nums2. 
  * The number of elements initialized in nums1 and nums2 are m and n respectively.
  */
-public class MergeSortedArray {
+public class 合拼两个排好序的序列 {
     public void merge(int[] nums1, int m, int[] nums2, int n) {
     	if(nums1 == null|nums2 == null)
     		return;

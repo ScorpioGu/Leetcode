@@ -3,6 +3,7 @@ package array;
 import java.util.LinkedList;
 import java.util.List;
 
+//使用队列存储
 public class 电话号码映射到手机键盘字符组合 {
     public List<String> letterCombinations(String digits) {
         LinkedList<String> queue = new LinkedList<String>();

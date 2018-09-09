@@ -7,7 +7,7 @@ You may assume that the array is non-empty and the majority element always exist
 //import java.util.HashMap;
 //import java.util.Map;
 
-public class MajorityElement {
+public class 序列中出现次数过半的元素 {
 	/*
     public int majorityElement(int[] nums) {
         Map<Integer,Integer> map = new HashMap<Integer,Integer>();
@@ -25,6 +25,8 @@ public class MajorityElement {
         return 0;
     }
     */
+	//每找到一对不同的元素，就删除，剩下的一定是majority元素。当遇见与majority元素相同的时候，count++，
+	//不同的时候count--。当count为0，去更换majority元素。
 	public int majorityElement(int[] nums) {
 		int count=1;
 		int majority = nums[0];

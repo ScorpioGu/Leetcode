@@ -16,7 +16,7 @@ Return
 import java.util.ArrayList;
 import java.util.List;
 
-public class PascalTriangle {
+public class 帕斯卡三角 {
     public List<List<Integer>> generate(int numRows) {
     	List<List<Integer>> res = new ArrayList<>();
     	if(numRows <= 0)

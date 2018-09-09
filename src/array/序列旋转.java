@@ -4,7 +4,7 @@ package array;
 
 For example, with n = 7 and k = 3, the array [1,2,3,4,5,6,7] is rotated to [5,6,7,1,2,3,4]
  */
-public class RotateArray {
+public class 序列旋转 {
 	public void rotate(int[] nums, int k) {
 		k = k%nums.length;
 		int temp;

@@ -1,11 +1,6 @@
 package array;
 
-public class MaximumProductofThreeNumbers {
-	public static void main(String[] args) {
-		MaximumProductofThreeNumbers a = new MaximumProductofThreeNumbers();
-		int[] nums = {-1, -2, 1, 1, 2};
-		System.out.println(a.maximumProduct(nums));
-	}
+public class 序列中找出三个数乘积最大 {
     public int maximumProduct(int[] nums) {
         int max1 = Integer.MIN_VALUE;
         int max2 = Integer.MIN_VALUE;
