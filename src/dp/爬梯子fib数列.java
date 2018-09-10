@@ -2,7 +2,7 @@ package dp;
 
 
 
-public class ClimbingStairs {
+public class 爬梯子fib数列 {
 	/**
 	 * @Description:非递归做法，用两个变量存储前一步和前两步的的计算结果，相较于递归做法，减少了时间复杂度。
 	 * @param n

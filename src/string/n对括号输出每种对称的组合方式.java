@@ -3,7 +3,7 @@ package string;
 import java.util.ArrayList;
 import java.util.List;
 
-public class GenerateParentheses {
+public class n对括号输出每种对称的组合方式 {
     public List<String> generateParenthesis(int n) {
     	List<String> list = new ArrayList<String>();
     	backtrack(list, "", 0, 0, n);
@@ -16,17 +16,21 @@ public class GenerateParentheses {
     		System.out.println(str);
     		return;
     	}
-    	
+
+    	//只要open<max，就可以继续添加open
     	if(open < max) {
     		backtrack(list, str+"(", open+1, close, max);
     	}
-    	
+
+    	//close<open，要补close来平衡
     	if(close < open) {
     		backtrack(list, str+")", open, close+1, max);
     	}
+
+    	//一旦出现close > open,j就没救了，没法补救
     }
     
     public static void main(String[] args) {
-    	new GenerateParentheses().generateParenthesis(3);
+    	new n对括号输出每种对称的组合方式().generateParenthesis(3);
 	}
 }

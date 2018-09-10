@@ -3,12 +3,12 @@ package dp;
 
 /**
  https://leetcode.com/problems/unique-paths-ii/discuss/23250/Short-JAVA-solution
- * @ClassName:      UniquePathsII
+ * @ClassName:      从矩阵左下角走到右下角有多少种走法矩阵有障碍
  * @Description:    TODO
  * @author:         Guchengcheng
  * @date:           2018年4月8日        下午4:21:29
  */
-public class UniquePathsII {
+public class 从矩阵左下角走到右下角有多少种走法矩阵有障碍 {
     public int uniquePathsWithObstacles(int[][] obstacleGrid) {
     	int m = obstacleGrid.length;
     	int n = obstacleGrid[0].length;

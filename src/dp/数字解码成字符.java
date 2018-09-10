@@ -1,13 +1,6 @@
 package dp;
 
-/**
- * https://leetcode.com/problems/decode-ways/description/
- * @ClassName:      DecodeWays
- * @Description:    挺差的这题，不用怎么看
- * @author:         Guchengcheng
- * @date:           2018年4月8日        下午10:15:58
- */
-public class DecodeWays {
+public class 数字解码成字符 {
     public int numDecodings(String s) {
         if(s == null || s.length() == 0) {
             return 0;

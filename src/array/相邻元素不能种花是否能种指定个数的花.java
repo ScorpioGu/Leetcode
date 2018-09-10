@@ -19,7 +19,7 @@ Output: False
  * @Param
  * @return
  **/
-public class 种花相邻不能种 {
+public class 相邻元素不能种花是否能种指定个数的花 {
     public boolean canPlaceFlowers(int[] nums, int n) {
         int num = 0;
         for (int i = 0; i < nums.length - 1 && num < n; i++) {

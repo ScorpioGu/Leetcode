@@ -4,12 +4,12 @@ package dp;
 
 /**
    https://leetcode.com/problems/minimum-path-sum/description/
- * @ClassName:      MinimumPathSum
+ * @ClassName:      从矩阵左上角走到右下角的最短路径
  * @Description:    做这种dp题，就是看所求问题是不是由子问题堆叠而成的，然后找到递推式。
  * @author:         Guchengcheng
  * @date:           2018年4月8日        下午8:42:33
  */
-public class MinimumPathSum {
+public class 从矩阵左上角走到右下角的最短路径 {
     public int minPathSum(int[][] grid) {
     	int m = grid.length;// row
     	int n = grid[0].length; // column

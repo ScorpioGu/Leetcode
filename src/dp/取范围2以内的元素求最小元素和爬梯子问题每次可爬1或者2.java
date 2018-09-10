@@ -8,12 +8,12 @@ package dp;
    You need to find minimum cost to reach the top of the floor, 
    and you can either start from the step with index 0, or the step with index 1.
    cost will have a length in the range [2, 1000]
- * @ClassName:      MinCostClimbingStairs
+ * @ClassName:      取范围2以内的元素求最小元素和爬梯子问题每次可爬1或者2
  * @Description:    TODO
  * @author:         Guchengcheng
  * @date:           2018年4月7日        下午10:31:27
  */
-public class MinCostClimbingStairs {
+public class 取范围2以内的元素求最小元素和爬梯子问题每次可爬1或者2 {
     public int minCostClimbingStairs(int[] cost) {
     	int sumBefore2 = cost[0];
     	int sumBefore1 = cost[1];

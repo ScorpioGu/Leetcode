@@ -3,12 +3,12 @@ package dp;
 
 /**
  * https://leetcode.com/problems/unique-paths/description/
- * @ClassName:      UniquePaths
+ * @ClassName:      从矩阵坐上角走到右下角多少种走法
  * @Description:    TODO
  * @author:         Guchengcheng
  * @date:           2018年4月8日        上午11:18:45
  */
-public class UniquePaths {
+public class 从矩阵坐上角走到右下角多少种走法 {
 	/**
 	 * @Description:递归做法，自顶向下，有重复计算，时间复杂度太高
 	 * @param m

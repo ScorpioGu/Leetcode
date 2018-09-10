@@ -2,7 +2,7 @@ package string;
 
 import java.util.Stack;
 
-public class ValidParentheses {
+public class 判断输入的字符串是否对称 {
     public boolean isValid(String s) {
         Stack<Character> stack = new Stack<Character>();
         for(char c: s.toCharArray()) {

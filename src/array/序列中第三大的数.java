@@ -5,7 +5,7 @@ package array;
  * Note: [1,2,2,3] should return 1. 
  * ThirdDistinctMaximumNumber
  */
-public class ThirdMaximumNumber {
+public class 序列中第三大的数 {
     public int thirdMax(int[] nums) {
     	if(nums == null || nums.length == 0)
 	    	return -1;
