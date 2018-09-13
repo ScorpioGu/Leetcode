@@ -5,7 +5,8 @@
  */
 package tree;
 
-public class BalancedBinaryTree {
+//平衡树的定义是， 一颗数为null,或者左右子树的深度差的绝对值不超过1
+public class 判断是否是平衡二叉树 {
     public boolean isBalanced(TreeNode root) {
         return helper(root) != -1;
     }
@@ -19,14 +20,19 @@ public class BalancedBinaryTree {
         }
         int leftDepth = helper(root.left);
         int rightDepth = helper(root.right);
+
+        //当左右两数均不是平衡树时，必然就不是平衡树了，因为不是平衡数返回-1的原因
+        //如果仍然使用绝对值之差<1这一条件会产生误判。所以这一块代码要放到下一块代码之前
         if ( leftDepth == -1 || rightDepth == -1) {
             return -1;
         }
 
+        //当左右两数的深度绝对值之差大于1，则不是平衡树
         if (Math.abs(leftDepth - rightDepth) > 1) {
             return -1;
         }
 
+        //父节点的深度是左右两子数深度的较大者+1
         return Math.max(leftDepth, rightDepth) + 1;
     }
 }

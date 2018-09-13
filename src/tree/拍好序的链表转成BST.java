@@ -9,7 +9,7 @@
  */
 package tree;
 
-public class ConvertSortedListtoBST {
+public class 拍好序的链表转成BST {
     public TreeNode sortedListToBST(ListNode head) {
         if (head == null) {
             return null;
@@ -24,12 +24,13 @@ public class ConvertSortedListtoBST {
 
         ListNode fast = head;
         ListNode slow = head;
-
+        //快慢指针，先找到root节点
         while (fast != tail && fast.next != tail) {
             fast = fast.next.next;
             slow = slow.next;
         }
         TreeNode root = new TreeNode(slow.val);
+        //递归解决
         root.left = helper(head, slow);
         root.right = helper(slow.next, tail);
         return root;
