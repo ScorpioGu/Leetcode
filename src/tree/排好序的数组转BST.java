@@ -6,7 +6,9 @@
  */
 package tree;
 
-public class SortedArraytoBST {
+import support.TreeNode;
+
+public class 排好序的数组转BST {
 /*    public TreeNode sortedArrayToBST(int[] nums) {
         int length = nums.length;
         if (length == 1)
@@ -16,6 +18,7 @@ public class SortedArraytoBST {
         TreeNode root = new TreeNode(nums[length / 2]);
         int[] leftNums = Arrays.copyOfRange(nums, 0, length / 2 - 1);
         int[] rightNums = null;
+        //注意长度为2时，是没有右子树的
         if (length != 2) {
             rightNums = Arrays.copyOfRange(nums, length / 2 + 1, length - 1);
         }
@@ -37,9 +40,10 @@ public class SortedArraytoBST {
             return null;
         }
         int m = (l + r) / 2;
-        TreeNode root = new TreeNode(m);
+        TreeNode root = new TreeNode(nums[m]);
         root.left = helper(nums, l, m - 1);
         root.right = helper(nums, m + 1, r);
         return root;
     }
+
 }

@@ -5,7 +5,9 @@
  */
 package tree;
 
-public class SameTree {
+import support.TreeNode;
+
+public class 判断两棵树是否相同 {
     public boolean isSameTree(TreeNode p, TreeNode q) {
         //两颗树遍历到最后，都没返回false则返回true
         if (p == null && q == null) {
@@ -18,6 +20,8 @@ public class SameTree {
         if (p.val != q.val) {
             return false;
         }
+        //运行到这里说明p.val = q.val 需要进行它们子节点的比较
         return isSameTree(p.left, q.left) && isSameTree(p.right, q.right);
     }
+
 }

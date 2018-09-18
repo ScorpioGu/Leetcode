@@ -5,10 +5,12 @@
  */
 package tree;
 
+import support.TreeNode;
+
 import java.util.ArrayList;
 import java.util.List;
 
-public class UniqueBinarySearchTreesII {
+public class n个数可构成的BST列表 {
     public List<TreeNode> generateTrees(int n) {
         if (n == 0) {
             return null;

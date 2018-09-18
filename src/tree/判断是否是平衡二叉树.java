@@ -5,6 +5,8 @@
  */
 package tree;
 
+import support.TreeNode;
+
 //平衡树的定义是， 一颗数为null,或者左右子树的深度差的绝对值不超过1
 public class 判断是否是平衡二叉树 {
     public boolean isBalanced(TreeNode root) {

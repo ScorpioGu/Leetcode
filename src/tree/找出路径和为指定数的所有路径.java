@@ -5,10 +5,12 @@
  */
 package tree;
 
+import support.TreeNode;
+
 import java.util.ArrayList;
 import java.util.List;
 
-public class PathSumII {
+public class 找出路径和为指定数的所有路径 {
     public List<List<Integer>> pathSum(TreeNode root, int sum) {
         //结果
         List<List<Integer>> list = new ArrayList<List<Integer>>();
@@ -22,6 +24,7 @@ public class PathSumII {
     private void helper(TreeNode root, int sum, List<List<Integer>> list, List<Integer> llist) {
         if (root == null)
             return;
+        //每次遍历到一个新节点了，先添加进行，不符合条件再剔除
         llist.add(root.val);
         if (root.left == null && root.right == null && root.val == sum) {
             list.add(new ArrayList<Integer>(llist)); //当符合条件了，应新建一个内容相同的list添加，原来的llist还要继续使用。

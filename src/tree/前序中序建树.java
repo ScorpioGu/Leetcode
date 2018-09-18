@@ -5,7 +5,11 @@
  */
 package tree;
 
-public class ConstructBinaryTreefromPreorderandInorderTraversal {
+import support.TreeNode;
+
+import java.util.Scanner;
+
+public class 前序中序建树 {
     public TreeNode buildTree(int[] preorder, int[] inorder) {
         //可以使用map存储元素与索引的映射，免得重复的遍历
 /*        Map<Integer, Integer> map = new HashMap<Integer, Integer>();
@@ -32,6 +36,24 @@ public class ConstructBinaryTreefromPreorderandInorderTraversal {
         root.left = helper(preStart + 1, inStart, rootIndex - 1, preorder, inorder);
         root.right = helper(preStart + 1 + rootIndex - inStart, rootIndex + 1, inEnd, preorder, inorder);
         return root;
+    }
+
+    //这个是一个工具方法，根据输入的前序与中序，输出后序，输入的时候分隔符是空格
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("前序：");
+        String[] pre = sc.nextLine().split(" ");
+        System.out.println("中序：");
+        String[] in = sc.nextLine().split(" ");
+        int[] preOrder = new int[pre.length];
+        int[] inOrder = new int[in.length];
+        for (int i=0; i<pre.length; i++) {
+            preOrder[i] = Integer.parseInt(pre[i]);
+            inOrder[i] = Integer.parseInt(in[i]);
+        }
+
+        TreeNode root = new 前序中序建树().buildTree(preOrder, inOrder);
+        树的遍历非递归.后序(root);
     }
 
 }

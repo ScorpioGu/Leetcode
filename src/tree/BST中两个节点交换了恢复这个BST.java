@@ -10,18 +10,23 @@
  */
 package tree;
 
+import support.TreeNode;
+
 import java.util.ArrayList;
 import java.util.List;
 
-public class RecoverBinarySearchTree {
+public class BST中两个节点交换了恢复这个BST {
     public void recoverTree(TreeNode root) {
         if (root == null) {
             return;
         }
+        //保存前驱节点
         List<TreeNode> pre = new ArrayList<TreeNode>();
         pre.add(null);
+        //保存要交换的两个节点
         List<TreeNode> res = new ArrayList<TreeNode>();
         helper(root, pre, res);
+        //交换值即可
         if (res.size() > 0) {
             int temp = res.get(0).val;
             res.get(0).val = res.get(1).val;
@@ -29,16 +34,20 @@ public class RecoverBinarySearchTree {
         }
     }
 
+    //中序遍历，有序性
     private void helper(TreeNode root, List<TreeNode> pre, List<TreeNode> res) {
         if (root == null) {
             return;
         }
         helper(root.left, pre, res);
+
+        //对节点的操作
         if (pre.get(0) != null && root.val <= pre.get(0).val) {
             if (res.size() == 0) {
                 res.add(pre.get(0));
                 res.add(root);
             } else {
+                //如果有两个乱序的地方，替换一下res中第二个元素
                 res.set(1, root);
                 return;
             }

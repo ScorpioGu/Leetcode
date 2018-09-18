@@ -9,7 +9,10 @@
  */
 package tree;
 
-public class 拍好序的链表转成BST {
+import support.ListNode;
+import support.TreeNode;
+
+public class 排好序的链表转成BST {
     public TreeNode sortedListToBST(ListNode head) {
         if (head == null) {
             return null;

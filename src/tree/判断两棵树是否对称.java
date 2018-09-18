@@ -5,10 +5,12 @@
  */
 package tree;
 
+import support.TreeNode;
+
 import java.util.LinkedList;
 import java.util.Queue;
 
-public class SymmetricTree {
+public class 判断两棵树是否对称 {
 /*    public boolean isSymmetric(TreeNode root) {
         if (root == null) {
             return true;
@@ -43,6 +45,7 @@ public class SymmetricTree {
         }
         Queue<TreeNode> q1 = new LinkedList<TreeNode>();
         Queue<TreeNode> q2 = new LinkedList<TreeNode>();
+        //从左遍历还是从右遍历，取决于时左孩子先入队还是右孩子先入队
         q1.offer(root.left);
         q2.offer(root.right);
         while (!q1.isEmpty() && !q2.isEmpty()) {

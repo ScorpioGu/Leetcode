@@ -5,10 +5,13 @@
  */
 package tree;
 
+import support.TreeNode;
+
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Scanner;
 
-public class ConstructBinaryTreefromInorderandPostorderTraversal {
+public class 中序后序建树 {
     public TreeNode buildTree(int[] inorder, int[] postorder) {
         Map<Integer, Integer> map = new HashMap<Integer, Integer>();
         for (int i = 0; i < inorder.length; i++) {
@@ -26,6 +29,24 @@ public class ConstructBinaryTreefromInorderandPostorderTraversal {
         root.left = helper(postStart, postStart + rootIndex - inStart - 1, postOrder, inStart, rootIndex - 1, inorder, map);
         root.right = helper(postStart + rootIndex - inStart, postEnd - 1, postOrder, rootIndex + 1, inEnd, inorder, map);
         return root;
+    }
+
+    //这个是一个工具方法，根据输入的中序与后序，输出前序，输入的时候分隔符是空格
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("中序：");
+        String[] in = sc.nextLine().split(" ");
+        System.out.println("后序：");
+        String[] post = sc.nextLine().split(" ");
+        int[] inOrder = new int[in.length];
+        int[] postOrder = new int[post.length];
+        for (int i=0; i<in.length; i++) {
+            inOrder[i] = Integer.parseInt(in[i]);
+            postOrder[i] = Integer.parseInt(post[i]);
+        }
+
+        TreeNode root = new 中序后序建树().buildTree(inOrder, postOrder);
+        树的遍历非递归.前序(root);
     }
 
 }
