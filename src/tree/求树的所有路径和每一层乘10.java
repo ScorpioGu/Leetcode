@@ -23,5 +23,6 @@ public class 求树的所有路径和每一层乘10 {
             return 10 * sum + root.val;
         }
         return helper(root.left, 10 * sum + root.val) + helper(root.right, 10 * sum + root.val);
+
     }
 }
