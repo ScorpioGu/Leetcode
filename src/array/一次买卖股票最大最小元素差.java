@@ -29,7 +29,6 @@ public class 一次买卖股票最大最小元素差 {
         	 local = Math.max(local + prices[i]-prices[i-1], 0);
         	 global = Math.max(global, local);
          }
-         System.out.println(" ");
          return global;
 
     }
