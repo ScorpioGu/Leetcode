@@ -2,6 +2,7 @@ package array;
 
 /**
  * https://leetcode.com/problems/search-in-rotated-sorted-array/description/
+ * 画画图就ok
  * Input: nums = [4,5,6,7,0,1,2], target = 0
  * Output: 4
  */
