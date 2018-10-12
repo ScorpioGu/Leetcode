@@ -1,4 +1,4 @@
-package backtracking;
+package backtrack;
 
 /**
  * @Desc https://leetcode.com/problems/sudoku-solver/description/
@@ -6,7 +6,7 @@ package backtracking;
  * @Author gcc
  * @Date 18-10-10 上午11:19
  **/
-public class 解数独_回溯 {
+public class 解数独 {
     public void solveSudoku(char[][] board) {
         //二维数组，第二维的长度暂时可以不指定
         if (board == null || board.length == 0) {

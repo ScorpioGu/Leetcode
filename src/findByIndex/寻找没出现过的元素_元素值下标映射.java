@@ -1,4 +1,4 @@
-package array;
+package findByIndex;
 
 import java.util.ArrayList;
 import java.util.List;
