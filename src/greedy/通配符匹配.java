@@ -1,4 +1,4 @@
-package dp;
+package greedy;
 
 /**
  * @Desc https://leetcode.com/problems/wildcard-matching/description/

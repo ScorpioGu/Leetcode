@@ -12,7 +12,7 @@ public class 解数独 {
         if (board == null || board.length == 0) {
             return;
         }
-        solve(board);
+        backtrack(board);
     }
 
     /**
@@ -20,14 +20,14 @@ public class 解数独 {
      * @param board
      * @return
      */
-    private boolean solve(char[][] board) {
+    private boolean backtrack(char[][] board) {
         for (int i = 0; i < board.length; i++) {
             for (int j = 0; j < board[0].length; j++) {
                 if (board[i][j] == '.') {
                     for (char c = '1'; c <= '9'; c++) {
                         if (isValid(board, i, j, c)) {
                             board[i][j] = c;
-                            if (solve(board)) {
+                            if (backtrack(board)) {
                                 return true;
                             } else {
                                 //子状态不可行，则还原至上一个状态。然后换一个数继续试
