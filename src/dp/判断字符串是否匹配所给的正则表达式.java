@@ -1,4 +1,4 @@
-package string;
+package dp;
 //https://leetcode.com/problems/regular-expression-matching/description/
 
 //p是pattern，.代表一个任何的字符，*代表0个或多个前一个字符
