@@ -6,7 +6,7 @@ package array;
 //有n个数组成排列数，共有n！个。它们的排列顺序是按照递增的顺序的
 //比如1，2，3；1，3，2；2，1，3；2，3，1；3，1，2；3，2，1。
 
-//来自维基百科上的一个秋下一个排列数的算法
+//来自维基百科上的一个求下一个排列数的算法
 /*Find the largest index k such that nums[k] < nums[k + 1]. If no such index exists, the permutation is sorted in descending order, just reverse it to ascending order and we are done. For example, the next permutation of [3, 2, 1] is [1, 2, 3].
         Find the largest index l greater than k such that nums[k] < nums[l].
         Swap nums[k] and nums[l].
