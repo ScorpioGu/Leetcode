@@ -1,11 +1,14 @@
-package array;
+package BinarySearch;
 
-//如果是奇数，返回中间的即可，否则取中间两元素和再除2
-//https://leetcode.com/problems/median-of-two-sorted-arrays/discuss/2481/Share-my-O(log(min(mn))-solution-with-explanation
-//中位数可以将左边数组的长度与右边数组的长度变为相同，所以用两个指针在两数组上移动，一定是耗时的。
-//一旦其中一个数组的指针位置确定，另外一个也必然是确定的。
-/*Searching i in [0, m], to find an object `i` that:
-        B[j-1] <= A[i] and A[i-1] <= B[j], ( where j = (m + n + 1)/2 - i )*/
+/**
+ * https://leetcode.com/problems/search-in-rotated-sorted-array/description/
+ * //如果是奇数，返回中间的即可，否则取中间两元素和再除2
+ * //https://leetcode.com/problems/median-of-two-sorted-arrays/discuss/2481/Share-my-O(log(min(mn))-solution-with-explanation
+ * //中位数可以将左边数组的长度与右边数组的长度变为相同，所以用两个指针在两数组上移动，一定是耗时的。
+ * //一旦其中一个数组的指针位置确定，另外一个也必然是确定的。
+ * Searching i in [0, m], to find an object `i` that:
+ *         B[j-1] <= A[i] and A[i-1] <= B[j], ( where j = (m + n + 1)/2 - i )
+ */
 public class 求两个排好序数组中的中位数 {
     public double findMedianSortedArrays(int[] nums1, int[] nums2) {
         int len1 = nums1.length;
