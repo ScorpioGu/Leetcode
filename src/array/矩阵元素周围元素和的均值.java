@@ -1,7 +1,9 @@
 package array;
 
 
-//矩阵中每一个点取自身和周围值的平均作为新值
+/**
+ * https://leetcode.com/problems/image-smoother/description/
+ */
 
 public class 矩阵元素周围元素和的均值 {
     public int[][] imageSmoother(int[][] M) {
@@ -30,7 +32,6 @@ public class 矩阵元素周围元素和的均值 {
         return rtn;
     }
 
-	//根据坐标，判断点是否在矩阵内
 	private boolean eleExists(int x, int y, int row, int coj) {
 		return x>=0 && x<row && y>=0 && y<coj;
 	}

@@ -4,6 +4,18 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * Example:
+ *
+ * Given array nums = [-1, 0, 1, 2, -1, -4],
+ *
+ * A solution set is:
+ * [
+ *   [-1, 0, 1],
+ *   [-1, -1, 2]
+ * ]
+ */
+
 public class 查找和为0的三个数集合 {
     public List<List<Integer>> threeSum(int[] nums) {
     	if(nums == null || nums.length<3) 

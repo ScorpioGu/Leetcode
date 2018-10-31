@@ -1,7 +1,8 @@
 package array;
 
-//https://leetcode.com/problems/integer-to-roman/description/
-/*Symbol       Value
+//
+/**https://leetcode.com/problems/integer-to-roman/description/
+ * Symbol       Value
         I             1
         V             5
         X             10
@@ -12,7 +13,9 @@ package array;
 
 I can be placed before V (5) and X (10) to make 4 and 9.
 X can be placed before L (50) and C (100) to make 40 and 90.
-C can be placed before D (500) and M (1000) to make 400 and 900.*/
+C can be placed before D (500) and M (1000) to make 400 and 900.
+ */
+
 public class 整数转罗马数字 {
     public String intToRoman(int num) {
         int[] nums = {1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1};
@@ -29,7 +32,6 @@ public class 整数转罗马数字 {
         return sb.toString();
     }
 
-    //直接就把100，200。。。900都表示出来
     public  String intToRoman2(int num) {
         String M[] = {"", "M", "MM", "MMM"};
         String C[] = {"", "C", "CC", "CCC", "CD", "D", "DC", "DCC", "DCCC", "CM"};
@@ -38,7 +40,6 @@ public class 整数转罗马数字 {
         return M[num/1000] + C[(num%1000)/100] + X[(num%100)/10] + I[num%10];
     }
 
-    //反过来也可以罗马转数字
     public int romanToInt(String s) {
         int sum=0;
         if(s.indexOf("IV")!=-1){sum-=2;}

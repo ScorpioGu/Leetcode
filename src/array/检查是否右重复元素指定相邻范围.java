@@ -3,11 +3,16 @@ package array;
 import java.util.HashMap;
 import java.util.Map;
 
-/*
- * Given an array of integers and an integer k, find out whether
- *  there are two distinct indices i and j in the array such that
- *  nums[i] = nums[j] and the absolute difference between i and j is at most k.
+/**
+ * https://leetcode.com/problems/contains-duplicate-ii/description/
+ * Given an array of integers and an integer k, find out whether there are two distinct indices i and j in the array such that nums[i] = nums[j] and the absolute difference between i and j is at most k.
+ *
+ * Example 1:
+ *
+ * Input: nums = [1,2,3,1], k = 3
+ * Output: true
  */
+
 public class 检查是否右重复元素指定相邻范围 {
     public boolean containsNearbyDuplicate(int[] nums, int k) {
     	if(nums == null || nums.length < 2)

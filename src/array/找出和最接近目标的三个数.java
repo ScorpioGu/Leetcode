@@ -1,9 +1,12 @@
 package array;
 
 import java.util.Arrays;
-//https://leetcode.com/problems/3sum-closest/description/
 
-//这题和 “查找和为0的三个数集合类似” 动态规划
+
+/**
+ * https://leetcode.com/problems/3sum-closest/description/
+ */
+
 public class 找出和最接近目标的三个数 {
     public int threeSumClosest(int[] nums, int target) {
         if (nums.length < 3) {

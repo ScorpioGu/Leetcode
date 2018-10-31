@@ -1,4 +1,4 @@
-package array;
+package twopointers;
 
 /**
  * https://leetcode.com/problems/move-zeroes/description/

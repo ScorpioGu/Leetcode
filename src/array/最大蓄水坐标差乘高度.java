@@ -10,6 +10,7 @@ package array;
  * @Param
  * @return
  **/
+
 public class 最大蓄水坐标差乘高度 {
     public int maxArea(int[] height) {
         int left = 0;

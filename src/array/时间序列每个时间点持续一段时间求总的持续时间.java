@@ -1,5 +1,8 @@
 package array;
 
+/**
+ * https://leetcode.com/problems/teemo-attacking/description/
+ */
 public class 时间序列每个时间点持续一段时间求总的持续时间 {
     public int findPoisonedDuration(int[] timeSeries, int duration) {
         if(timeSeries == null || timeSeries.length==0 || duration <= 0)

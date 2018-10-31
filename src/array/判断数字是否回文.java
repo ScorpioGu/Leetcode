@@ -1,7 +1,10 @@
 package array;
-//https://leetcode.com/problems/palindrome-number/description/
-//如果把x翻转的话，可能会出现溢出的情况。
-//但是判断回文的话，只需要翻转一半就可以了，这样的话也不用考虑溢出。
+
+/**
+ * https://leetcode.com/problems/palindrome-number/description/
+ * 如果把x翻转的话，可能会出现溢出的情况
+ * 但是判断回文的话，只需要翻转一半就可以了，这样的话也不用考虑溢出。
+ */
 public class 判断数字是否回文 {
     public boolean isPalindrome(int x) {
         //负的肯定不是回文拉，末尾带0的也不行

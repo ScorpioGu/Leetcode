@@ -1,4 +1,4 @@
-package list;
+package twopointers;
 import support.ListNode;
 
 

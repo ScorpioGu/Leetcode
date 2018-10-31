@@ -1,9 +1,15 @@
 package array;
-/*
- * Given a non-empty array of integers, return the third maximum number in this array. 
- * If it does not exist, return the maximum number. The time complexity must be in O(n).
- * Note: [1,2,2,3] should return 1. 
- * ThirdDistinctMaximumNumber
+
+/**
+ * https://leetcode.com/problems/third-maximum-number/description/
+ * Given a non-empty array of integers, return the third maximum number in this array. If it does not exist, return the maximum number. The time complexity must be in O(n).
+ *
+ * Example 1:
+ * Input: [3, 2, 1]
+ *
+ * Output: 1
+ *
+ * Explanation: The third maximum is 1.
  */
 public class 序列中第三大的数 {
     public int thirdMax(int[] nums) {
@@ -14,8 +20,9 @@ public class 序列中第三大的数 {
 	    Integer max3 = null;
 	    for(Integer n:nums) {
 	    	//值相同元素直接跳过
-	    	if(n.equals(max1) || n.equals(max2) || n.equals(max3))
-	    		continue;
+	    	if(n.equals(max1) || n.equals(max2) || n.equals(max3)) {
+				continue;
+			}
 	    	if(max1 == null || n > max1) {
 	    		max3 = max2;
 	    		max2 = max1;

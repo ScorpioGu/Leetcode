@@ -1,9 +1,9 @@
 package array;
 
-import org.omg.PortableInterceptor.INACTIVE;
-
-//https://leetcode.com/problems/reverse-integer/description/
-//因为有数字反转，要考虑溢出的情况。
+/**
+ * https://leetcode.com/problems/reverse-integer/description/
+ * 因为有数字反转，要考虑溢出的情况。
+ */
 public class 反转32位有符号整数 {
     public int reverse(int x) {
         int result = 0;

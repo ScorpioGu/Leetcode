@@ -1,5 +1,13 @@
 package array;
 
+/**
+ * https://leetcode.com/problems/3sum-closest/description/
+ * Example:
+ *
+ * Given array nums = [-1, 2, 1, -4], and target = 1.
+ *
+ * The sum that is closest to the target is 2. (-1 + 2 + 1 = 2).
+ */
 public class 找出离目标数字最接近的三个数 {
     public int threeSumClosest(int[] nums, int target) {
         Integer first = null;

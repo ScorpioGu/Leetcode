@@ -3,7 +3,12 @@ package string;
 import java.util.HashMap;
 import java.util.Map;
 /**
- *Longest Substring Without Repeating Characters
+ *https://leetcode.com/problems/longest-substring-without-repeating-characters/description/
+ * Example 1:
+ *
+ * Input: "abcabcbb"
+ * Output: 3
+ * Explanation: The answer is "abc", with the length of 3.
  */
 public class 最长不含重复字符的字符串的长度 {
     public int lengthOfLongestSubstring(String s) {

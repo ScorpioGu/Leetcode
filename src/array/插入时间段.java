@@ -21,49 +21,7 @@ public class 插入时间段 {
      * @param newInterval
      * @return
      */
-/*    public List<Interval> insert(List<Interval> intervals, Interval newInterval) {
-        List<Interval> res = new ArrayList<>();
-        if (intervals == null || intervals.size() == 0) {
-            res.add(newInterval);
-            return res;
-        }
-        boolean newIsAdd = false;
-        for (int i = 0; i < intervals.size(); i++) {
-            Interval cur = intervals.get(i);
-            if (!newIsAdd) {
-                if (newInterval.start > cur.end) {
-                    res.add(new Interval(cur.start, cur.end));
-                } else if (newInterval.start < cur.start) {
-                    //在外部,start不用变
-                    if (newInterval.end < cur.start) {
-                        //将newInterval添加了
-                        res.add(new Interval(newInterval.start, newInterval.end));
-                        res.add(new Interval(cur.start, cur.end));
-                        newIsAdd = true;
-                    } else {
-                        newInterval.end = Math.max(newInterval.end, cur.end);
-                    }
-                } else {
-                    //在cur内部
-                    newInterval.start = cur.start;
-                    if (newInterval.end <= cur.end) {
-                        newInterval.end = cur.end;
-                        res.add(new Interval(newInterval.start, newInterval.end));
-                        newIsAdd = true;
-                    }
-                }
-            } else {
-                res.add(new Interval(cur.start, cur.end));
-            }
-        }
-        if (!newIsAdd) {
-            res.add(new Interval(newInterval.start, newInterval.end));
-        }
-        return res;
-
-    }*/
-
-    public List<Interval> insert2(List<Interval> intervals, Interval newInterval) {
+    public List<Interval> insert(List<Interval> intervals, Interval newInterval) {
         List<Interval> res = new ArrayList<>();
         if (intervals == null || intervals.size() == 0) {
             res.add(newInterval);
@@ -90,27 +48,10 @@ public class 插入时间段 {
 
     public static void main(String[] args) {
         Interval a = new Interval(1, 5);
-//        Interval b = new Interval(2, 3);
         Interval newI = new Interval(2, 3);
-//        Interval d = new Interval(15, 18);
         List<Interval> res = new ArrayList<>();
         res.add(a);
-/*        res.add(b);
-        res.add(c);
-        res.add(d);*/
-/*        Interval a1 = new Interval(1, 2);
-        Interval a2 = new Interval(3, 5);
-        Interval a3 = new Interval(6, 7);
-        Interval a4 = new Interval(8, 10);
-        Interval a5 = new Interval(12, 16);
-        List<Interval> res = new ArrayList<>();
-        res.add(a1);
-        res.add(a2);
-        res.add(a3);
-        res.add(a4);
-        res.add(a5);
-        Interval newI = new Interval(4, 8);*/
-        List<Interval> list = new 插入时间段().insert2(res, newI);
+        List<Interval> list = new 插入时间段().insert(res, newI);
         for (Interval i : list) {
             System.out.println(i.start + " " + i.end);
         }
