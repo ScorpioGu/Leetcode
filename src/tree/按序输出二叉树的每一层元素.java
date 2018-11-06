@@ -98,4 +98,28 @@ public class 按序输出二叉树的每一层元素 {
         }
         return res;
     }
+
+    /**
+     * 使用DFS
+     */
+    public List<List<Integer>> levelOrder3(TreeNode root) {
+        List<List<Integer>> res = new ArrayList<>();
+        helper(res, root, 0);
+        return res;
+
+    }
+
+    private void helper(List<List<Integer>> res, TreeNode root, int height) {
+        if (root == null) {
+            return;
+        }
+        if (height >= res.size()) {
+            //当到一个新的层级时,为该层级添加一个list
+            res.add(new ArrayList<>());
+        }
+        res.get(height).add(root.val);
+        //保证同一层级,总是左边先添加,右边元素后添加
+        helper(res, root.left, height + 1);
+        helper(res, root.right, height + 1);
+    }
 }
