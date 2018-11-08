@@ -11,8 +11,8 @@ package dp;
  */
 public class 从矩阵左上角走到右下角的最短路径 {
     public int minPathSum(int[][] grid) {
-    	int m = grid.length;// row
-    	int n = grid[0].length; // column
+    	int m = grid.length;
+    	int n = grid[0].length;
     	for (int i=0; i<grid.length; i++) {
     		for (int j=0; j<grid[0].length; j++) {
     			if (i == 0 && j != 0)

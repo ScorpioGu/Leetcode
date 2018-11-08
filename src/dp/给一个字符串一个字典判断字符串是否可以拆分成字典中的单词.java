@@ -13,7 +13,7 @@ public class 给一个字符串一个字典判断字符串是否可以拆分成�
     		for (int j=0; j<i; j++) {
     			if (history[j] && wordDict.contains(s.substring(j, i))) {
     				history[i] = true;
-    				//但凡可以找到一中拆分的方式就可以跳出循环
+    				//但凡可以找到一种拆分的方式就可以跳出循环
     				break;
     			}
     		}
