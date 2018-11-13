@@ -1,4 +1,4 @@
-package BinarySearch;
+package binarySearch;
 
 /**
  * @Desc https://leetcode.com/problems/search-a-2d-matrix/description/

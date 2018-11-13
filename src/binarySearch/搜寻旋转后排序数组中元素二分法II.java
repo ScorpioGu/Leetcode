@@ -1,4 +1,4 @@
-package BinarySearch;
+package binarySearch;
 
 /**
  * @Desc https://leetcode.com/problems/search-in-rotated-sorted-array-ii/description/

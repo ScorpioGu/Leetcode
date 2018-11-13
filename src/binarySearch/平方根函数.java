@@ -1,4 +1,4 @@
-package BinarySearch;
+package binarySearch;
 
 /**
  * @Desc https://leetcode.com/problems/sqrtx/description/

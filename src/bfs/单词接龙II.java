@@ -1,4 +1,4 @@
-package string;
+package bfs;
 
 import java.util.*;
 

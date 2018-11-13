@@ -32,6 +32,7 @@ public class 单词接龙 {
             return 0;
         }
         int strLen = beginWord.length();
+
         Set<String> start = new HashSet<>();
         Set<String> end = new HashSet<>();
         start.add(beginWord);
@@ -68,6 +69,62 @@ public class 单词接龙 {
             start = tmp;
             len++;
         }
+        return 0;
+    }
+
+    /**
+     * 用队列做一样也是可以的
+     * @param beginWord
+     * @param endWord
+     * @param wordList
+     * @return
+     */
+    public int ladderLength2(String beginWord, String endWord, List<String> wordList) {
+        if (wordList == null || wordList.size() == 0 || !wordList.contains(endWord)) {
+            return 0;
+        }
+        Set<String> wordSet = new HashSet<>(wordList);
+        Queue<String> start = new LinkedList<>();
+        Queue<String> end = new LinkedList<>();
+
+
+        int len = 1;
+        int strLen = beginWord.length();
+        start.offer(beginWord);
+        end.offer(endWord);
+        while (!start.isEmpty() && !end.isEmpty()) {
+            if (start.size() > end.size()) {
+                Queue<String> set = start;
+                start = end;
+                end = set;
+            }
+
+            int size = start.size();
+            for (int j=0; j<size; j++) {
+                String word = start.poll();
+                char[] chs = word.toCharArray();
+
+                for (int i = 0; i < chs.length; i++) {
+                    for (char c = 'a'; c <= 'z'; c++) {
+                        char old = chs[i];
+                        chs[i] = c;
+                        String target = String.valueOf(chs);
+
+                        if (end.contains(target)) {
+                            return len + 1;
+                        }
+
+                        if (wordSet.contains(target)) {
+                            start.offer(target);
+                            wordSet.remove(target);
+                        }
+                        chs[i] = old;
+                    }
+                }
+            }
+            len++;
+        }
+
         return 0;
     }
 
