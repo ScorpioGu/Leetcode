@@ -20,7 +20,7 @@ package binarySearch;
  * @Author gcc
  * @Date 18-10-29 上午11:31
  **/
-public class 有序二维数组中查找元素 {
+public class 寻找有序二维数组中元素 {
     /**
      * @param matrix
      * @param target
@@ -47,6 +47,6 @@ public class 有序二维数组中查找元素 {
     }
 
     public static void main(String[] args) {
-        System.out.println(new 有序二维数组中查找元素().searchMatrix(new int[][]{{1}, {3}, {5}}, 3));
+        System.out.println(new 寻找有序二维数组中元素().searchMatrix(new int[][]{{1}, {3}, {5}}, 3));
     }
 }

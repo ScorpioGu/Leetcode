@@ -15,7 +15,7 @@ package binarySearch;
  * @Author gcc
  * @Date 18-10-31 下午9:37
  **/
-public class 搜寻旋转后排序数组中元素二分法II {
+public class 寻找旋转后排序数组中元素II {
     public boolean search(int[] nums, int target) {
         if (nums == null || nums.length == 0) {
             return false;

@@ -6,7 +6,7 @@ package binarySearch;
  * Input: nums = [4,5,6,7,0,1,2], target = 0
  * Output: 4
  */
-public class 搜寻旋转后排序数组中元素二分法 {
+public class 寻找旋转后排序数组中元素 {
     /**
      *
      * @param nums
@@ -44,6 +44,6 @@ public class 搜寻旋转后排序数组中元素二分法 {
     }
 
     public static void main(String[] args) {
-        System.out.println(new 搜寻旋转后排序数组中元素二分法().search(new int[]{1,3}, 3));
+        System.out.println(new 寻找旋转后排序数组中元素().search(new int[]{1,3}, 3));
     }
 }

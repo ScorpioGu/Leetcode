@@ -14,7 +14,7 @@ package binarySearch;
  * @Author gcc
  * @Date 18-10-29 下午4:45
  **/
-public class 有序数组中寻找和为k的两个数 {
+public class 寻找有序数组中和为k的两个数 {
     /**
      * 二分法的做法
      * @param numbers

@@ -11,7 +11,7 @@ package binarySearch;
  * @Author gcc
  * @Date 18-10-8 下午9:54
  **/
-public class 排序数组中寻找元素的开始与结束位置二分法 {
+public class 寻找排序数组中元素的开始与结束位置 {
     public int[] searchRange(int[] nums, int target) {
         if (nums == null || nums.length == 0) {
             return new int[]{-1, -1};
@@ -58,7 +58,7 @@ public class 排序数组中寻找元素的开始与结束位置二分法 {
     }
 
     public static void main(String[] args) {
-        int[] res = new 排序数组中寻找元素的开始与结束位置二分法().searchRange(new int[]{5, 7, 7, 8, 8, 10}, 5);
+        int[] res = new 寻找排序数组中元素的开始与结束位置().searchRange(new int[]{5, 7, 7, 8, 8, 10}, 5);
         for (int i = 0; i < res.length; i++) {
             System.out.println(res[i]);
         }
