@@ -10,6 +10,9 @@ import support.TreeNode;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * https://leetcode.com/problems/unique-binary-search-trees-ii/description/
+ */
 public class n个数可构成的BST列表 {
     public List<TreeNode> generateTrees(int n) {
         if (n == 0) {

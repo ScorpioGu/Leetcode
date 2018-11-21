@@ -19,18 +19,64 @@ package tree;
 
 import support.TreeNode;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Stack;
 
+/**
+ * https://leetcode.com/problems/validate-binary-search-tree/description/
+ *  它或者是一棵空树，或者是具有下列性质的二叉树： 若它的左子树不空，
+ *  则左子树上所有结点的值均小于它的根结点的值； 若它的右子树不空，
+ *  则右子树上所有结点的值均大于它的根结点的值； 它的左、右子树也
+ *  分别为二叉排序树。
+ */
 
-
-// 它或者是一棵空树，或者是具有下列性质的二叉树： 若它的左子树不空，
-// 则左子树上所有结点的值均小于它的根结点的值； 若它的右子树不空，
-// 则右子树上所有结点的值均大于它的根结点的值； 它的左、右子树也
-// 分别为二叉排序树。
 
 //中序遍历，递归，保存前驱节点。因为中序遍历BST，是升序的，每次比较当前节点的值与前驱节点的值。
 public class 判断是否是BST {
-/*    public boolean isValidBST(TreeNode root) {
+    public boolean isValidBST(TreeNode root) {
+        if (root == null) {
+            return true;
+        }
+        Stack<TreeNode> stack = new Stack<>();
+        TreeNode pre = null;
+        while (root != null || !stack.isEmpty()) {
+            while (root!= null) {
+                stack.push(root);
+                root = root.left;
+            }
+            //节点出栈的顺序和中序遍历顺序一致，
+            root = stack.pop();
+            if (pre != null && pre.val >= root.val) {
+                return false;
+            }
+            pre = root;
+            root = root.right;
+        }
+        return true;
+    }
+
+    /**
+     * 记录每个子树的上下界，当向左走时，将父节点的值作为上界，下界不变，向右走时，父节点的值作为下界，上界不变。
+     * 对于根节点，上下界为无穷大和无穷小。
+     * @param root
+     * @return
+     */
+    public boolean isValidBST2(TreeNode root) {
+        return helper(root, Long.MIN_VALUE, Long.MAX_VALUE);
+    }
+
+    private boolean helper(TreeNode root, long min, long max) {
+        if (root == null) {
+            return true;
+        }
+        if (root.val >= max || root.val <= min) {
+            return false;
+        }
+        return helper(root.left, min, root.val) && helper(root.right, root.val, max);
+    }
+
+    public boolean isValidBST3(TreeNode root) {
         //pre保存前驱节点的值，必须要将这个值放在一个对象中传入方法参数，如果直接用int保存，该值在方法中被修改后，方法执行之后没有效果
         //因为java参数传递是值拷贝。
         List<Integer> pre = new ArrayList<Integer>();
@@ -53,47 +99,6 @@ public class 判断是否是BST {
         //否则，把pre设为中间，root转到右节点，判断右子树。若左右都为true才是真的true
         pre.set(0, root.val);
         return left && helper(root.right, pre);
-    }*/
-
-
-//记录每个子树的上下界，当向左走时，将父节点的值作为上界，下界不变，向右走时，父节点的值作为下界，上界不变。
-// * 对于根节点，上下界为无穷大和无穷小。
-/*    public boolean isValidBST(TreeNode root) {
-        return helper(root, Long.MIN_VALUE, Long.MAX_VALUE);
-    }
-
-    private boolean helper(TreeNode root, long min, long max) {
-        if (root == null) {
-            return true;
-        }
-        if (root.val >= max || root.val <= min) {
-            return false;
-        }
-        return helper(root.left, min, root.val) && helper(root.right, root.val, max);
-
-    }*/
-
-
-    public boolean isValidBST(TreeNode root) {
-        if (root == null) {
-            return true;
-        }
-        Stack<TreeNode> stack = new Stack<>();
-        TreeNode pre = null;
-        while (root != null || !stack.isEmpty()) {
-            while (root!= null) {
-                stack.push(root);
-                root = root.left;
-            }
-            //节点出栈的顺序和中序遍历顺序一致，
-            root = stack.pop();
-            if (pre != null && pre.val >= root.val) {
-                return false;
-            }
-            pre = root;
-            root = root.right;
-        }
-        return true;
     }
 
 }

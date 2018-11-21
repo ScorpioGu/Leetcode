@@ -7,6 +7,9 @@ package tree;
 
 import support.TreeNode;
 
+/**
+ * https://leetcode.com/problems/same-tree/description/
+ */
 public class 判断两棵树是否相同 {
     public boolean isSameTree(TreeNode p, TreeNode q) {
         //两颗树遍历到最后，都没返回false则返回true

@@ -7,13 +7,15 @@ package tree;
 
 import support.TreeNode;
 
+/**
+ * https://leetcode.com/problems/sum-root-to-leaf-numbers/description/
+ */
 public class 求树的所有路径和每一层乘10 {
 
 
     public int sumNumbers(TreeNode root) {
         return helper(root, 0);
     }
-
     //遍历到这个节点的时候，上面的和是sum
     private int helper(TreeNode root, int sum) {
         if (root == null) {

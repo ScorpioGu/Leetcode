@@ -17,11 +17,18 @@
  */
 package tree;
 
+/**
+ * https://leetcode.com/problems/unique-binary-search-trees/description/
+ * 卡特兰数
+ */
 public class n个数可组成的BST个数 {
     public int numTrees(int n) {
         if (n <= 0) {
             return 0;
         }
+        //res[i]记录i个节点能够组成的不同BST的个数
+        //将0,...,i分成两端,一段是0-j, 另一段是j+1 - i,则它们各自组成BST的方式有res[j], res[i - 1 - j]种
+        //又因为是组成BST,所以res[i] += res[j] * res[i - 1 - j],其中j属于[0, i)
         int[] res = new int[n+1];
         res[0] = 1;
         res[1] = 1;

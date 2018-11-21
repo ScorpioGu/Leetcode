@@ -10,20 +10,11 @@ import support.TreeNode;
 import java.util.LinkedList;
 import java.util.Queue;
 
+/**
+ * https://leetcode.com/problems/maximum-depth-of-binary-tree/description/
+ */
 public class 二叉树的深度 {
-    /*    public int maxDepth(TreeNode root) {
-            return helper(root);
 
-        }
-
-        private int helper(TreeNode root) {
-            if (root == null) {
-                return 0;
-            }
-            return max(helper(root.left), helper(root.right)) + 1;
-        }*/
-    //非递归做法，一个BFS，使用队列辅助，队列FIFO的特性，一定是上一层级的所有节点排在下一层级节点之前。
-    //没一个父节点出队列
     public int maxDepth(TreeNode root) {
         if (root == null) {
             return 0;
@@ -54,5 +45,16 @@ public class 二叉树的深度 {
             }
         }
         return level;
+    }
+
+    public int maxDepth2(TreeNode root) {
+        return helper(root);
+    }
+
+    private int helper(TreeNode root) {
+        if (root == null) {
+            return 0;
+        }
+        return Math.max(helper(root.left), helper(root.right)) + 1;
     }
 }

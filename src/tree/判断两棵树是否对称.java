@@ -10,8 +10,11 @@ import support.TreeNode;
 import java.util.LinkedList;
 import java.util.Queue;
 
+/**
+ * https://leetcode.com/problems/symmetric-tree/description/
+ */
 public class 判断两棵树是否对称 {
-/*    public boolean isSymmetric(TreeNode root) {
+    public boolean isSymmetric(TreeNode root) {
         if (root == null) {
             return true;
         }
@@ -30,10 +33,10 @@ public class 判断两棵树是否对称 {
             return false;
         }
         return helper(left.left, right.right) && helper(left.right, right.left);
-    }*/
+    }
 
     //非递归做法，首先获取到左右两颗子树，分别去遍历两颗子树，注意遍历的方向一定要是对称的，层级遍历，一颗从左往游，另一颗从右往左。
-    public boolean isSymmetric(TreeNode root) {
+    public boolean isSymmetric2(TreeNode root) {
         if (root == null) {
             return true;
         }

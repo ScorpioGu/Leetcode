@@ -7,8 +7,9 @@ package tree;
 
 import support.TreeNode;
 
-import java.util.LinkedList;
-
+/**
+ * https://leetcode.com/problems/minimum-depth-of-binary-tree/description/
+ */
 public class 二叉数的最小深度 {
     public int minDepth(TreeNode root) {
         return helper(root);

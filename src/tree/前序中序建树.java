@@ -9,6 +9,9 @@ import support.TreeNode;
 
 import java.util.Scanner;
 
+/**
+ * https://leetcode.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/description/
+ */
 public class 前序中序建树 {
     public TreeNode buildTree(int[] preorder, int[] inorder) {
         //可以使用map存储元素与索引的映射，免得重复的遍历
