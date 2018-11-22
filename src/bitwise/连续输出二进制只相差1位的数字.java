@@ -1,4 +1,4 @@
-package bitmaniputation;
+package bitwise;
 
 import java.util.LinkedList;
 import java.util.List;
