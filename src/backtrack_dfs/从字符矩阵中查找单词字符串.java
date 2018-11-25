@@ -1,4 +1,4 @@
-package array;
+package backtrack_dfs;
 
 /**
  * @Desc https://leetcode.com/problems/word-search/description/

@@ -1,4 +1,4 @@
-package array;
+package dp;
 
 /**
  * https://leetcode.com/problems/longest-continuous-increasing-subsequence/description/

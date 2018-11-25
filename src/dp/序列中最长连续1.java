@@ -1,4 +1,4 @@
-package array;
+package dp;
 
 /**
  * https://leetcode.com/problems/max-consecutive-ones/description/

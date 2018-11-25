@@ -3,9 +3,8 @@ package dp;
 
 
 /**
- * 
- * @ClassName:      数组不能取相邻元素求和最大
- * @Description:    一个数组，取里面的值累加，要求不能取相邻的两个值，求和最大。
+ *
+ * @Description:    https://leetcode.com/problems/house-robber/description/
  * @author:         Guchengcheng
  * @date:           2018年4月6日        下午8:40:15
  */

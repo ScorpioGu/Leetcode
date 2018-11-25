@@ -1,4 +1,4 @@
-package array;
+package greedy;
 
 /**
  * @Desc https://leetcode.com/problems/candy/description/

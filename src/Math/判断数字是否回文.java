@@ -1,4 +1,4 @@
-package array;
+package Math;
 
 /**
  * https://leetcode.com/problems/palindrome-number/description/

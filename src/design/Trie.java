@@ -6,6 +6,8 @@ import java.util.Map;
 /**
  * @Desc https://leetcode.com/problems/implement-trie-prefix-tree/description/
  * Implement a trie with insert, search, and startsWith methods.
+ *
+ * You may assume that all inputs are consist of lowercase letters a-z
  * @Author gcc
  * @Date 18-11-23 下午8:51
  **/
@@ -58,8 +60,9 @@ public class Trie {
 
     private class TrieNode {
         //如果用List存储下一层节点的话,用contains判断下一层是否存在当前字符会比较麻烦
-        //如果用长度为26的数组的话,会比较方便,但是每个节点都创建这么长一个数组的话,太浪费空间了把
-        //用HashMap来存储吧,key就是字符,而value则就是下一层节点
+        //如果用长度为26的数组的话,会比较方便,但是如果没有所有字符a-z的条件的话,也不太好做.
+
+        //用HashMap来存储吧,key就是下一层字符,而value则就是下一层节点
 
         boolean isWord;
         Map<Character, TrieNode> map;
