@@ -70,8 +70,9 @@ public class Sort {
      * @param nums
      */
     public static void quickSortUsingStack(int[] nums) {
-        if (nums == null || nums.length <= 1)
+        if (nums == null || nums.length <= 1) {
             return;
+        }
         Stack<Integer> stack = new Stack<Integer>();
         stack.push(0);
         stack.push(nums.length - 1);
@@ -92,7 +93,7 @@ public class Sort {
 
     private static int getMiddle(int[] nums, int head, int tail) {
         //优化的地方
-        SelectRefValue(nums, head, tail);
+        selectRefValue(nums, head, tail);
         int ref = nums[head];
         while (head < tail) {
             while (head < tail && nums[tail] >= ref) {
@@ -116,7 +117,7 @@ public class Sort {
      * @param tail
      * @return
      */
-    private static void SelectRefValue(int[] nums, int head, int tail) {
+    private static void selectRefValue(int[] nums, int head, int tail) {
         int mid = head + (tail - head) / 2;
         int temp;
         if (nums[mid] > nums[tail]) {
