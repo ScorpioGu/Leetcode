@@ -67,7 +67,7 @@ public class MinStack {
 
 class MinStack2 {
     /**
-     * 两个栈的做法
+     * 一个栈的做法
      */
     private Stack<Integer> vals;
     private int min = Integer.MAX_VALUE;

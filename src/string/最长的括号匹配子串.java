@@ -7,6 +7,8 @@ public class 最长的括号匹配子串 {
         if (s == null || s.length() < 2) {
             return 0;
         }
+
+        //stack存的是坐标
         Stack<Integer> stack = new Stack<>();
         for (int i = 0; i < s.length(); i++) {
             if (stack.isEmpty()) {
@@ -28,6 +30,7 @@ public class 最长的括号匹配子串 {
         int max = 0;
         int first = s.length(), second;
         while (!stack.isEmpty()) {
+            //用坐标作差来计算长度
             second = stack.pop();
             max = Math.max(first - second - 1, max);
             first = second;

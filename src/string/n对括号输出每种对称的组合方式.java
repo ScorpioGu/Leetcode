@@ -27,7 +27,7 @@ public class n对括号输出每种对称的组合方式 {
     		backtrack(list, str+")", open, close+1, max);
     	}
 
-    	//一旦出现close > open,j就没救了，没法补救
+    	//一旦出现close > open,就没救了，没法补救
     }
     
     public static void main(String[] args) {
