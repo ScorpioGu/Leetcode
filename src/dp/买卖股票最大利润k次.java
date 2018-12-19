@@ -18,7 +18,7 @@ package dp;
  * @Author gcc
  * @Date 18-11-8 下午4:39
  **/
-public class k次买卖股票最大利润 {
+public class 买卖股票最大利润k次 {
     public int maxProfitK(int[] prices, int k) {
         if (prices == null || prices.length <= 1) {
             return 0;

@@ -69,7 +69,7 @@ public class 将无符号32位数逆转 {
     }
 
     public static void main(String[] args) {
-        byte a = 38;
-        System.out.println(new 将无符号32位数逆转().reverseBits2(43261596));
+        int a = 2;
+        System.out.println();
     }
 }

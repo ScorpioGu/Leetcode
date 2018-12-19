@@ -20,7 +20,7 @@ package dp;
  *
  * 长度为n的数组，从长度为2开始，算出最大差值（数组最后一个元素作为被减数），全局最优一定在这所有的结果中。
  */
-public class 一次买卖股票最大利润 {
+public class 买卖股票最大利润1次 {
     public int maxProfit(int[] prices) {
     	 if(prices == null || prices.length == 0) {
              return -1;
