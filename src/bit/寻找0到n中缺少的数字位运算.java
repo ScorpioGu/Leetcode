@@ -1,4 +1,4 @@
-package bitwise;
+package bit;
 
 
 //寻找0,1,2，。。。n-1中缺少的数字，数组长度为n。丢失的那个数一定被替换成了n。

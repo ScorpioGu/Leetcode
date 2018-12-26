@@ -1,4 +1,4 @@
-package bitwise;
+package bit;
 
 /**
  * @Desc https://leetcode.com/problems/single-number/description/
