@@ -1,64 +1,62 @@
 package sort;
 
-import java.util.Arrays;
-import java.util.PriorityQueue;
 import java.util.Random;
 
 /**
- * @Desc https://leetcode.com/problems/kth-largest-element-in-an-array/description/
- * Find the kth largest element in an unsorted array. Note that it is the kth largest element in the sorted order, not the kth distinct element.
+ * @Desc https://leetcode.com/problems/wiggle-sort-ii/
+ * Given an unsorted array nums, reorder it such that nums[0] < nums[1] > nums[2] < nums[3]....
  *
  * Example 1:
  *
- * Input: [3,2,1,5,6,4] and k = 2
- * Output: 5
+ * Input: nums = [1, 5, 1, 1, 6, 4]
+ * Output: One possible answer is [1, 4, 1, 5, 1, 6].
  * Example 2:
  *
- * Input: [3,2,3,1,2,4,5,5,6] and k = 4
- * Output: 4
+ * Input: nums = [1, 3, 2, 2, 3, 1]
+ * Output: One possible answer is [2, 3, 1, 3, 1, 2].
+ * Note:
+ * You may assume all input has valid answer.
+ *
+ * Follow Up:
+ * Can you do it in O(n) time and/or in-place with O(1) extra space?
  * @Author gcc
- * @Date 18-11-26 上午10:50
+ * @Date 19-1-3 下午3:51
  **/
-public class 寻找数组中第k大的元素 {
+public class 摆动排序II {
     /**
-     * 最简单的方法就是排序的话时间复杂度o(nlogn)
+     * 找到中位数,然后把中位数放第一个,所有比中位数的放在奇数位置,比中位数大的放在偶数位置
+     * TODO 其实还是不是很懂啊,第二遍再看吧
      * @param nums
-     * @param k
-     * @return
      */
-    public int findKthLargest(int[] nums, int k) {
-        Arrays.sort(nums);
-        return nums[nums.length-k];
-    }
+    public void wiggleSort(int[] nums) {
+        int median = findKthLargest3(nums, (nums.length + 1)/2);
+        int n = nums.length;
+        int left = 0, i = 0, right = n - 1;
 
+        while (i <= right) {
 
-    /**
-     * 利用优先级队列,将时间复杂度降为o(Nlogk),因为队列的长度不超过k
-     * 所以每次插入一个元素,耗费的时间平均为logk.
-     * @param nums
-     * @param k
-     * @return
-     */
-    public int findKthLargest2(int[] nums, int k) {
-        //优先级队列存储int时,默认较小元素放队列头
-        PriorityQueue<Integer> pq = new PriorityQueue<>();
-        for (int num : nums) {
-            pq.offer(num);
-            if (pq.size() > k) {
-                pq.poll();
+            if (nums[newIndex(i,n)] > median) {
+                swap(nums, newIndex(left++,n), newIndex(i++,n));
+            }
+            else if (nums[newIndex(i,n)] < median) {
+                swap(nums, newIndex(right--,n), newIndex(i,n));
+            }
+            else {
+                i++;
             }
         }
-        return pq.peek();
     }
 
-    /**
-     * 寻找到第k大的元素,前两种做法都是对整个数组进行排序
-     * 但是寻找第k大的元素,并不需要前k-1整体排好序.只要所有元素小于第k个就行了
-     * 使用快排实现
-     * @param nums
-     * @param k
-     * @return
-     */
+    private int newIndex(int index, int n) {
+        return (1 + 2*index) % (n | 1);
+    }
+
+    private void swap(int[] nums, int i, int j) {
+        int temp = nums[i];
+        nums[i] = nums[j];
+        nums[j] = temp;
+    }
+
     public int findKthLargest3(int[] nums, int k) {
         shuffle(nums);
         //第k大的元素的位置在nums.length - k下标
@@ -113,4 +111,5 @@ public class 寻找数组中第k大的元素 {
             nums[i] = temp;
         }
     }
+
 }

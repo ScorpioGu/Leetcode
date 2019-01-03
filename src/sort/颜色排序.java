@@ -1,4 +1,4 @@
-package array;
+package sort;
 
 /**
  * @Desc https://leetcode.com/problems/sort-colors/description/
