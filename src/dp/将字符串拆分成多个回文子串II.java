@@ -28,7 +28,7 @@ public class 将字符串拆分成多个回文子串II {
             cut[j] = j;
             for (int i = 0; i <= j ; i++) {
                 //对于[0, j]这段字符,如果存在i,使得[i, j]为回文字符串
-                //则cut[j] = Math.min(cut[j], cut[i - 1] + 1)
+                //则cut[j] = math.min(cut[j], cut[i - 1] + 1)
                 if (s.charAt(i) == s.charAt(j) && (j - i <= 2 || isPal[i + 1][j - 1])) {
                     isPal[i][j] = true;
                     if (i == 0) {

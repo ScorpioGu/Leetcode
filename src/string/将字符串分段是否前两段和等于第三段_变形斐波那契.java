@@ -23,7 +23,7 @@ package string;
  **/
 public class 将字符串分段是否前两段和等于第三段_变形斐波那契 {
     /**
-     * i,j表示第一个数和第二个数的长度,则第三个数的长度为len-i-j必然是>=Math.max(i,j),且i必然是不能过半
+     * i,j表示第一个数和第二个数的长度,则第三个数的长度为len-i-j必然是>=math.max(i,j),且i必然是不能过半
      * @param num
      * @return
      */

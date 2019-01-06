@@ -8,6 +8,11 @@ import java.util.Stack;
  * @Date 19-1-3 下午10:23
  **/
 public class 根据序列化结果判断二叉树是否是先序遍历 {
+    /**
+     * 为什么想到用栈,因为先序遍历不管是递归还是非递归的方式本质上就是用栈来做的
+     * @param preorder
+     * @return
+     */
     public boolean isValidSerialization(String preorder) {
         String[] ss = preorder.split(",");
         Stack<String> stack = new Stack<>();

@@ -1,4 +1,4 @@
-package Math;
+package math;
 
 /**
  * @Desc https://www.cnblogs.com/grandyang/p/5282959.html

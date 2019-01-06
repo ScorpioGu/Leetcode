@@ -1,4 +1,4 @@
-package Divide_Conquer;
+package divide_Conquer;
 
 import java.util.Arrays;
 

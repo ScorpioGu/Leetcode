@@ -1,4 +1,4 @@
-package Math;
+package math;
 
 /**
  * @Desc https://leetcode.com/problems/excel-sheet-column-title/description/

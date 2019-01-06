@@ -8,7 +8,7 @@ package dp;
  * Input: [1,3,5,4,7]
  * Output: 3
  */
-public class 最长连续递增子序列指定长度 {
+public class 最长连续递增子序列 {
     public int findLengthOfLCIS(int[] nums) {
     	if(nums == null || nums.length == 0) return 0;
         int global = 1;

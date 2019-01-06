@@ -8,11 +8,12 @@ package dp;
  * @author:         Guchengcheng
  * @date:           2018年4月6日        下午8:40:15
  */
-public class 数组不能取相邻元素求和最大 {
+public class 偷房子 {
 	/**
 	 * 
 	 * @Description:
-	 * v[i]是第i个位置和最大的值，那么有 v[i] = max(v[i-1], v[i-2]+nums[i])
+	 * v[i]是第i个位置和最大的值，那么有 v[i] = max(v[i-1], v[i-2] + nums[i])
+	 * 注意v[i]不一定要包含nums[i]
 	 * 所以要维护两个变量，即在当前位置前一个与前两个位置的要求的最大值。每一次递推后，v[i-1] = v[i-2], v[i] = max(v[i-1], v[i-2]+nums[i])
 	 * 并且一定有v[i] >= v[i-1]
 	 * @param nums

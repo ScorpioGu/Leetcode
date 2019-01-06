@@ -13,8 +13,8 @@ import java.util.Map;
  * @Author gcc
  * @Date 18-11-19 下午8:36
  **/
-public class 最多有两个不同字符的最长子串 {
-    public int lengthOfLongestSubstringTwoDistinct(String s) {
+public class 最多有k个不同字符的最长子串 {
+    public int lengthOfLongestSubstringTwoDistinct(String s, int k) {
         if (s == null || s.length() == 0) {
             return 0;
         }
@@ -24,7 +24,7 @@ public class 最多有两个不同字符的最长子串 {
         Map<Character, Integer> map = new HashMap<>();
         for (r = 0; r < s.length(); r++) {
             map.put(s.charAt(r), map.getOrDefault(s.charAt(r), 0) + 1);
-            while (map.size() > 2) {
+            while (map.size() > k) {
                 //先不断减少次数,并向右移动left,当次数到0的时候remove掉
                 map.put(s.charAt(l),map.get(s.charAt(l)) - 1);
                 if (map.get(s.charAt(l)) == 0) {
@@ -42,18 +42,18 @@ public class 最多有两个不同字符的最长子串 {
      * @param s
      * @return
      */
-    public int lengthOfLongestSubstringTwoDistinct2(String s) {
+    public int lengthOfLongestSubstringTwoDistinct2(String s, int k) {
         if (s == null || s.length() == 0) {
             return 0;
         }
         int len = 0;
         int l = 0, r = 0;
-        //map存字符及其出现的次数
+        //map存字符和最新的下标
         Map<Character, Integer> map = new HashMap<>();
         for (r = 0; r < s.length(); r++) {
             //没有就新增,有就更新
             map.put(s.charAt(r), r);
-            while (map.size() > 2) {
+            while (map.size() > k) {
                 //left不断向右跑,跑到map中有value和他相同,此时,left停在了该被删除的字符上
                 if (map.get(s.charAt(l)) == l) {
                     map.remove(s.charAt(l));
@@ -65,8 +65,4 @@ public class 最多有两个不同字符的最长子串 {
         return len;
     }
 
-
-    public static void main(String[] args) {
-        System.out.println(new 最多有两个不同字符的最长子串().lengthOfLongestSubstringTwoDistinct2("ecba"));
-    }
 }

@@ -19,7 +19,7 @@ package dp;
  * @Author gcc
  * @Date 18-11-25 下午5:34
  **/
-public class 数组不能取相邻元素求和最大II {
+public class 偷房子II {
     /**
      * 既然首尾不能相邻,那么我就分两段来做吧,第一段有头没尾,第二段没头有尾
      * 去两段中的较大值
