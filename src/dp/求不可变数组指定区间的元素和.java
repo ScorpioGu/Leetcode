@@ -24,5 +24,7 @@ public class 求不可变数组指定区间的元素和 {
 		//小心处理细节问题，检查数组是否会越界
 	    return vals[j+1] - vals[i];
 	}
+
+
 }
 

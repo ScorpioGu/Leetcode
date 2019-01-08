@@ -53,7 +53,6 @@ public class 矩阵中的最大矩形 {
                     left[j] = -1;
                     curLeft = j;
                 }
-                //更新right
             }
             //对右边界的更新必须倒序
             for (int j = matrix[0].length-1; j >= 0 ; j--) {
@@ -72,4 +71,5 @@ public class 矩阵中的最大矩形 {
         }
         return max;
     }
+
 }
