@@ -24,10 +24,17 @@ import java.util.PriorityQueue;
  * Output: [1,1],[1,1]
  * Explanation: The first 2 pairs are returned from the sequence:
  *              [1,1],[1,1],[1,2],[2,1],[1,2],[2,2],[1,3],[1,3],[2,3]
+ *
+ * 这道题和有序数组中寻找第k小的元素那题相同.两个有序数组,假设长度分别为n,m
+ * 一共可组成n*m对,这是一个二维有序的数组.
+ * 那么就先把第一行元素放入最小堆中,每次从最小堆中取出一个元素,则需要往继续添加下一个元素.
+ * 被添加的元素必须是取出的元素那一列的下一个.
+ *
+ * 这样的做法保证从最小堆的出来的元素一定是有序的
  * @Author gcc
  * @Date 19-1-8 下午7:41
  **/
-public class 从两有序数组中选出k对使得和最小 {
+public class 两有序数组中选出k对使得和最小 {
     public List<int[]> kSmallestPairs(int[] nums1, int[] nums2, int k) {
         List<int[]> res = new ArrayList<>();
         if (nums1 == null || nums2 == null || nums1.length == 0 || nums2.length == 0) {
