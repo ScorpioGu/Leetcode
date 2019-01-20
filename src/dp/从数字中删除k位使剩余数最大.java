@@ -29,7 +29,6 @@ import java.util.Stack;
  * @Date 19-1-14 下午9:56
  **/
 
-110200 3
 public class 从数字中删除k位使剩余数最大 {
     /**
      * 这是我自己做的一个方法,缺点在于每删除一个字符,findFirstPeak就要被调用一次
