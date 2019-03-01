@@ -31,6 +31,8 @@ public class 非负数组能编排成的最大数 {
         }
 
         Arrays.sort(ss, new Comparator<String>() {
+            // 返回值为负时，o1排在o2前面，返回值为正时，o2排在o1前面
+            // 如果s1更大，我们希望o1排在o2前面，则需要返回负值，因为s2比s1小，用s2.compare(s1)返回负值
             @Override
             public int compare(String o1, String o2) {
                 String s1 = o1 + o2;

@@ -13,7 +13,7 @@ import java.util.Scanner;
  * https://leetcode.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/description/
  */
 public class 前序中序建树 {
-    public TreeNode buildTree(int[] preorder, int[] inorder) {
+    public static TreeNode buildTree(int[] preorder, int[] inorder) {
         //可以使用map存储元素与索引的映射，免得重复的遍历
 /*        Map<Integer, Integer> map = new HashMap<Integer, Integer>();
         for (int i = 0; i < inorder.length; i++) {
@@ -25,7 +25,7 @@ public class 前序中序建树 {
     }
 
     //也可以加一个preEnd参数，便于理解，if中的判断条件可以变为preStart>preEnd || inStart > inEnd
-    private TreeNode helper(int preStart, int inStart, int inEnd, int[] preorder, int[] inorder) {
+    private static TreeNode helper(int preStart, int inStart, int inEnd, int[] preorder, int[] inorder) {
         if (preStart > inorder.length - 1 || inStart > inEnd)
             return null;
         TreeNode root = new TreeNode(preorder[preStart]);

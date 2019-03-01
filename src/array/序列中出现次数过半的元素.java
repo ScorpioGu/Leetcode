@@ -17,9 +17,12 @@ package array;
  */
 public class 序列中出现次数过半的元素 {
 	/**
-	 * 	每找到一对不同的元素，就删除，剩下的一定是majority元素。当遇见与majority元素相同的时候，count++，
-	 * 	不同的时候count--。当count为0，去更换majority元素。
-	 * 	Moore Voting算法
+	 *
+	 * 每找到一对不同的元素，就删除，剩下的一定是majority元素。当遇见与majority元素相同的时候，count++，
+	 * 不同的时候count--。当count为0，去更换majority元素。
+	 *
+	 * 如果次数过半的元素不一定存在，还需要去判断一下，这里如果不存在我们返回0
+	 * Moore Voting算法
 	 * @param nums
 	 * @return
 	 */
@@ -37,6 +40,19 @@ public class 序列中出现次数过半的元素 {
 				count++;
 			}
 		}
-		return majority;
+		boolean b = true;
+		int times = 0;
+		for (int i=0; i<nums.length; i++) {
+			if (majority == nums[i]) {
+				times++;
+			}
+		}
+		if (times * 2 > nums.length) {
+			b = true;
+		} else {
+			b = false;
+		}
+
+		return b ? majority : 0;
 	}
 }

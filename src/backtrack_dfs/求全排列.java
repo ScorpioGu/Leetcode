@@ -5,12 +5,13 @@ import java.util.List;
 
 /**
  * @Desc https://leetcode.com/problems/permutations/description/
+ * 假设输入的数组没有重复的元素
  * @Author gcc
  * @Date 18-10-19 下午10:01
  **/
 public class 求全排列 {
     /**
-     * 回溯法做即可
+     * dfs
      * @param nums
      * @return
      */
@@ -19,11 +20,11 @@ public class 求全排列 {
         if (nums == null || nums.length == 0) {
             return lists;
         }
-        backTrack(lists, new ArrayList<Integer>(), nums);
+        dfs(lists, new ArrayList<Integer>(), nums);
         return lists;
     }
 
-    private void backTrack(List<List<Integer>> lists, List<Integer> cur, int[] nums) {
+    private void dfs(List<List<Integer>> lists, List<Integer> cur, int[] nums) {
         if (cur.size() == nums.length) {
             lists.add(new ArrayList<>(cur));
             return;
@@ -33,7 +34,7 @@ public class 求全排列 {
                     continue;
                 }
                 cur.add(nums[i]);
-                backTrack(lists, cur, nums);
+                dfs(lists, cur, nums);
                 cur.remove(cur.size() - 1);
             }
         }

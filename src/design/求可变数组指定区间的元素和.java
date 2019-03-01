@@ -21,6 +21,7 @@ package design;
  **/
 public class 求可变数组指定区间的元素和 {
     private class SegmentTreeNode {
+        // left right 表示这个节点求和的左右区间
         int left;
         int right;
         int sum;
@@ -61,6 +62,12 @@ public class 求可变数组指定区间的元素和 {
         update(root, i, val);
     }
 
+    /**
+     * 递归调用,在叶子节点的值被修改之后,上层相关的节点的值也会相应修改
+     * @param cur
+     * @param i
+     * @param val
+     */
     private void update(SegmentTreeNode cur, int i, int val) {
         if (cur.left == cur.right) {
             //找到这个叶子节点了,更新它
@@ -115,7 +122,7 @@ public class 求可变数组指定区间的元素和 {
         i++;
         while (i < bit.length) {
             bit[i] += val;
-            //i & -1是求i里第一个i所在的位, 之后i变成了下一个需要修改的位置
+            //i & -i是求i里第一个1所在的位, 之后i变成了下一个需要修改的位置
             i += (i & -i);
         }
     }
@@ -136,7 +143,7 @@ public class 求可变数组指定区间的元素和 {
         return sum;
     }
     public int sumRange(int i, int j) {
-        //因为要包括nums[i],所有后面这项是getSum(i-1)
+        //因为要包括nums[i],所以后面这项是getSum(i-1)
         return getSum(j) - getSum(i-1);
     }*/
 }

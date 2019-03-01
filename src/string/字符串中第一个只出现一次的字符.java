@@ -24,13 +24,19 @@ public class 字符串中第一个只出现一次的字符 {
             return -1;
         }
         // map记录只出现过一次的字符并记录字符索引
+        // 为什么要用linkedhashmap,因为hashmap不能保证数据插入与取出的有序性
+        // 而linkedhashmap底层是双向链表，保证了有序性
         Map<Character, Integer> map = new LinkedHashMap<>();
-        // set记录所有出现过的字符
+
+        // set记录所有出现过的字符，用set是降低了时间复杂度，结合set才能够保证
+        // 遍历完之后map中的元素只出现一次。如果只用map，对于出现奇数次的元素，第一次添加到map，第二次出现再将其从map中删除，第三次遇到又添加到了map中
+        // 如果不用set，那么map需要保存的value就是该字符出现的次数，由于没有保存索引信息，所以还需要对字符数组再进行一次遍历，增加了时间复杂度。
+
         Set<Character> set = new HashSet<>();
 
         for (int i = 0; i < s.length(); i++) {
             // 如果一个元素在set中存在了,这是一个重复的元素
-            // 如果这是第一次重复,需要将这个字符从map中删除,如果是第n(n>1)次重复,这个字符在第一次已经从map中删掉了,不同去管
+            // 如果这是第一次重复,需要将这个字符从map中删除,如果是第n(n>1)次重复,这个字符在第一次已经从map中删掉了,不用去管
             if (set.contains(s.charAt(i))) {
                 if (map.containsKey(s.charAt(i))) {
                     map.remove(s.charAt(i));

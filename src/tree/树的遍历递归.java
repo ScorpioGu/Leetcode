@@ -23,6 +23,9 @@ import java.util.List;
  * @Date 18-11-2 下午8:18
  **/
 public class 树的遍历递归 {
+
+    // pre代表当前节点的前驱
+    TreeNode pre = null;
     /**
      * 以中序为例
      * @param root
@@ -40,7 +43,10 @@ public class 树的遍历递归 {
         }
         //如果要求前序或者后序,将这三个位置变以下即可
         recursion(node.left, res);
+
         res.add(node.val);
+        pre = node;
+
         recursion(node.right, res);
     }
 }

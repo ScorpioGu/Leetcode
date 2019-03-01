@@ -96,6 +96,9 @@ public class Sort {
         selectRefValue(nums, head, tail);
         int ref = nums[head];
         while (head < tail) {
+            // 从右往左找到第一个比ref小的元素，该元素的下标为tail
+            // 从左往右找到第一个比ref大的元素，该元素的下标为head
+            // 将tail和head两元素进行交换
             while (head < tail && nums[tail] >= ref) {
                 tail--;
             }
@@ -105,6 +108,7 @@ public class Sort {
             }
             nums[tail] = nums[head];
         }
+        // 此时head停在了ref应该插入的位置，head前的位置都比ref小，head后的位置都比ref大
         nums[head] = ref;
         return head;
     }
@@ -204,9 +208,16 @@ public class Sort {
     }
 
     private static void merge(int[] nums, int head, int mid, int tail) {
+        // 传进来的nums,从head到mid是排好序的,从mid+1到tail是排好序的
+        // 但是整体从head到tail并没有排好序, newNums是暂时用来保存整体的排序结果的
+        // 等完全排好序之后,将newNums复制到nums中
         int[] newNums = new int[tail - head + 1];
+        // 前半段的开始索引
         int i = head;
+        // 后半段的开始索引
         int j = mid + 1;
+        // 新数组的当前索引
+
         int k = 0;
         while (i <= mid && j <= tail) {
             if (nums[i] < nums[j]) {
@@ -231,17 +242,17 @@ public class Sort {
 
     /*******************归并排序的非递归实现**********************/
     public static void mergeSortUsingStack(int[] nums) {
-        if (nums == null || nums.length <= 1)
+        if (nums == null || nums.length <= 1) {
             return;
-        Stack<Integer> stack = new Stack<Integer>();
-        stack.push(0);
-        stack.push(nums.length - 1);
-        while (!stack.isEmpty()) {
-            int tail = stack.pop();
-            int head = stack.pop();
-            int mid = (head + tail) / 2;
         }
-        //TODO
+        // i为跨度
+        for (int i = 1; i <= nums.length; i *= 2) {
+            // j为merge区间的起始位置
+            for (int j = 0; j + i <= nums.length; j += i * 2) {
+                //Math.min 的目的是处理 整个待排序数组为奇数的情况
+                merge(nums, j, j + i - 1, Math.min(j + 2 * i - 1, nums.length - 1));
+            }
+        }
     }
 
 /*******************堆排序**********************/

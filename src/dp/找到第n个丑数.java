@@ -27,6 +27,7 @@ public class 找到第n个丑数 {
      (2) 1×3, 2×3, 3×3, 4×3, 5×3, …
      (3) 1×5, 2×5, 3×5, 4×5, 5×5, …
      丑数就是在这三行中,根据大小一个一个挑出来的
+
      * @param n
      * @return
      */
@@ -36,12 +37,16 @@ public class 找到第n个丑数 {
         nums[0] = 1;
         for(int i = 1; i < nums.length; i++){
             nums[i] = Math.min(nums[index2] * 2, Math.min(nums[index3] * 3, nums[index5] * 5));
-            if(nums[i] == nums[index2] * 2)
+            // 注意这里不可以用if else，这是为了避免重复，比如６＝２＊３＝３＊２，那么 index2与index3都要++
+            if(nums[i] == nums[index2] * 2) {
                 index2++;
-            if(nums[i] == nums[index3] * 3)
+            }
+            if(nums[i] == nums[index3] * 3) {
                 index3++;
-            if(nums[i] == nums[index5] * 5)
+            }
+            if(nums[i] == nums[index5] * 5) {
                 index5++;
+            }
         }
         return nums[n - 1];
     }

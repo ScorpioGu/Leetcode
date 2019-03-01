@@ -1,6 +1,5 @@
 package sort;
 
-import java.util.Arrays;
 import java.util.PriorityQueue;
 import java.util.Random;
 
@@ -20,18 +19,6 @@ import java.util.Random;
  * @Date 18-11-26 上午10:50
  **/
 public class 寻找数组中第k大的元素 {
-    /**
-     * 最简单的方法就是排序的话时间复杂度o(nlogn)
-     * @param nums
-     * @param k
-     * @return
-     */
-    public int findKthLargest(int[] nums, int k) {
-        Arrays.sort(nums);
-        return nums[nums.length-k];
-    }
-
-
     /**
      * 利用优先级队列,将时间复杂度降为o(Nlogk),因为队列的长度不超过k
      * 所以每次插入一个元素,耗费的时间平均为logk.
