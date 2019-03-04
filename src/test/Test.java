@@ -1,33 +1,45 @@
 package test;
-import java.util.Arrays;
-import java.util.Scanner;
-
 public class Test {
-	static int count = 0;
 
+	int a, b;
+	int w = 4;
+	static double avgavg = 0.0;
+	static double avgmax = 0.0;
 	public static void main(String[] args) {
-		Scanner sc = new Scanner(System.in);
-		int n = sc.nextInt();
-		int m = sc.nextInt();
-		solve(4, 6);
-		System.out.println(count);
+		//int[] nums = new int[]{0, 3, 6, 1, 4, 7, 2, 5};
+		int[] nums = {0, 4, 1, 5, 2, 6, 3};
+		int len = nums.length;
+		for (int i = 0; i < nums.length; i++) {
+			for (int j = 0; j < nums.length; j++) {
+				calu(nums, i, j);
+			}
+		}
+		System.out.println();
+		System.out.println("total " + avgmax/(len * len - 1) + " " + avgavg/(len * len -1));
 
 	}
 
-	private static int solve(int m, int n) {
-		if (m + n < 3 || n < 1 || m < 1) {
-			return 0;
+	private static void calu(int[] nums, int i, int j) {
+		int max = Integer.MIN_VALUE;
+		double avg = 0.0;
+		int len = nums.length;
+		int[] c1 = new int[len];
+		int[] c2 = new int[len];
+		for (int k = 0; k < len; k++) {
+			c1[k] = nums[(k + i)%len];
+			c2[k] = nums[(k + j)%len];
+			int min = Math.min(nums[k], Math.min(c1[k], c2[k]));
+			max = Math.max(max, min);
+			avg += min;
 		}
-		if (m < n) {
-			count++;
-			m -= 1;
-			n -= 2;
+		System.out.println(i + " " + j + " " + max + " " + avg/len);
+		if (i == 0 && j == 0) {
+			return;
+		}
 
-		} else {
-			count++;
-			m -= 2;
-			n -= 1;
-		}
-		return solve(m, n);
+		avgavg += (avg/len);
+		avgmax += max;
+
 	}
+
 }

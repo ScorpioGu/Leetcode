@@ -3,9 +3,9 @@ package binarySearch;
 /**
  * @Desc https://leetcode.com/problems/find-first-and-last-position-of-element-in-sorted-array/description/
  * If the target is not found in the array, return [-1, -1].
- *
+ * <p>
  * Example 1:
- *
+ * <p>
  * Input: nums = [5,7,7,8,8,10], target = 8
  * Output: [3,4]
  * @Author gcc
@@ -13,54 +13,24 @@ package binarySearch;
  **/
 public class 寻找排序数组中元素的开始与结束位置 {
     public int[] searchRange(int[] nums, int target) {
-        if (nums == null || nums.length == 0) {
-            return new int[]{-1, -1};
-        }
         int left = 0;
-        int right = nums.length-1;
-        int[] res = new int[2];
+        int right = nums.length - 1;
         while (left <= right) {
-            int mid = (left + right) / 2;
+            int mid = left + (right - left) / 2;
             if (nums[mid] == target) {
-                //找到左右两个边界
-                int templeft = left;
-                int tempright = mid - 1;
-                while (templeft <= tempright) {
-                    int tempmid = (templeft + templeft)/2;
-                    if (nums[tempmid] == target) {
-                        tempright = tempmid - 1;
-                    } else {
-                        templeft = tempmid + 1;
-                    }
+                if (nums[left] == target && nums[right] == target) {
+                    return new int[]{left, right};
+                } else if (nums[left] != target) {
+                    left++;
+                } else {
+                    right--;
                 }
-                res[0] = templeft;
-
-                templeft = mid + 1;
-                tempright = right;
-                while (templeft <= tempright) {
-                    int tempmid = (templeft + templeft)/2;
-                    if (nums[tempmid] == target) {
-                        templeft = tempmid + 1;
-                    } else {
-                        tempright = tempmid - 1;
-                    }
-                }
-                res[1] = tempright;
-                return res;
-            }
-            if (nums[mid] < target) {
+            } else if (nums[mid] < target) {
                 left = mid + 1;
             } else {
                 right = mid - 1;
             }
         }
         return new int[]{-1, -1};
-    }
-
-    public static void main(String[] args) {
-        int[] res = new 寻找排序数组中元素的开始与结束位置().searchRange(new int[]{5, 7, 7, 8, 8, 10}, 5);
-        for (int i = 0; i < res.length; i++) {
-            System.out.println(res[i]);
-        }
     }
 }

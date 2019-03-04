@@ -17,7 +17,7 @@ package bit;
  **/
 public class 求数组中仅出现过一次的元素III {
     public int[] singleNumber(int[] nums) {
-        //先求出两数异或的结果，
+        //先求出两数异或的结果，因为0异或任何数都不变，所以用0作为初始值
         int diff = 0;
         for (int i = 0; i < nums.length; i++) {
             diff ^= nums[i];
@@ -35,6 +35,7 @@ public class 求数组中仅出现过一次的元素III {
         //而数组中其他相同的数必然被分在同一个部分
         //这样，每部分就转化成了singleNumberI的情形
 
+        //
         int[] res = {0, 0};
         for (int num : nums) {
             if ((num & diff) == 0) {
