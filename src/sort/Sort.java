@@ -58,9 +58,9 @@ public class Sort {
         if (head >= tail) {
             return;
         }
-        int mid = getMiddle(nums, head, tail);
-        quickSort(nums, head, mid - 1);
-        quickSort(nums, mid + 1, tail);
+        int refIndex = partition(nums, head, tail);
+        quickSort(nums, head, refIndex - 1);
+        quickSort(nums, refIndex + 1, tail);
     }
 
 /*******************快速排序的非递归实现**********************/
@@ -77,69 +77,45 @@ public class Sort {
         stack.push(0);
         stack.push(nums.length - 1);
         while (!stack.isEmpty()) {
-            int tail = stack.pop();
-            int head = stack.pop();
-            int mid = getMiddle(nums, head, tail);
-            if (head < mid - 1) {
-                stack.push(head);
+            int right = stack.pop();
+            int left = stack.pop();
+            int mid = partition(nums, left, right);
+            if (left < mid - 1) {
+                stack.push(left);
                 stack.push(mid - 1);
             }
-            if (tail > mid + 1) {
+            if (right > mid + 1) {
                 stack.push(mid + 1);
-                stack.push(tail);
+                stack.push(right);
             }
         }
     }
 
-    private static int getMiddle(int[] nums, int head, int tail) {
-        //优化的地方
-        selectRefValue(nums, head, tail);
-        int ref = nums[head];
-        while (head < tail) {
+    private static int partition(int[] nums, int left, int right) {
+        int ref = nums[left];
+        int i = left, j = right;
+        while (i < j) {
             // 从右往左找到第一个比ref小的元素，该元素的下标为tail
             // 从左往右找到第一个比ref大的元素，该元素的下标为head
             // 将tail和head两元素进行交换
-            while (head < tail && nums[tail] >= ref) {
-                tail--;
+            while (i < j && nums[j] >= ref) {
+                j--;
             }
-            nums[head] = nums[tail];
-            while (head < tail && nums[head] <= ref) {
-                head++;
+            while (i < j && nums[i] <= ref) {
+                i++;
             }
-            nums[tail] = nums[head];
+            if (i < j) {
+                int temp = nums[i];
+                nums[i] = nums[j];
+                nums[j] = temp;
+            }
         }
-        // 此时head停在了ref应该插入的位置，head前的位置都比ref小，head后的位置都比ref大
-        nums[head] = ref;
-        return head;
+        // 此时i=j，将i和left处的ref交换
+        nums[left] = nums[i];
+        nums[i] = ref;
+        return i;
     }
 
-    /**
-     * 使得nums[head],nums[tail],nums[mid]三者中间的数与nums[head]交换
-     *
-     * @param nums
-     * @param head
-     * @param tail
-     * @return
-     */
-    private static void selectRefValue(int[] nums, int head, int tail) {
-        int mid = head + (tail - head) / 2;
-        int temp;
-        if (nums[mid] > nums[tail]) {
-            temp = nums[mid];
-            nums[mid] = nums[tail];
-            nums[tail] = temp;
-        }
-        if (nums[head] > nums[tail]) {
-            temp = nums[tail];
-            nums[tail] = nums[head];
-            nums[head] = temp;
-        }
-        if (nums[head] > nums[mid]) {
-            temp = nums[head];
-            nums[head] = nums[mid];
-            nums[mid] = temp;
-        }
-    }
 
 /*******************插入排序**********************/
     /**
