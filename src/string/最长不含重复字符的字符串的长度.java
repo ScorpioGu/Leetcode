@@ -15,6 +15,7 @@ public class 最长不含重复字符的字符串的长度 {
     	if(s == null || s.length() == 0) {
 			return 0;
 		}
+		// 存储每个字符最先出现的位置
     	Map<Character, Integer> map = new HashMap<Character, Integer>();
     	int max = 0;
 		//j记录的当前这个串的起始位置

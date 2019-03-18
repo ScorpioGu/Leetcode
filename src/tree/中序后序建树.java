@@ -31,6 +31,7 @@ import java.util.Scanner;
  */
 public class 中序后序建树 {
     public TreeNode buildTree(int[] inorder, int[] postorder) {
+        // 存储每个值在中序数组中的索引
         Map<Integer, Integer> map = new HashMap<Integer, Integer>();
         for (int i = 0; i < inorder.length; i++) {
             map.put(inorder[i], i);

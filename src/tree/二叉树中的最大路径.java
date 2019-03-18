@@ -31,7 +31,7 @@ public class 二叉树中的最大路径 {
 
     /**
      * @param root
-     * @return 返回值为root这颗树下的最大路径
+     * @return 返回值为root这颗树下的最大路径,必须包含root节点本身，左右只去大的那一边
      */
     private int recursion(TreeNode root) {
         if (root == null) {

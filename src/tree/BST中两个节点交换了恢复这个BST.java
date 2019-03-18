@@ -20,16 +20,14 @@ import java.util.List;
  */
 
 public class BST中两个节点交换了恢复这个BST {
+    TreeNode pre = null;
     public void recoverTree(TreeNode root) {
         if (root == null) {
             return;
         }
-        //保存前驱节点
-        List<TreeNode> pre = new ArrayList<TreeNode>();
-        pre.add(null);
         //保存要交换的两个节点
         List<TreeNode> res = new ArrayList<TreeNode>();
-        helper(root, pre, res);
+        helper(root, res);
         //交换值即可,不需要去修改指针
         if (res.size() > 0) {
             int temp = res.get(0).val;
@@ -39,19 +37,19 @@ public class BST中两个节点交换了恢复这个BST {
     }
 
     //中序遍历，有序性
-    private void helper(TreeNode root, List<TreeNode> pre, List<TreeNode> res) {
+    private void helper(TreeNode root, List<TreeNode> res) {
         if (root == null) {
             return;
         }
-        helper(root.left, pre, res);
+        helper(root.left, res);
 
         //对节点的操作,有两个元素位置不对,有可能是相邻的情况,也有可能是不相邻的情况
         //相邻的情况,直接交换即可.
         //不相邻的情况,比如321,第第一次发现3,2不对的时候,res中按顺序保存了3,2.第二次发现2,1不对了,则把res中的2替换成1即可
         //即321变成123,其中2是不用变化的
-        if (pre.get(0) != null && root.val <= pre.get(0).val) {
+        if (pre != null && root.val <= pre.val) {
             if (res.size() == 0) {
-                res.add(pre.get(0));
+                res.add(pre);
                 res.add(root);
             } else {
                 //如果有两个乱序的地方，替换一下res中第二个元素
@@ -61,8 +59,8 @@ public class BST中两个节点交换了恢复这个BST {
             }
 
         }
-        pre.set(0, root);
+        pre = root;
 
-        helper(root.right, pre, res);
+        helper(root.right, res);
     }
 }

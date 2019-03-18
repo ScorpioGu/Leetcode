@@ -37,7 +37,7 @@ public class 将二叉树转成链表 {
     TreeNode temp;
 
     /**
-     * 递归解法
+     * 递归解法,后序遍历，先把左右子树整好了之后，访问根节点，将指针关系指好
      * @param root
      */
     public void flatten(TreeNode root) {

@@ -32,6 +32,7 @@ public class 判断两棵树是否对称 {
         if (left.val != right.val) {
             return false;
         }
+        //left和right在整颗树里位置对称，而并非是父亲节点的左右孩子
         return helper(left.left, right.right) && helper(left.right, right.left);
     }
 
