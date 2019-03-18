@@ -96,19 +96,18 @@ public class 生产者消费者 {
         public void run() {
             while (true) {
                 lock.lock();
-
-                while (queue.size() == SIZE) {
-                    try {
+                try {
+                    while (queue.size() == SIZE) {
                         canProduce.await();
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
                     }
+                    queue.offer(1);
+                    // 这里比用signalAll()更加高效，条件谓词多个的好处
+                    canConsume.signal();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                } finally {
+                    lock.unlock();
                 }
-
-                queue.offer(1);
-                canConsume.signalAll();
-
-                lock.unlock();
             }
         }
     }
@@ -119,19 +118,17 @@ public class 生产者消费者 {
         public void run() {
             while (true) {
                 lock.lock();
-
-                while (queue.isEmpty()) {
-                    try {
+                try {
+                    while (queue.isEmpty()) {
                         canConsume.await();
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
                     }
+                    queue.poll();
+                    canProduce.signal();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                } finally {
+                    lock.unlock();
                 }
-
-                queue.poll();
-                canProduce.signalAll();
-
-                lock.unlock();
             }
         }
     }
