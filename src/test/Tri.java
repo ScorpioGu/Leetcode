@@ -2,10 +2,12 @@ package test;
 
 import java.util.*;
 
-public class Test {
+public class Tri {
+
 	static int[] primes = {964, 524, 356, 268, 212, 172, 148, 124, 116, 104};
-	static int a = 56, b = 268;
+	static int b = 268;
 	static int w = 4;
+	static int circles = 3;
 	/**
 	 * 平均延迟的平均值
 	 */
@@ -21,27 +23,22 @@ public class Test {
 
 	static double minMax = Integer.MAX_VALUE;
 	public static void main(String[] args) {
-
-		int[] nums = getArray(a, b, w);
-		//shuffle(nums, rand);
-
-		for (int i = 0; i < nums.length; i++) {
-			System.out.println(nums[i]);
-		}
-		//return;
-/*		int len = nums.length;
-		for (int i = 0; i < nums.length; i++) {
-			for (int j = 0; j < nums.length; j++) {
-				calu(nums, i, j);
+		for (int a = 0; a<primes.length; a++) {
+			int[] nums = getArray(primes[a], b, w);
+			double bestAvg = getBestAvg(primes[a], w);
+			int len = nums.length;
+			for (int i = 0; i < nums.length; i++) {
+				for (int j = 0; j < nums.length; j++) {
+					calu(nums, i, j, primes[a]/w, bestAvg);
+				}
 			}
+/*			System.out.println();
+			System.out.println("minMax " + minMax);
+			System.out.println("avgmax " + avgmax / (len * len - 1) + " avgavg" + avgavg / (len * len - 1));*/
 		}
-		System.out.println();
-		System.out.println("minMax " + minMax);
-		System.out.println("avgmax " + avgmax/(len * len - 1) + " avgavg" + avgavg/(len * len -1));
-		getBestAvg(a, w);*/
 	}
 
-	private static void calu(int[] nums, int i, int j) {
+	private static void calu(int[] nums, int i, int j, int m, double bestAvg) {
 		int max = Integer.MIN_VALUE;
 		double avg = 0.0;
 		int len = nums.length;
@@ -55,7 +52,10 @@ public class Test {
 			avg += min;
 		}
 		minMax = Math.min(minMax, max);
-		System.out.println(i + " " + j + "   max: " + max + " avg: " + avg/len);
+		//System.out.println(i + " " + j + "   max: " + max + " avg: " + avg/len);
+		if (bestAvg == (avg/len)) {
+			//System.out.println("m:" + m + " k:" + nums[]);
+		}
 		if (i == 0 && j == 0) {
 			return;
 		}
@@ -82,26 +82,12 @@ public class Test {
 		return res;
 	}
 
-	public static void swap(int[] a, int i, int j){
-		int temp = a[i];
-		a[i] = a[j];
-		a[j] = temp;
-	}
-
-	public static  void  shuffle(int[] array, Random random){
-
-		for(int i = array.length; i >= 1; i--){
-
-			swap(array,i-1,random.nextInt(i));
-		}
-	}
-
-	public static void getBestAvg(int a, int w) {
+	public static double getBestAvg(int a, int w) {
 		a /= w;
-		int remain = a % 3;
-		int sum = 3 * (a/3) * ((a/3) + 1)/2 - (3 - remain) * (a/3);
+		int remain = a % circles;
+		int sum = circles * (a/circles) * ((a/circles) + 1)/2 - (circles - remain) * (a/circles);
 		System.out.println((double)sum/a);
+		return (double)sum/a;
 	}
-
 
 }

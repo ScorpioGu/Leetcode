@@ -10,6 +10,9 @@ import support.ListNode;
 
 //其实逆序降低了难度，进位往下一个位置进就行了，如果是顺序，进位还要访问前一个元素。
 
+/**
+ * 头条笔试题
+ */
 public class 数逆序存在链表中两个链表中的数相加 {
     public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
          if(l1 == null) return l2;
