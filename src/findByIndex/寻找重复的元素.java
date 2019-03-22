@@ -1,82 +1,40 @@
 package findByIndex;
 
-import java.util.Arrays;
-
 /**
- * @Desc https://leetcode.com/problems/find-the-duplicate-number/
- * Given an array nums containing n + 1 integers where each integer is between 1 and n (inclusive), prove that at least one duplicate number must exist. Assume that there is only one duplicate number, find the duplicate one.
- *
- * Example 1:
- *
- * Input: [1,3,4,2,2]
- * Output: 2
- * Example 2:
- *
- * Input: [3,1,3,4,2]
- * Output: 3
- *
- * Note:
- *
- * You must not modify the array (assume the array is read only).
- * You must use only constant, O(1) extra space.
- * Your runtime complexity should be less than O(n2).
- * There is only one duplicate number in the array, but it could be repeated more than once.
+ * @Desc https://www.nowcoder.com/practice/623a5ac0ea5b4e5f95552655361ae0a8?tpId=13&tqId=11203&rp=3&ru=%2Fta%2Fcoding-interviews&qru=%2Fta%2Fcoding-interviews%2Fquestion-ranking
+ * 在一个长度为n的数组里的所有数字都在0到n-1的范围内。 数组中某些数字是重复的，但不知道有几个数字是重复的。
+ * 也不知道每个数字重复几次。请找出数组中任意一个重复的数字。
+ * 例如，如果输入长度为7的数组{2,3,1,0,2,5,3}，那么对应的输出是第一个重复的数字2。
  * @Author gcc
- * @Date 18-12-14 上午11:15
+ * @Date 19-3-21 上午11:11
  **/
 public class 寻找重复的元素 {
     /**
-     * 排序是比较容易想到的一种方法,但是时间复杂度还是比较高的,看看有没有o(n)的方法
-     * @param nums
+     * 如果要求所有重复的元素，用遍历过程完了之后，用list存一下所有小于0的元素对应的下标就行了，和
+     * 那题寻找从没出现过的元素是一个意思
+     * @param numbers
+     * @param length
+     * @param duplication
      * @return
      */
-    public int findDuplicate(int[] nums) {
-        if (nums == null || nums.length <= 1) {
-            return -1;
-        }
-        Arrays.sort(nums);
-        int last = nums[0];
-        for (int i = 1; i < nums.length; i++) {
-            if (last == nums[i]) {
-                return last;
-            } else {
-                last = nums[i];
+    public boolean duplicate(int numbers[], int length, int[] duplication) {
+        // 若numbers[i]处的值小于0，说明i出现过
+        for (int i = 0; i < length; i++) {
+            // 当前的数对应的位置
+            int index = numbers[i];
+            // 若i之前出现过，则index小于0，需要将其还原
+            if (index < 0) {
+                index = -(index + 1);
             }
-        }
-        return -1;
-    }
 
-    /**
-     * 想到链表成环那题,把这个数组也当做一个链表,很好的地方在于
-     * 数组中的值不会超过数组的长度,那么我可以认为数组中的值存放的是下一个节点的坐标
-     * 这样就形成了一个链表,那么举例来说 3,1,3,4,2
-     * 其遍历顺序是3, 4, 2, 3, 4, 2....
-     * 第0跳是nums[0],第二跳是nums[1],..
-     * @param nums
-     * @return
-     */
-    public int findDuplicate2(int[] nums) {
-        if (nums == null || nums.length == 0) {
-            return 0;
+            if (numbers[index] < 0) {
+                duplication[0] = index;
+                return true;
+            }
+            // numbers[i]可能为0，直接取负没有效果，所以再减了个1
+            // numbers[index] 小于 标识index这个值之前出现过
+            numbers[index] = -(numbers[index]) - 1;
         }
-        //slow停在第一个节点
-        int slow = nums[0];
-        //fast停在第二个节点
-        int fast = nums[nums[0]];
-
-        //此时fast,slow已经迈出了第一(二)步了,为了满足初始情况slow != fast的条件
-        while (slow != fast) {
-            slow = nums[slow];
-            fast = nums[nums[fast]];
-        }
-        //fast停在第0个节点
-        fast = 0;
-        while(fast != slow) {
-            slow = nums[slow];
-            fast = nums[fast];
-        }
-
-        return slow;
-
+        return false;
     }
 }

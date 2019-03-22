@@ -13,7 +13,7 @@ package twopointers;
  * 怎么才能够蓄水？自然两边高，中间低，水就能收集到。那么考虑先找到一个最高的（只需要找到下标即可，高度具体是不少不用考虑，
  * 因为蓄水量只与短的那一边有关，木桶效应）。
  * 随后两个指针往中间靠拢，
- * 同时维护左最高maxleft与右最高maxight，那么如果当前高度小于maxLeft或者maxRight,则可以收集的雨水为maxLeft（maxight） - height【i】
+ * 同时维护左最高maxleft与右最高maxight，那么如果当前高度小于maxLeft或者maxRight,则可以收集的雨水为maxLeft（maxight） - height（i）
  * 求和即可。
  *
  * 双指针
