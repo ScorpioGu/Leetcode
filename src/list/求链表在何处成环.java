@@ -24,7 +24,7 @@ public class 求链表在何处成环 {
         ListNode fast = head;
         ListNode slow = head;
         boolean isCycle = false;
-        while (fast.next != null && fast.next.next != null) {
+        while (fast != null && fast.next != null) {
             fast = fast.next.next;
             slow = slow.next;
             if (fast == slow) {

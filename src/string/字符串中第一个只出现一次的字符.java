@@ -26,6 +26,7 @@ public class 字符串中第一个只出现一次的字符 {
         // map记录只出现过一次的字符并记录字符索引
         // 为什么要用linkedhashmap,因为hashmap不能保证数据插入与取出的有序性
         // 而linkedhashmap底层是双向链表，保证了有序性
+        // 因为是要返回的索引值，所以用map存一下
         Map<Character, Integer> map = new LinkedHashMap<>();
 
         // set记录所有出现过的字符，用set是降低了时间复杂度，结合set才能够保证

@@ -21,6 +21,7 @@ public class 判断链表是否成环快慢指针 {
 
         ListNode fast = head;
         ListNode slow = head;
+        // 因为fast一定大于等于slow的，所以只需要对fast和fast.next进行判空即可
         while (fast != null && fast.next != null) {
             slow = slow.next;
             fast = fast.next.next;

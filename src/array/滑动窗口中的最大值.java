@@ -5,7 +5,8 @@ import java.util.LinkedList;
 
 /**
  * @Desc https://leetcode.com/problems/sliding-window-maximum/
- * Given an array nums, there is a sliding window of size k which is moving from the very left of the array to the very right. You can only see the k numbers in the window. Each time the sliding window moves right by one position. Return the max sliding window.
+ * Given an array nums, there is a sliding window of size k which is moving from the very left of the array to the very right.
+ * You can only see the k numbers in the window. Each time the sliding window moves right by one position. Return the max sliding window.
  *
  * Example:
  *
@@ -25,10 +26,11 @@ public class 滑动窗口中的最大值 {
         int[] res = new int[l - k + 1];
         int index = 0;
         //Deque存储数组索引,始终保持对头元素是当前窗口中最大元素的索引
+        //窗口的右边界是i，左边界是i-k+1
         Deque<Integer> deque = new LinkedList<>();
         for (int i = 0; i < nums.length; i++) {
             //窗口向右移动时,左边超出范围的移除队列
-            while (!deque.isEmpty() && deque.peek() < i - k + 1) {
+            if (!deque.isEmpty() && deque.peek() < i - k + 1) {
                 deque.poll();
             }
 

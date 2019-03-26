@@ -39,18 +39,17 @@ public class 从字符矩阵中查找单词字符串 {
         }
         //如果当前矩阵位置和当前字符串位置的元素相等，则继续搜寻
         //上下左右四个位置都去尝试去下一个字符串位置匹配
+        board[i][j] ^= 256;
         if (board[i][j] == in[index]) {
             //为避免重复访问，对访问过的元素进行异或256操作，因为board中存的字符其范围时0-255，异或了256之后
             //范围变成了[256, 511]，下次再访问该元素时一定是不相等的
-            board[i][j] ^= 256;
             boolean exists = isExist(board, i + 1, j, in, index + 1) || isExist(board, i - 1, j, in, index + 1)
                     || isExist(board, i, j - 1, in, index + 1) || isExist(board, i, j + 1, in, index + 1);
             //还原
-            board[i][j] ^= 256;
             return exists;
-        } else {
-            return false;
         }
+        board[i][j] ^= 256;
+        return false;
     }
 
     public static void main(String[] args) {

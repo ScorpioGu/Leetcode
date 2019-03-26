@@ -2,8 +2,6 @@ package tree;
 
 import support.TreeNode;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Stack;
 
 /**
@@ -39,6 +37,7 @@ public class BST中第k个小的元素 {
     }
 
     int count = 1;
+    int target;
 
     /**
      * 递归做法
@@ -47,20 +46,19 @@ public class BST中第k个小的元素 {
      * @return
      */
     public int kthSmallest2(TreeNode root, int k) {
-        List<Integer> res = new ArrayList<>();
-        recursion(root, res, k);
-        return res.get(0);
+        recursion(root, k);
+        return target;
     }
 
-    private void recursion(TreeNode root, List<Integer> res, int k) {
+    private void recursion(TreeNode root, int k) {
         if (root == null) {
             return;
         }
-        recursion(root.left, res, k);
+        recursion(root.left, k);
         if (count++ == k) {
-            res.add(root.val);
+            target = root.val;
             return;
         }
-        recursion(root.right, res, k);
+        recursion(root.right, k);
     }
 }
