@@ -18,15 +18,13 @@ public class 树的遍历非递归 {
                 stack.push(cur);
                 cur = cur.left;
             }
-            if (!stack.isEmpty()) {
-                cur = stack.pop();
-                //这里加一些具体操作
-                System.out.print(cur.val + " ");
+            cur = stack.pop();
+            //这里加一些具体操作
+            System.out.print(cur.val + " ");
 
-                //root移动到下一个位置
-                pre = cur;
-                cur = cur.right;
-            }
+            //root移动到下一个位置
+            pre = cur;
+            cur = cur.right;
         }
     }
 
@@ -44,30 +42,26 @@ public class 树的遍历非递归 {
                 pre = cur;
                 cur = cur.left;
             }
-
-            if (!stack.isEmpty()) {
-                cur = stack.pop();
-                cur = cur.right;
-            }
+            cur = stack.pop();
+            cur = cur.right;
         }
     }
 
 
-
     public static List 后序(TreeNode cur) {
         List<Integer> list = new ArrayList<>();
-        if(cur == null) {
+        if (cur == null) {
             return list;
         }
         Stack<TreeNode> stack = new Stack<>();
         stack.push(cur);
-        while(!stack.isEmpty()) {
+        while (!stack.isEmpty()) {
             TreeNode curr = stack.pop();
-            list.add(0,curr.val);
-            if(curr.left!=null) {
+            list.add(0, curr.val);
+            if (curr.left != null) {
                 stack.push(curr.left);
             }
-            if(curr.right!=null) {
+            if (curr.right != null) {
                 stack.push(curr.right);
             }
         }

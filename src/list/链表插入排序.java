@@ -29,24 +29,30 @@ public class 链表插入排序 {
             return head;
         }
 
-        ListNode helper = new ListNode(0);
+        ListNode dummy = new ListNode(0);
+        // 当前待插入的节点
         ListNode cur = head;
-        ListNode pre = helper;
+        // 用于寻找插入位置，最终将cur插入到pre的后面，每次插入一个新节点，pre要还原回head
+        ListNode pre = dummy;
+        // 记录下一个待插入的节点，因为cur插入之后，next指针要发生改变，所以这里需要记录
         ListNode next;
         //not the end of input list
         while( cur != null ){
-            next = cur.next;
             //find the right place to insert
             while( pre.next != null && pre.next.val < cur.val ){
                 pre = pre.next;
             }
+            // 记录下一个待插入的节点
+            next = cur.next;
             //insert between pre and pre.next
             cur.next = pre.next;
             pre.next = cur;
-            pre = helper;
+
+            // 修改指针，准备下一次插入
+            pre = dummy;
             cur = next;
         }
 
-        return helper.next;
+        return dummy.next;
     }
 }

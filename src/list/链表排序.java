@@ -29,6 +29,9 @@ public class 链表排序 {
             return head;
         }
         //将链表分成两截,pre保存着slow的前驱,用于截断链表
+        //右半边链表的链表头一定是slow，而不能是slow.next,所以需要去记录slow的前驱用于截断
+        //想象一下一个只能两个节点的链表，slow最终将停在第2个节点处。如果用slow.next做第二段的链表头
+        //分割下来，第一段有两个节点，第二段有0个节点，显然这是不合适的
         ListNode slow = head, fast = head, pre = null;
         while (fast != null && fast.next != null) {
             pre = slow;

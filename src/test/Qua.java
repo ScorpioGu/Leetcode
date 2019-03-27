@@ -4,11 +4,11 @@ import java.util.Random;
 
 public class Qua {
 
-	static int[] primes = {964, 524, 356, 268, 212, 172, 148, 124, 116, 104};
-	static int a = 116, b = 268;
+	//static int[] primes = {964, 524, 356, 268, 212, 172, 148, 124, 116, 104};
+	static int[] primes = {20, 24, 28, 32, 40, 44, 48, 52};
+	static int b = 268;
 	static int w = 4;
 	static int circles = 4;
-	static boolean bestGot = false;
 	/**
 	 * 平均延迟的平均值
 	 */
@@ -25,6 +25,7 @@ public class Qua {
 	static double minMax = Integer.MAX_VALUE;
 	public static void main(String[] args) {
 		for (int a = 0; a<primes.length; a++) {
+			System.out.println("a:" + primes[a]);
 			int[] nums = getArray(primes[a], b, w);
 			double bestAvg = getBestAvg(primes[a], w);
 			int len = nums.length;
@@ -34,14 +35,7 @@ public class Qua {
 						calu(nums, i, j, k, bestAvg);
 					}
 				}
-				if (bestGot) {
-					System.out.println(primes[a] + " true");
-					break;
-				}
 			}
-			System.out.println();
-			System.out.println("minMax " + minMax);
-			System.out.println("avgmax " + avgmax / (len * len - 1) + " avgavg" + avgavg / (len * len - 1));
 		}
 	}
 
@@ -63,7 +57,8 @@ public class Qua {
 		minMax = Math.min(minMax, max);
 		//System.out.println(i + " " + j + "   max: " + max + " avg: " + avg/len);
 		if (bestAvg == (avg/len)) {
-			bestGot = true;
+			// bestGot = true;
+			System.out.println(i + " " + j + " " + m);
 		}
 		if (i == 0 && j == 0) {
 			return;
@@ -85,9 +80,11 @@ public class Qua {
 		}
 		int[] res = new int[a];
 		res[1] = k;
+		System.out.println("k:" + k);
 		for (int i = 2; i < a; i++) {
 			res[i] = (i * k) % a;
 		}
+
 		return res;
 	}
 
@@ -95,7 +92,7 @@ public class Qua {
 		a /= w;
 		int remain = a % circles;
 		int sum = circles * (a/circles) * ((a/circles) + 1)/2 - (circles - remain) * (a/circles);
-		System.out.println((double)sum/a);
+		//System.out.println((double)sum/a);
 		return (double)sum/a;
 	}
 

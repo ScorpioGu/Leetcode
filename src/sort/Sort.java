@@ -128,7 +128,12 @@ public class Sort {
             return;
         int temp;
         int j;
+        // nums[i]是待插入的元素
         for (int i = 1; i < nums.length; i++) {
+            // 从后往前找，找到第一个比nums[i]小的元素的位置，则该位置+1就是nums[i]应该存放的位置
+            // 该位置之后的元素都向后移动一个位置
+            // 从后往前找比较合适，一边可以寻找到插入的位置，一边可以将比nums[i]大的元素往后移动。平均下来插入一个元素的是(n/2)
+            // 如果是从前往后找，平均下来插入一个元素是o(n)
             j = i - 1;
             temp = nums[i];
             while (j >= 0 && nums[j] > temp) {

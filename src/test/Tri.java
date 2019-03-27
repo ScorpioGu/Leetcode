@@ -4,8 +4,9 @@ import java.util.*;
 
 public class Tri {
 
-	static int[] primes = {964, 524, 356, 268, 212, 172, 148, 124, 116, 104};
-	static int b = 268;
+	//static int[] primes = {964, 524, 356, 268, 212, 172, 148, 124, 116, 104};
+	static int[] primes = {20, 24, 28, 32, 36, 40, 44, 48};
+	static int b = 16;
 	static int w = 4;
 	static int circles = 3;
 	/**
@@ -24,6 +25,8 @@ public class Tri {
 	static double minMax = Integer.MAX_VALUE;
 	public static void main(String[] args) {
 		for (int a = 0; a<primes.length; a++) {
+			System.out.println();
+			System.out.println("a:" + primes[a]/w);
 			int[] nums = getArray(primes[a], b, w);
 			double bestAvg = getBestAvg(primes[a], w);
 			int len = nums.length;
@@ -32,9 +35,6 @@ public class Tri {
 					calu(nums, i, j, primes[a]/w, bestAvg);
 				}
 			}
-/*			System.out.println();
-			System.out.println("minMax " + minMax);
-			System.out.println("avgmax " + avgmax / (len * len - 1) + " avgavg" + avgavg / (len * len - 1));*/
 		}
 	}
 
@@ -52,9 +52,8 @@ public class Tri {
 			avg += min;
 		}
 		minMax = Math.min(minMax, max);
-		//System.out.println(i + " " + j + "   max: " + max + " avg: " + avg/len);
 		if (bestAvg == (avg/len)) {
-			//System.out.println("m:" + m + " k:" + nums[]);
+			System.out.println(i + " " + j);
 		}
 		if (i == 0 && j == 0) {
 			return;
@@ -70,14 +69,20 @@ public class Tri {
 		b = b/w;
 		int k = 0;
 		for (int i = 0; i < a; i++) {
-			if ((b * i) % a == a - 1) {
+			if (((b * i) % a) == (a - 1)) {
 				k = i;
 			}
 		}
 		int[] res = new int[a];
 		res[1] = k;
+		System.out.println("k:" + k);
 		for (int i = 2; i < a; i++) {
 			res[i] = (i * k) % a;
+		}
+		for (int i = 0; i < res.length; i++) {
+			if (res[i] == 1) {
+				System.out.println("d:" + i);
+			}
 		}
 		return res;
 	}
@@ -86,7 +91,6 @@ public class Tri {
 		a /= w;
 		int remain = a % circles;
 		int sum = circles * (a/circles) * ((a/circles) + 1)/2 - (circles - remain) * (a/circles);
-		System.out.println((double)sum/a);
 		return (double)sum/a;
 	}
 
