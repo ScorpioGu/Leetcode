@@ -20,6 +20,7 @@ import java.util.Set;
 public class 最长连续元素的长度 {
     /**
      * 记录每个位置的元素所能够形成的最长串的长度,对于连续的串来说,其中的每个元素所能形成的串的长度都一样
+     *
      * @param nums
      * @return
      */
@@ -36,7 +37,8 @@ public class 最长连续元素的长度 {
         //看起来像是o(n^2)的时间复杂度,但实际上对连续的串,在访问其出现的第一个元素时,会去遍历这个连续串中的其他元素,并且将其从set中删除
         //因为对于连续串中的每个元素,其串长度是相同的.删除操作也保证了每个元素均只会被访问一次,时间复杂度为o(n)
         for (int i : nums) {
-            int left = i-1, right = i + 1;
+            set.remove(i);
+            int left = i - 1, right = i + 1;
             while (set.remove(left)) {
                 left--;
             }

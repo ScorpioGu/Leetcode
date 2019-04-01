@@ -26,6 +26,10 @@ public class 单词接龙II {
         Map<String, Set<String>> neighbors = new HashMap<>();
         //存储每个单词到beginword的最短距离,因为是bfs遍历的,所以可以保证最短距离
         Map<String, Integer> distances = new HashMap<>();
+        for (String s : wordSet) {
+            neighbors.put(s, new HashSet<>());
+        }
+        distances.put(beginWord, 0);
         bfs(beginWord, endWord, wordSet, neighbors, distances);
         dfs(res, new ArrayList<>(), beginWord, endWord, neighbors, distances);
         return res;
@@ -40,10 +44,6 @@ public class 单词接龙II {
      * @param distances
      */
     private void bfs(String beginWord, String endWord, Set<String> wordSet, Map<String, Set<String>> neighbors, Map<String, Integer> distances) {
-        for (String s : wordSet) {
-            neighbors.put(s, new HashSet<>());
-        }
-        distances.put(beginWord, 0);
         boolean done = false;
         Queue<String> queue = new LinkedList<>();
         queue.offer(beginWord);
@@ -51,14 +51,14 @@ public class 单词接龙II {
             int size = queue.size();
             for (int i = 0; i < size; i++) {
                 String s = queue.poll();
-                neighbors.put(s, new HashSet<>());
+                //neighbors.put(s, new HashSet<>());
                 char[] chars = s.toCharArray();
                 for (int j = 0; j < chars.length; j++) {
+                    char pre = chars[j];
                     for (char c = 'a'; c <= 'z'; c++) {
                         if (chars[j] == c) {
                             continue;
                         }
-                        char pre = chars[j];
                         chars[j] = c;
                         String ns = String.valueOf(chars);
                         if (wordSet.contains(ns)) {
@@ -75,8 +75,8 @@ public class 单词接龙II {
                             }
                             //已经访问过的单词将不再访问
                         }
-                        chars[j] = pre;
                     }
+                    chars[j] = pre;
                 }
             }
             if (done) {

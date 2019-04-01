@@ -5,8 +5,8 @@ import java.util.Random;
 public class Qua {
 
 	//static int[] primes = {964, 524, 356, 268, 212, 172, 148, 124, 116, 104};
-	static int[] primes = {20, 24, 28, 32, 40, 44, 48, 52};
-	static int b = 268;
+	static int[] primes = {16, 24, 28, 32, 36, 44, 48, 52};
+	static int b = 20;
 	static int w = 4;
 	static int circles = 4;
 	/**
@@ -25,13 +25,14 @@ public class Qua {
 	static double minMax = Integer.MAX_VALUE;
 	public static void main(String[] args) {
 		for (int a = 0; a<primes.length; a++) {
-			System.out.println("a:" + primes[a]);
+			System.out.println();
+			System.out.println("a:" + primes[a]/w);
 			int[] nums = getArray(primes[a], b, w);
 			double bestAvg = getBestAvg(primes[a], w);
 			int len = nums.length;
 			for (int i = 0; i < nums.length; i++) {
-				for (int j = 0; j < nums.length; j++) {
-					for (int k = 0; k < nums.length; k++) {
+				for (int j = i; j < nums.length; j++) {
+					for (int k = j; k < nums.length; k++) {
 						calu(nums, i, j, k, bestAvg);
 					}
 				}
@@ -60,7 +61,7 @@ public class Qua {
 			// bestGot = true;
 			System.out.println(i + " " + j + " " + m);
 		}
-		if (i == 0 && j == 0) {
+		if (i == 0 && j == 0 && m == 0) {
 			return;
 		}
 
@@ -85,6 +86,12 @@ public class Qua {
 			res[i] = (i * k) % a;
 		}
 
+		for (int i = 1; i < res.length; i++) {
+			if (res[i] == 1) {
+				System.out.println("d:" + i);
+			}
+		}
+
 		return res;
 	}
 
@@ -92,7 +99,6 @@ public class Qua {
 		a /= w;
 		int remain = a % circles;
 		int sum = circles * (a/circles) * ((a/circles) + 1)/2 - (circles - remain) * (a/circles);
-		//System.out.println((double)sum/a);
 		return (double)sum/a;
 	}
 

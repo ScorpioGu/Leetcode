@@ -27,7 +27,7 @@ public class 将字符串拆分成多个回文子串 {
             return res;
         }
         //isPal[i][j]代表s.subString(i, j + 1)是回文串
-        boolean[][] isPal = new boolean[s.length()][s.length()];
+        boolean[][] pal = new boolean[s.length()][s.length()];
         //注意下面这种写法是错误的
 /*        for (int i = 0; i < s.length(); i++) {
             for (int j = i; j < s.length() ; j++) {
@@ -42,12 +42,12 @@ public class 将字符串拆分成多个回文子串 {
         //必须把end指针放在外层循环
         for (int j = 0; j < s.length(); j++) {
             for (int i = 0; i <= j ; i++) {
-                if (s.charAt(i) == s.charAt(j) && (j - i <= 2 || isPal[i + 1][j - 1])) {
-                    isPal[i][j] = true;
+                if (s.charAt(i) == s.charAt(j) && (j - i <= 2 || pal[i + 1][j - 1])) {
+                    pal[i][j] = true;
                 }
             }
         }
-        backTrack(res, new ArrayList<>(), s, 0, isPal);
+        backTrack(res, new ArrayList<>(), s, 0, pal);
         return res;
     }
 

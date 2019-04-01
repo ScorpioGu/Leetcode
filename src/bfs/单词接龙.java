@@ -23,7 +23,7 @@ import java.util.Set;
  **/
 public class 单词接龙 {
     /**
-     * 双端BFS来做减少事件复杂度
+     * 双端BFS来做减少时间复杂度
      * @param beginWord
      * @param endWord
      * @param wordList
@@ -40,7 +40,7 @@ public class 单词接龙 {
         end.add(endWord);
         int len = 1;
         while (!start.isEmpty() && !end.isEmpty()) {
-            //交换,保持start与end是size接近,能减少时间复杂度
+            //交换,保持start与end的size接近,能减少时间复杂度
             if (start.size() > end.size()) {
                 Set<String> tmp = start;
                 start = end;
@@ -52,8 +52,8 @@ public class 单词接龙 {
             for (String s : start) {
                 char[] chars = s.toCharArray();
                 for (int i = 0; i < strLen; i++) {
+                    char pre = chars[i];
                     for (char c = 'a'; c <= 'z'; c++) {
-                        char pre = chars[i];
                         chars[i] = c;
                         String newS = String.valueOf(chars);
                         if (end.contains(newS)) {
@@ -63,8 +63,8 @@ public class 单词接龙 {
                             tmp.add(newS);
                             wordList.remove(newS);
                         }
-                        chars[i] = pre;
                     }
+                    chars[i] = pre;
                 }
             }
             start = tmp;

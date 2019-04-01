@@ -29,37 +29,7 @@ import java.util.Map;
  * @Date 18-11-17 上午10:37
  **/
 public class 字符串拆成字典中的单词 {
-    /**
-     * 直接使用DFS/backtrack会带来冗余计算问题,同样一个字符串可能会被访问多次
-     * @param s
-     * @param wordDict
-     * @return
-     */
-    public List<String> wordBreak(String s, List<String> wordDict) {
-        List<String> res = new ArrayList<>();
-        if (wordDict == null || wordDict.size() == 0) {
-            return res;
-        }
 
-        backTrack(res, new StringBuilder(), s, wordDict, 0);
-        return res;
-    }
-
-    private void backTrack(List<String> res, StringBuilder sb, String s, List<String> wordDict, int begin) {
-        if (begin >= s.length()) {
-            sb.deleteCharAt(sb.length()-1);
-            res.add(sb.toString());
-        } else {
-            for (int i = begin; i < s.length(); i++) {
-                if (wordDict.contains(s.substring(begin, i + 1))) {
-                    int start = sb.length();
-                    sb.append(s.substring(begin, i + 1) + " ");
-                    backTrack(res, sb, s, wordDict, i + 1);
-                    sb.delete(start, sb.length());
-                }
-            }
-        }
-    }
 
     /**
      * 使用一个Map来存储每个字符串所能够拆成的字典中的单词组合,则可以避免冗余计算,当遇到已经存在的字符串时,直接去查表就行了
@@ -67,7 +37,7 @@ public class 字符串拆成字典中的单词 {
      * @param wordDict
      * @return
      */
-    public List<String> wordBreak2(String s, List<String> wordDict) {
+    public List<String> wordBreak(String s, List<String> wordDict) {
         List<String> res = new ArrayList<>();
         if (wordDict == null || wordDict.size() == 0) {
             return res;
@@ -81,18 +51,19 @@ public class 字符串拆成字典中的单词 {
         }
 
         List<String> res = new ArrayList<>();
+        // 这里为空串添加一个“”，下面用于isEmpty判断
         if (s.length() == 0) {
             res.add("");
-            return res;
         }
-        for (String word : wordDict) {
-            if (s.startsWith(word)) {
+        for (int i = 1; i <= s.length() ; i++) {
+            String word = s.substring(0, i);
+            if (wordDict.contains(word)) {
                 List<String> list = dfs(s.substring(word.length()), wordDict, map);
-                for (String ss : list) {
-                    if (ss.isEmpty()) {
+                for (String s1 : list) {
+                    if (s1.isEmpty()) {
                         res.add(word);
                     } else {
-                        res.add(word + " " + ss);
+                        res.add(word + " " + s1);
                     }
                 }
             }

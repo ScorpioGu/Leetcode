@@ -1,7 +1,5 @@
 package dp;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -34,10 +32,5 @@ public class 给一个字符串一个字典判断字符串是否可以拆分成�
     	}
     	
     	return history[s.length()];
-    }
-
-    public void test() {
-    	List<String> list = new ArrayList<String>(Arrays.asList("aaa", "aaaa"));
-    	System.out.println(wordBreak("aaaaaaa", list));
     }
 }

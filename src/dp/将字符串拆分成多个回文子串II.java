@@ -26,6 +26,7 @@ public class 将字符串拆分成多个回文子串II {
         for (int j = 0; j < s.length(); j++) {
             //初始化为每个单独的字符切一刀,cut[j]代表j+1个字符,最坏情况是j刀
             cut[j] = j;
+            // 注意这里i是可以等于j的，检查整个字符串是否是回文串
             for (int i = 0; i <= j ; i++) {
                 //对于[0, j]这段字符,如果存在i,使得[i, j]为回文字符串
                 //则cut[j] = math.min(cut[j], cut[i - 1] + 1)
