@@ -5,7 +5,7 @@ import java.util.Random;
 public class Qua {
 
 	//static int[] primes = {964, 524, 356, 268, 212, 172, 148, 124, 116, 104};
-	static int[] primes = {16, 24, 28, 32, 36, 44, 48, 52};
+	static int[] primes = {16, 32, 48, 64, 80, 96};
 	static int b = 20;
 	static int w = 4;
 	static int circles = 4;

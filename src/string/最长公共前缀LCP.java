@@ -3,7 +3,7 @@ package string;
 /**
  * https://leetcode.com/problems/longest-common-prefix/
  */
-public class 字符串最长公共前缀 {
+public class 最长公共前缀LCP {
     public String longestCommonPrefix(String[] strs) {
         if(strs == null || strs.length == 0) {
             return "";

@@ -12,6 +12,7 @@ import java.util.List;
 
 /**
  * https://leetcode.com/problems/unique-binary-search-trees-ii/description/
+ * 卡特兰数
  */
 public class n个数可构成的BST列表 {
     public List<TreeNode> generateTrees(int n) {
@@ -25,6 +26,7 @@ public class n个数可构成的BST列表 {
     private List<TreeNode> helper(int left, int right) {
         List<TreeNode> list = new ArrayList<TreeNode>();
         if (left > right) {
+            // 如果left < right应该返回一个空树
             list.add(null);
             return list;
         }

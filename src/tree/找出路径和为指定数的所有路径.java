@@ -28,7 +28,7 @@ public class 找出路径和为指定数的所有路径 {
         llist.add(root.val);
         if (root.left == null && root.right == null && root.val == sum) {
             //当符合条件了，应新建一个内容相同的list添加，原来的llist还要继续使用。
-            list.add(new ArrayList<Integer>(llist));
+            list.add(new ArrayList(llist));
         } else {
             helper(root.left, sum - root.val, list, llist);
             helper(root.right, sum - root.val, list, llist);

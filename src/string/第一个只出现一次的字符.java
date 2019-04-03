@@ -18,7 +18,7 @@ import java.util.*;
  * @Author gcc
  * @Date 19-1-14 上午9:48
  **/
-public class 字符串中第一个只出现一次的字符 {
+public class 第一个只出现一次的字符 {
     public int firstUniqChar(String s) {
         if (s == null || s.length() == 0) {
             return -1;

@@ -3,7 +3,7 @@ package test;
 import java.util.Random;
 
 public class Penta {
-	static int[] primes = {16, 20, 24, 28, 32, 36, 40, 48, 52};
+	static int[] primes = {20, 40, 60, 80, 100, 120, 140};
 	static int b = 28;
 	static int w = 4;
 	static int circles = 5;
