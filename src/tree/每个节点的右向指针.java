@@ -33,7 +33,7 @@ import java.util.LinkedList;
  **/
 public class 每个节点的右向指针 {
     /**
-     * 递归做法
+     * 前序遍历，必须要前序遍历
      * @param root
      */
     public void connect(TreeLinkNode root) {
@@ -47,6 +47,7 @@ public class 每个节点的右向指针 {
         //对于右节点的next节点有两种情况,一种是父节点的next不为空,则它指向父节点的next节点的左节点,否则它指向空
         if (root.right != null) {
             if (root.next != null) {
+                // 如果不是前序遍历，root.next指针将总是null
                 root.right.next = root.next.left;
             } else {
                 root.right.next = null;

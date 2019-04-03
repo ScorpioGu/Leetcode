@@ -34,6 +34,9 @@ public class 每个节点的右向指针II {
         if (root == null) {
             return;
         }
+
+        //p将定位到root的右边的兄弟的第一个最左的孩子
+        //所以必须要按照根，右，左的方式遍历，否则root.next将永远为null
         TreeLinkNode p = root.next;
         while (p != null) {
             if (p.left != null) {
