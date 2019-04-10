@@ -17,11 +17,11 @@ import java.util.Arrays;
  * Your algorithm should run in O(n2) complexity.
  * Follow up: Could you improve it to O(n log n) time complexity?
  *
- * 最长递增子序列,只需要递增,而不需要连续.
+ * 最长递增子序列LIS,只需要递增,而不需要连续.
  * @Author gcc
  * @Date 18-12-16 上午11:20
  **/
-public class 最长递增子序列 {
+public class 最长递增子序列LIS {
 
     /**
      * 二分法
@@ -55,6 +55,6 @@ public class 最长递增子序列 {
     }
 
     public static void main(String[] args) {
-        System.out.println(new 最长递增子序列().lengthOfLIS(new int[]{10,9,2,5,3,7,101,18}));
+        System.out.println(new 最长递增子序列LIS().lengthOfLIS(new int[]{10,9,2,5,3,7,101,18}));
     }
 }

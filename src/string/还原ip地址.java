@@ -40,7 +40,7 @@ public class 还原ip地址 {
             return;
         }
         for (int i = 1; i <= 3; i++) {
-            if (index <= s.length() - i) {
+            if (index + i <= s.length()) {
                 String segment = s.substring(index, index + i);
                 int value = Integer.parseInt(segment);
                 if (value >= 256 || (segment.startsWith("0") && segment.length() > 1)) {
@@ -52,13 +52,6 @@ public class 还原ip地址 {
                     cur.removeLast();
                 }
             }
-        }
-    }
-
-    public static void main(String[] args) {
-        List<String> res = new 还原ip地址().restoreIpAddresses("0000");
-        for (String s : res) {
-            System.out.println(s);
         }
     }
 }
