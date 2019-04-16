@@ -1,4 +1,4 @@
-package dp;
+package stack_queue;
 
 import java.util.Stack;
 
@@ -79,14 +79,14 @@ public class 从数字中删除k位使剩余数最大 {
             return "0";
         }
 
+        // stack中元素始终保持单调增,要删除的元素一定是符合中间高两边低的
         Stack<Character> stack = new Stack<>();
-        int i = 0;
-        while (i < num.length()) {
+        for (int i = 0; i < num.length(); i++) {
             while (!stack.isEmpty() && k > 0 && stack.peek() > num.charAt(i)) {
                 stack.pop();
                 k--;
             }
-            stack.push(num.charAt(i++));
+            stack.push(num.charAt(i));
         }
 
         //处理剩余的没有峰值的情况,比如1234,1111,这种就从最后开始删就行了

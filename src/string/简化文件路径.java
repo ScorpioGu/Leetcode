@@ -19,7 +19,7 @@ public class 简化文件路径 {
         Deque<String> stack = new LinkedList();
         //如果是“.”或者“”，不添加就ok,".."则从栈中pop处一个元素
         Set<String> set = new HashSet<>(Arrays.asList(".", "..", ""));
-        for (String s:path.split("/")) {
+        for (String s : path.split("/")) {
             if ("..".equals(s) && !stack.isEmpty()) {
                 stack.pop();
             } else if (!set.contains(s)) {
@@ -33,7 +33,7 @@ public class 简化文件路径 {
             return "/";
         }
         //Deque是双端队列，可以获得倒序的迭代器
-        for(Iterator<String> it = stack.descendingIterator();it.hasNext();) {
+        for (Iterator<String> it = stack.descendingIterator(); it.hasNext(); ) {
             sb.append("/").append(it.next());
         }
         return sb.toString();

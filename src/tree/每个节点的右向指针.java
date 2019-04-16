@@ -10,7 +10,7 @@ import java.util.LinkedList;
  * Note:
  *
  * You may only use constant extra space.
- * Recursive approach is fine, implicit stack space does not count as extra space for this problem.
+ * Recursive approach is fine, implicit stack_queue space does not count as extra space for this problem.
  * You may assume that it is a perfect binary tree (ie, all leaves are at the same level, and every parent has two children).
  * Example:
  *

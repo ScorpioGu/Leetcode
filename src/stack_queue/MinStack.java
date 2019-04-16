@@ -1,4 +1,4 @@
-package design;
+package stack_queue;
 
 import java.util.Stack;
 

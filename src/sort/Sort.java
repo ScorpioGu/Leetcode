@@ -95,9 +95,9 @@ public class Sort {
         int ref = nums[left];
         int i = left, j = right;
         while (i < j) {
-            // 从右往左找到第一个比ref小的元素，该元素的下标为tail
-            // 从左往右找到第一个比ref大的元素，该元素的下标为head
-            // 将tail和head两元素进行交换
+            // 从右往左找到第一个比ref小的元素，该元素的下标为j
+            // 从左往右找到第一个比ref大的元素，该元素的下标为i
+            // 将j和i两元素进行交换
             while (i < j && nums[j] >= ref) {
                 j--;
             }
@@ -181,11 +181,12 @@ public class Sort {
         if (nums == null || nums.length <= 1)
             return;
         int mid = (head + tail) / 2;
-        if (head < tail) {
-            mergerSort(nums, head, mid);
-            mergerSort(nums, mid + 1, tail);
-            merge(nums, head, mid, tail);
+        if (head >= tail) {
+            return;
         }
+        mergerSort(nums, head, mid);
+        mergerSort(nums, mid + 1, tail);
+        merge(nums, head, mid, tail);
     }
 
     private static void merge(int[] nums, int head, int mid, int tail) {
@@ -246,9 +247,10 @@ public class Sort {
         if (nums == null || nums.length <= 1)
             return;
         int len = nums.length;
-        for (int i = 0; i < len - 1; i++) {
-            buildMaxHeap(nums, len - i - 1);
-            swap(nums, 0, len - i - 1);
+        // i代表参与建堆的最后一个index,i=0的时候就一个元素,所以不用管
+        for (int i = len - 1; i > 0; i--) {
+            buildMaxHeap(nums, i);
+            swap(nums, 0, i);
         }
     }
 
@@ -259,20 +261,20 @@ public class Sort {
      * @param lastIndex
      */
     private static void buildMaxHeap(int[] nums, int lastIndex) {
+        // 最后一个非叶子节点是 (lastIndex-1)/2
         for (int i = (lastIndex - 1) / 2; i >= 0; i--) {
             int k = i;
             //检测下标为k的节点是否有子节点
             while (k * 2 + 1 <= lastIndex) {
-                int biggerIndex = k * 2 + 1;
-                //判断是否有右子节点
-                if (biggerIndex < lastIndex) {
-                    if (nums[biggerIndex] < nums[biggerIndex + 1]) {
-                        biggerIndex++;
-                    }
+                // biggerIndex是k节点的左节点的坐标(如果存在的话)
+                int biggerChild = k * 2 + 1;
+                // 如果右节点也存在的话,从两个节点中选择那个较大的节点,biggerIndex停在它上面
+                if (biggerChild < lastIndex && nums[biggerChild] < nums[biggerChild + 1]) {
+                    biggerChild++;
                 }
-                if (nums[biggerIndex] > nums[k]) {
-                    swap(nums, biggerIndex, k);
-                    k = biggerIndex;
+                if (nums[biggerChild] > nums[k]) {
+                    swap(nums, biggerChild, k);
+                    k = biggerChild;
                 } else {
                     break;
                 }
@@ -296,8 +298,9 @@ public class Sort {
 
 /*******************计数排序**********************/
     /**
-     * 计数排序，要求是数组里的元素是大于0的整数，因为这种排序是元素值作为数组的下标不能为负
-     * 如果有负数的情况，将正负数分开，负数取绝对值排序，然后两组数合并
+     * 计数排序，要求是数组里的元素是大于等于0的整数，因为这种排序是元素值作为数组的下标不能为负
+     * 如果有负数的情况，将正负数分开，负数取绝对值排序，然后两组数合并.
+     * 适用于类似分数等一系列元素为整数,且处于在一定范围内的元素排序,腾讯二面问道了
      *
      * @param nums
      */
@@ -327,6 +330,9 @@ public class Sort {
 
 /*******************桶排序**********************/
     /**
+     * 桶排序和计数排序类似,计数排序在元素值较为分散的时候,空间利用率不高,
+     * count数组中会有很多位置存的都是0.桶排序可以解决这个问题.将同一段范围的元素放在
+     * 同一个桶内.
      * 桶排序，假设nums中元素范围是[0-100]
      *
      * @param nums
@@ -375,11 +381,15 @@ public class Sort {
     public static void radixSort(int[] nums) {
         if (nums == null || nums.length <= 1)
             return;
+        List<List<Integer>> buf = new ArrayList<List<Integer>>();
+        for (int i = 0; i < 10; i++) {
+            buf.add(new LinkedList<Integer>());
+        }
         //找到数组中最大的数的位数，有多少位就要进行多次的分配与收集过程
         int maxBit = getMaxBit(nums);
-        for (int i = 1; i <= maxBit; i++) {
+        for (int i = 0; i < maxBit; i++) {
             //将数组nums里的元素分配到buf中
-            List<List<Integer>> buf = distribute(nums, i);
+            distribute(nums, i, buf);
             //将buf中的元素收集到nums中
             collect(nums, buf);
         }
@@ -394,11 +404,7 @@ public class Sort {
         }
     }
 
-    private static List<List<Integer>> distribute(int[] nums, int iBit) {
-        List<List<Integer>> buf = new ArrayList<List<Integer>>();
-        for (int i = 0; i < 10; i++) {
-            buf.add(new LinkedList<Integer>());
-        }
+    private static List<List<Integer>> distribute(int[] nums, int iBit, List<List<Integer>> buf) {
         for (int i = 0; i < nums.length; i++) {
             int bitValue = getNBit(nums[i], iBit);
             buf.get(bitValue).add(nums[i]);
@@ -415,13 +421,13 @@ public class Sort {
      */
     private static int getNBit(int x, int n) {
         String s = x + "";
-        if (s.length() < n)
+        if (s.length()-1 < n) {
             return 0;
+        }
         //如果char a = '4',想要得到整数类型4需要a-'0'。因为'4'的ascii码为'0'+4
         //如果不-'0'得到的结果是'4'这个字符的ascii码
-        return s.charAt(s.length() - n) - '0';
+        return s.charAt(s.length() - 1 - n) - '0';
     }
-
     /**
      * 取得一个整数数组中最大的位数
      *
