@@ -11,6 +11,8 @@ public class 删除排好序的链表中的重复节点 {
         dummy.next = head;
         ListNode cur = dummy.next;
         ListNode pre = dummy;
+
+        // pre始终为cur的前一个元素,pre与cur不重复
         while (cur != null) {
             // 不是一一个重复的删，而是整条连续的一起删
             while (cur.next != null && cur.val == cur.next.val) {

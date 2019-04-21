@@ -25,14 +25,14 @@ public class 寻找旋转后排序数组中元素 {
                 return mid;
             }
             if (nums[mid] > nums[right]) {
-                //左半边是升序的
+                //左半边一定是有序的,如果target在这个左半边有序的区间内,则right变为mid-1,否则一定是在右半边,left = mid + 1
                 if (target < nums[mid] && target >= nums[left]) {
                     right = mid - 1;
                 } else {
                     left = mid + 1;
                 }
             } else {
-                //右半边是升序的
+                //右半边一定是有序的
                 if (target > nums[mid] && target <= nums[right]) {
                     left = mid + 1;
                 } else {
