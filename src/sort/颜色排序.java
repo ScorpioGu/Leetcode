@@ -23,19 +23,24 @@ public class 颜色排序 {
      * @param nums
      */
     public void sortColors(int[] nums) {
-        //这两个指针记录最后一个0，1的位置
-        int red = 0, white = 0;
+        //这3个指针记录下一个0，1,2的应该插入的位置
+        int index0 = 0, index1 = 0, index2 = 0;
         for (int i = 0; i < nums.length; i++) {
-            int v = nums[i];
-            nums[i] = 2;
-            //不论是0还是1，white的位置都会向后移动
-            if (v < 2) {
-                //先暂时更改为1，随着red的增加，这里有可能更改为0的
-                nums[white++] = 1;
-            }
-            if (v == 0) {
-                //如果本来就是0，red指针向后移动即可
-                nums[red++] = 0;
+            int value = nums[i];
+
+            // 需要注意的是当前还没有２，index2和index1是相同的，当前还没1，index1和index2是重复的
+            // 所以注意赋值的顺序
+            // nums[index2++] = 2;
+            // nums[index1++] = 1;
+            if (value == 2) {
+                nums[index2++] = 2;
+            } else if (value == 1) {
+                nums[index2++] = 2;
+                nums[index1++] = 1;
+            } else {
+                nums[index2++] = 2;
+                nums[index1++] = 1;
+                nums[index0++] = 0;
             }
         }
     }

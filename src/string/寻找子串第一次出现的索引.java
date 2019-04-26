@@ -2,7 +2,7 @@ package string;
 
 //https://leetcode.com/problems/implement-strstr/description/
 //当needle为“”时，返回0
-public class 寻找字串第一次出现的索引 {
+public class 寻找子串第一次出现的索引 {
 
     //寻找匹配的字符串，可能第一个出现的想法就是，用两个指针在两个字符串上跑
     //如果两个指针都相等，那么两指针都往前走一步。如果不相等，字串则回到0。
@@ -30,6 +30,6 @@ public class 寻找字串第一次出现的索引 {
         }
     }
     public static void main(String[] args) {
-        System.out.println(new 寻找字串第一次出现的索引().strStr("hello", "ll"));
+        System.out.println(new 寻找子串第一次出现的索引().strStr("hello", "ll"));
     }
 }

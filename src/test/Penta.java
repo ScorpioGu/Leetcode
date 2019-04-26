@@ -3,11 +3,10 @@ package test;
 import java.util.Random;
 
 public class Penta {
-	static int[] primes = {20, 40, 60, 80, 100, 120, 140};
-	static int b = 28;
+	static int[] primes = {24, 28, 32, 36, 44, 48, 52, 56, 64};
+	static int b = 20;
 	static int w = 4;
 	static int circles = 5;
-	static boolean bestGot = false;
 	/**
 	 * 平均延迟的平均值
 	 */
@@ -75,22 +74,28 @@ public class Penta {
 		a = a/w;
 		b = b/w;
 		int k = 0;
+		int d = 0;
 		for (int i = 0; i < a; i++) {
-			if ((b * i) % a == a - 1) {
+			if (((b * i) % a) == (a - 1)) {
 				k = i;
 			}
 		}
 		int[] res = new int[a];
 		res[1] = k;
-		System.out.println("k:" + k);
 		for (int i = 2; i < a; i++) {
 			res[i] = (i * k) % a;
 		}
-		for (int i = 1; i < res.length; i++) {
+		StringBuilder sb = new StringBuilder();
+		for (int i = 0; i < res.length; i++) {
 			if (res[i] == 1) {
-				System.out.println("d:" + i);
+				d = i;
 			}
+			//System.out.println(res[i]);
+			sb.append(res[i]).append(" ");
 		}
+		System.out.println(sb.toString());
+		System.out.println("k:" + k);
+		System.out.println("d:" + d);
 		return res;
 	}
 

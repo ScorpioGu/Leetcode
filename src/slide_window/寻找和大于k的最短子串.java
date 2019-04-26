@@ -1,4 +1,4 @@
-package twopointers;
+package slide_window;
 
 /**
  * @Desc https://leetcode.com/problems/minimum-size-subarray-sum/description/
@@ -25,13 +25,15 @@ public class 寻找和大于k的最短子串 {
         }
 
         int right = 0, left = 0, sum = 0, minLen = Integer.MAX_VALUE;
-        for (right = 0; right < nums.length; right++) {
+        while (right < nums.length) {
             sum += nums[right];
 
+            // from valid to invalid
             while (sum >= s) {
                 minLen = Math.min(minLen, right - left + 1);
                 sum -= nums[left++];
             }
+            right++;
         }
         return minLen == Integer.MAX_VALUE ? 0 : minLen;
     }

@@ -1,4 +1,4 @@
-package string;
+package backtrack_dfs;
 
 /**
  * @Desc https://leetcode.com/problems/longest-substring-with-at-least-k-repeating-characters/
@@ -20,7 +20,7 @@ package string;
  * @Author gcc
  * @Date 19-1-14 下午4:31
  **/
-public class 至少有k个重复字符的最长子串 {
+public class 字符至少重复ｋ次的最长子串 {
     public int longestSubstring(String s, int k) {
 
         if (s == null || s.length() == 0) {
@@ -46,8 +46,8 @@ public class 至少有k个重复字符的最长子串 {
         int res = 0;
         int start = 0;
         for (int i = 0; i < s.length(); i++) {
-            int split = s.charAt(i) - 'a';
-            if (counts[split] > 0 && counts[split] < k) {
+            int index = s.charAt(i) - 'a';
+            if (counts[index] > 0 && counts[index] < k) {
                 res = Math.max(res, longestSubstring(s.substring(start, i), k));
                 start = i + 1;
             }
@@ -58,6 +58,6 @@ public class 至少有k个重复字符的最长子串 {
     }
 
     public static void main(String[] args) {
-        System.out.println(new 至少有k个重复字符的最长子串().longestSubstring("aaabb", 3));
+        System.out.println(new 字符至少重复ｋ次的最长子串().longestSubstring("aaabb", 3));
     }
 }

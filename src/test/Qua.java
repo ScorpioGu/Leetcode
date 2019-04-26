@@ -5,7 +5,7 @@ import java.util.Random;
 public class Qua {
 
 	//static int[] primes = {964, 524, 356, 268, 212, 172, 148, 124, 116, 104};
-	static int[] primes = {16, 32, 48, 64, 80, 96};
+	static int[] primes = {24, 28, 32, 36, 44, 48, 52, 56, 64};
 	static int b = 20;
 	static int w = 4;
 	static int circles = 4;
@@ -74,24 +74,28 @@ public class Qua {
 		a = a/w;
 		b = b/w;
 		int k = 0;
+		int d = 0;
 		for (int i = 0; i < a; i++) {
-			if ((b * i) % a == a - 1) {
+			if (((b * i) % a) == (a - 1)) {
 				k = i;
 			}
 		}
 		int[] res = new int[a];
 		res[1] = k;
-		System.out.println("k:" + k);
 		for (int i = 2; i < a; i++) {
 			res[i] = (i * k) % a;
 		}
-
-		for (int i = 1; i < res.length; i++) {
+		StringBuilder sb = new StringBuilder();
+		for (int i = 0; i < res.length; i++) {
 			if (res[i] == 1) {
-				System.out.println("d:" + i);
+				d = i;
 			}
+			//System.out.println(res[i]);
+			sb.append(res[i]).append(" ");
 		}
-
+		System.out.println(sb.toString());
+		System.out.println("k:" + k);
+		System.out.println("d:" + d);
 		return res;
 	}
 
