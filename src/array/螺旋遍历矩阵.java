@@ -28,14 +28,15 @@ public class 螺旋遍历矩阵 {
                 for (int i = colEnd; i >= colBegin ; i--) {
                     list.add(matrix[rowEnd][i]);
                 }
+                rowEnd--;
             }
-            rowEnd--;
+
             if (colBegin <= colEnd) {
                 for (int i = rowEnd; i >= rowBegin; i--) {
                     list.add(matrix[i][colBegin]);
                 }
+                colBegin++;
             }
-            colBegin++;
         }
         return list;
     }

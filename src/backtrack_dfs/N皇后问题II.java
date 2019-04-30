@@ -1,7 +1,5 @@
 package backtrack_dfs;
 
-import java.util.ArrayList;
-
 /**
  * @Desc https://leetcode.com/problems/n-queens-ii/description/
  * 这道题要返回的是解的个数
@@ -9,37 +7,42 @@ import java.util.ArrayList;
  * @Date 18-10-22 下午10:44
  **/
 public class N皇后问题II {
+    private int res;
+
+    private boolean[] col;
+    private boolean[] dia1;
+    private boolean[] dia2;
+
     public int totalNQueens(int n) {
-        boolean[][] cur = new boolean[n][n];
-        ArrayList<Integer> res = new ArrayList<>();
-        res.add(0);
-        dfs(cur, 0, res);
-        return res.get(0);
+        if (n == 0)
+            return res;
+        col = new boolean[n];
+        dia1 = new boolean[2 * n - 1];
+        dia2 = new boolean[2 * n - 1];
+
+        putQueen(n, 0);
+
+        return res;
     }
 
-    private void dfs(boolean[][] board, int colIndex, ArrayList<Integer> res) {
-        if(colIndex == board.length) {
-            res.set(0, res.get(0) + 1);
+    private void putQueen(int n, int index) {
+        if (index == n) {
+            res++;
             return;
         }
 
-        for(int i = 0; i < board.length; i++) {
-            if(validate(board, i, colIndex)) {
-                board[i][colIndex] = true;
-                dfs(board, colIndex + 1, res);
-                board[i][colIndex] = false;
+        for (int i = 0; i < n; i++) {
+            if (!col[i] && !dia1[index + i] && !dia2[index - i + n - 1]) {
+                col[i] = true;
+                dia1[index + i] = true;
+                dia2[index - i + n - 1] = true;
+
+                putQueen(n, index + 1);
+
+                col[i] = false;
+                dia1[index + i] = false;
+                dia2[index - i + n - 1] = false;
             }
         }
-    }
-
-    private boolean validate(boolean[][] board, int x, int y) {
-        for(int i = 0; i < board.length; i++) {
-            for(int j = 0; j < y; j++) {
-                if(board[i][j] && (x + j == y + i || x + y == i + j || x == i))
-                    return false;
-            }
-        }
-
-        return true;
     }
 }

@@ -19,7 +19,6 @@ public class 生成螺旋矩阵 {
      * @return
      */
     public int[][] generateMatrix(int n) {
-
         int[][] res = new int[n][n];
 
         int rowBegin = 0, rowEnd = n - 1, colBegin = 0, colEnd = n - 1;

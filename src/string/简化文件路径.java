@@ -33,9 +33,11 @@ public class 简化文件路径 {
             return "/";
         }
         //Deque是双端队列，可以获得倒序的迭代器
-        for (Iterator<String> it = stack.descendingIterator(); it.hasNext(); ) {
+        Iterator<String> it = stack.descendingIterator();
+        while (it.hasNext()) {
             sb.append("/").append(it.next());
         }
+
         return sb.toString();
     }
 

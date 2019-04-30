@@ -21,7 +21,7 @@ import java.util.List;
  **/
 public class 文本修正 {
     public List<String> fullJustify(String[] words, int L) {
-        List<String> lines = new ArrayList<String>();
+        List<String> lines = new ArrayList();
 
         int index = 0;
         while (index < words.length) {
