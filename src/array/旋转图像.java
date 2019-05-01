@@ -27,20 +27,21 @@ rotate the input matrix in-place such that it becomes:
 public class 旋转图像 {
     public void rotate(int[][] matrix) {
 
-        int length = matrix.length;
+        int n = matrix.length;
         //分圈旋转，不论这个矩阵的长度宽度为奇为偶，都是旋转length/2个圈
-        for (int i = 0; i < length/2; i++) {
+        for (int i = 0; i < n/2; i++) {
             //从最外层圈开始旋转
-            for (int j = i; j < length-i-1; j++) {
+            for (int j = i; j < n-i-1; j++) {
                 //每一层要经过3次元素的交换
                 int x = i, y = j;
-                for (int k = 0; k<3; k++) {
-                    int tempV = matrix[x][y];
-                    matrix[x][y] = matrix[length - y - 1][x];
-                    matrix[length - y - 1][x] = tempV;
-                    int tempX = x;
-                    x = length - y - 1;
-                    y = tempX;
+                for (int k = 0; k < 3; k++) {
+                    int temp = matrix[x][y];
+                    matrix[x][y] = matrix[y][n-1-x];
+                    matrix[y][n-1-x] = temp;
+
+                    int tempx = x;
+                    x = n - 1 - y;
+                    y = tempx;
                 }
             }
         }

@@ -9,7 +9,7 @@ import java.util.List;
  * @Author gcc
  * @Date 18-10-19 下午10:01
  **/
-public class 求全排列 {
+public class 全排列 {
     /**
      * dfs
      * @param nums

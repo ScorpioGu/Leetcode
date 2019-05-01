@@ -9,7 +9,7 @@ import java.util.*;
  * @Author gcc
  * @Date 18-10-19 下午10:29
  **/
-public class 求全排列2 {
+public class 全排列2 {
     public List<List<Integer>> permuteUnique(int[] nums) {
         List<List<Integer>> lists = new ArrayList<>();
         if (nums == null || nums.length == 0) {

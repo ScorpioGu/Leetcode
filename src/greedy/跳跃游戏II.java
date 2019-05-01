@@ -25,21 +25,21 @@ public class 跳跃游戏II {
         if (nums == null || nums.length == 0) {
             return -1;
         }
-        int i = 0;
+        int step = 0;
+        int end = 0;
         int maxReach = 0;
-        int hops = 0;
-        int nextMax = 0;
-        while (i < nums.length - 1) {
-            hops++;
-            for (; i <= maxReach; i++) {
-                nextMax = Math.max(nextMax, nums[i] + i);
-                if (nextMax >= nums.length - 1) {
-                    return hops;
-                }
+
+        // start代表当前位置，end代表当前可以跳的最远的位置，maxReach代表下一跳可以跳到的最远的位置。
+        // 则在[start, end]中不断对maxReach更新，如果i走到了end位置，那么这一跳结束进入下一跳
+        // 更新end为maxReach
+        for (int i = 0; i < nums.length - 1; i++) {
+            maxReach = Math.max(maxReach, i + nums[i]);
+            if (i == end) {
+                step++;
+                end = maxReach;
             }
-            maxReach = nextMax;
         }
-        return 0;
+        return step;
     }
 
 
