@@ -13,7 +13,11 @@ public class 下一个全排列 {
             return;
         }
         int k=-1,l=-1;
+
+        // 全排列是以递增排列的，找到下一个排列就是交换某些元素，使得新的排列比原排列大
+
         //要找出最大的k，使得nums[k] < nums[k+1],那么我们就从后往前找好了，只要能找到，循环就结束了
+        // [k+1.n-1]是递减的
         for (int i = nums.length-2; i >= 0; i--) {
             if (nums[i] < nums[i + 1]) {
                 k = i;
@@ -25,7 +29,8 @@ public class 下一个全排列 {
             //说明是降序排列的
             reverse(nums, 0, nums.length - 1);
         } else {
-            //要找出最大的l，使得nums[k] < nums[l],那么我们就从后往前找好了，只要能找到，循环就结束了
+            //从nums[k+1,n-1]中找到最小的比nums[k]大的元素，将其交换。因为nums[k+1,n-1]是递减的，所以从后往前找
+            //然后将两元素交换，交换之后，nums[k+1,n-1]仍然是降序的，需要将其reverse，保证新的全排列增加的最小
             for (int i = nums.length - 1; i > k; i--) {
                 if (nums[i] > nums[k]) {
                     l = i;

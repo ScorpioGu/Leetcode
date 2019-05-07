@@ -35,8 +35,12 @@ import java.util.HashSet;
  * Explanation: Same as Example 1, except with the 5 in the top left corner being
  * modified to 8. Since there are two 8's in the top left 3x3 sub-box, it is invalid.
  * Output: true
- * @Explaination 利用HashSet存储元素的不重复，将二维数组中元素村到三种（行，列）Set中，如果存不进去说明有重复
+ * @Explaination
+ * 利用HashSet存储元素的不重复，将二维数组中元素存到三种（行，列）Set中，如果存不进去说明有重复
  * 也可以用boolean数组保存，每存一个元素，该元素对应位置上则设为true。
+ *
+ *
+ * 这题并不是让判断是否有一种方式填满数独，而是仅仅判断所给的未填充的数独数组是否是合法的。
  * @Author gcc
  * @Date 18-10-8 下午10:33
  **/

@@ -43,6 +43,8 @@ public class 两字符串相乘 {
                 //res[i + j] += temp/10;
                 //res[i + j + 1] += temp%10;
                 int sum = temp + res[i + j + 1];
+
+                // 进位直接存在在了res[i+j]，因为是相乘，进位可能是0-9
                 res[i + j] += sum / 10;
                 //注意是=而不是+=，前面sum中已经加了res[i + j + 1]
                 res[i + j + 1] = sum % 10;

@@ -30,8 +30,11 @@ public class 寻找第一个丢失的正数 {
             if (nums[i] == i + 1 || nums[i] <= 0 || nums[i] > nums.length) {
                 i++;
             } else if (nums[nums[i] - 1] != nums[i]) {
+                // 这里进行的判断，是防止重复元素交换的死循环
                 swap(nums, i, nums[i] - 1);
+                // 注意这里不会i++，交换过来的元素再去进行判断，直到
             } else {
+                // 重复元素不用管，跳过
                 i++;
             }
         }

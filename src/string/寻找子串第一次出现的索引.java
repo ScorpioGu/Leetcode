@@ -15,19 +15,23 @@ public class 寻找子串第一次出现的索引 {
     //但是下面的这种 方法，就很优雅，它使用i指向开始匹配的位置，j是字串的索引，那么i+j就指向了主串
     //中匹配过程中的待匹配字符
     public int strStr(String haystack, String needle) {
-        for (int i = 0; ; i++) {
-            for (int j = 0; ; j++) {
-                if (j == needle.length()-1) {
-                    return i;
-                }
-                if (i+j == haystack.length()) {
-                    return -1;
-                }
+        int l1 = haystack.length(), l2 = needle.length();
+        if (l1 < l2) {
+            return -1;
+        } else if (l2 == 0) {
+            return 0;
+        }
+        for (int i = 0; i <= l1 - l2; i++) {
+            for (int j = 0; j < l2; j++) {
                 if (needle.charAt(j) != haystack.charAt(i+j)) {
                     break;
                 }
+                if (j == l2-1) {
+                    return i;
+                }
             }
         }
+        return -1;
     }
     public static void main(String[] args) {
         System.out.println(new 寻找子串第一次出现的索引().strStr("hello", "ll"));

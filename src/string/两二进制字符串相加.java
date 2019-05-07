@@ -13,7 +13,7 @@ package string;
  * @Author gcc
  * @Date 18-10-24 下午7:59
  **/
-public class 两个二进制字符串相加 {
+public class 两二进制字符串相加 {
     public String addBinary(String a, String b) {
         StringBuilder sb = new StringBuilder();
         //两两个指针分别指向两个字符串，两指针同时移动。
@@ -32,6 +32,6 @@ public class 两个二进制字符串相加 {
     }
 
     public static void main(String[] args) {
-        System.out.println(new 两个二进制字符串相加().addBinary("011", "111"));
+        System.out.println(new 两二进制字符串相加().addBinary("011", "111"));
     }
 }
