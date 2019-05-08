@@ -2,8 +2,6 @@ package list;
 
 import support.ListNode;
 
-import java.util.Comparator;
-import java.util.List;
 import java.util.PriorityQueue;
 
 //https://leetcode.com/problems/merge-k-sorted-lists/description/
@@ -13,18 +11,7 @@ public class 多个排序链表合成一个排序链表 {
     public ListNode mergeKLists(ListNode[] lists) {
 //        优先队列的头是基于自然排序或者Comparator排序的最小元素,不允许出现null
         //根据节点的val升序排列，对头元素是最小的
-        PriorityQueue<ListNode> queue = new PriorityQueue<ListNode>(lists.length, new Comparator<ListNode>() {
-            @Override
-            public int compare(ListNode o1, ListNode o2) {
-                if (o1.val < o2.val) {
-                    return -1;
-                } else if (o1.val == o2.val) {
-                    return 0;
-                } else {
-                    return 1;
-                }
-            }
-        });
+        PriorityQueue<ListNode> queue = new PriorityQueue<>((a,b) -> (a.val - b.val));
         for (ListNode node : lists) {
             if (node != null) {
                 //添加的时候自动根据val值排列了

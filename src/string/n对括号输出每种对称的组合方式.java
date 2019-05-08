@@ -1,36 +1,36 @@
 package string;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class n对括号输出每种对称的组合方式 {
-    public List<String> generateParenthesis(int n) {
-    	List<String> list = new ArrayList<String>();
-    	backtrack(list, "", 0, 0, n);
-    	return list;
-    }
+	public ArrayList<String> generateParenthesis(int n) {
+		ArrayList<String> res = new ArrayList();
+		dfs(res, new StringBuilder(), 0, 0, n);
+		return res;
+	}
 
-    private void backtrack(List<String> list, String str, int open, int close, int max) {
-    	if(str.length() == 2*max) {
-    		list.add(str);
-    		System.out.println(str);
-    		return;
-    	}
+	private void dfs(ArrayList<String> res, StringBuilder sb, int open, int close, int n) {
+		// 如果open < close就没用了
+		// 如果open > close 可以添加open,可以添加close
+		// 如果open = close，只能添加open
+		// 如果任意一个大于n，就没用了
 
-    	//只要open<max，就可以继续添加open
-    	if(open < max) {
-    		backtrack(list, str+"(", open+1, close, max);
-    	}
+		// 始终保持open >= close
+		// 如果open = close = n，就成了
+		if (open == n && close == n) {
+			res.add(sb.toString());
+			return;
+		}
+		if (open > n || close > n || close > open) {
+			return;
+		}
 
-    	//close<open，要补close来平衡
-    	if(close < open) {
-    		backtrack(list, str+")", open, close+1, max);
-    	}
+		sb.append("(");
+		dfs(res, sb, open + 1, close, n);
+		sb.deleteCharAt(sb.length()-1);
 
-    	//一旦出现close > open,就没救了，没法补救
-    }
-    
-    public static void main(String[] args) {
-    	new n对括号输出每种对称的组合方式().generateParenthesis(3);
+		sb.append(")");
+		dfs(res, sb, open, close+1, n);
+		sb.deleteCharAt(sb.length()-1);
 	}
 }
