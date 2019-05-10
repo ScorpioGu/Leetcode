@@ -9,20 +9,15 @@ public class 反转32位有符号整数 {
         int result = 0;
         //结束的标志是原来的数变为0
         while (x != 0) {
-            int yu = x % 10;
-            int newResult = result * 10 + yu;
+            int remain = x % 10;
+            int newResult = result * 10 + remain;
             //对于不溢出的数，对一个数操作之后然后还原应该是相等的。
             //但对于溢出的数，乘10再加其他一个数溢出的话，还原之后是不想等的，根据这个判断是否溢出
-            if ((newResult - yu) / 10 != result) {
+            if ((newResult - remain) / 10 != result) {
                 return 0;
             }
             result = newResult;
             x /= 10;
-/*          不考虑溢出的情况
-            int yu = x % 10;
-            result = result * 10 + yu;
-
-            x /= 10;*/
         }
         return result;
     }
