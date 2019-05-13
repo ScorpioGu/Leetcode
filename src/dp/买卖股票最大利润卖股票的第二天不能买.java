@@ -18,38 +18,26 @@ package dp;
  **/
 public class 买卖股票最大利润卖股票的第二天不能买 {
     /**
-     * 先简单分析一下:
-     * 1.不能连续buy,不能连续sell.sell之前必须在之前有buy
-     * 2.sell完之后的一天,必须rest
-     * 3.buy完后的一天,可以rest也可以sell
-     * 4.rest后的一天,可以继续rest,如果之前buy过,可以sell,如果之前sell过,可以buy
-     * 5.最大利润一定出现在最后一天是rest或者sell的情况下,如果最后一天是buy,一定利润不是最大
-     *
-     * 根据以上,可以画出
-     * 如https://leetcode.com/problems/best-time-to-buy-and-sell-stock-with-cooldown/discuss/75928/Share-my-DP-solution-(By-State-Machine-Thinking)
-     * 所示的状态机
      * @param prices
      * @return
      */
     public int maxProfit(int[] prices) {
-        if (prices == null || prices.length < 2) {
-            return 0;
-        }
-        //初始状态,刚开始就休息利润是0
-        int[] s0 = new int[prices.length];
-        int[] s1 = new int[prices.length];
-        int[] s2 = new int[prices.length];
-        s0[0] = 0;
-        //刚开始就买,利润是-prices[0]
-        s1[0] = -prices[0];
-        //卖完,初始化为一个最小值
-        s2[0] = Integer.MIN_VALUE;
-        for (int i = 1; i < prices.length; i++) {
-            s0[i] = Math.max(s0[i-1], s2[i-1]);
-            s1[i] = Math.max(s0[i-1] - prices[i], s1[i-1]);
-            s2[i] = s1[i-1] + prices[i];
-        }
 
-        return Math.max(s0[s0.length - 1], s2[s2.length - 1]);
+        // pre_to是前一天
+        int t0 = 0, pre_t0 = 0, t1 = Integer.MIN_VALUE;
+        for (int price : prices) {
+            // 一进这个循环，to,t1都代表昨天的利润.用temp暂时保存昨天的to
+            int temp = t0;
+
+            t0 = Math.max(t0, t1 + price);
+
+            // 卖完之后第二天不能买
+            t1 = Math.max(t1, pre_t0 - price);
+
+            // to,t1更新之后就是今天了,而pre_t0在下一个循环才会被用到，下一个循环中
+            // 就是明天to,t1的更新会用到昨天的t0
+            pre_t0 = temp;
+        }
+        return t0;
     }
 }

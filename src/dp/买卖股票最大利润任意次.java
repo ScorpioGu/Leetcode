@@ -11,10 +11,11 @@ package dp;
  */
 public class 买卖股票最大利润任意次 {
     public int maxProfit(int[] prices) {
-    	int profit = 0;
-        for(int i=1; i<prices.length; i++) {
-        	profit = profit + Math.max(prices[i]-prices[i-1], 0);
+        int t1 = Integer.MIN_VALUE, t0 = 0;
+        for (int price : prices) {
+            t0 = Math.max(t0, t1 + price);
+            t1 = Math.max(t1, t0 - price);
         }
-        return profit;
+        return t0;
     }
 }

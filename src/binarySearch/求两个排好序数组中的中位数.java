@@ -26,13 +26,16 @@ public class 求两个排好序数组中的中位数 {
         while (left <= right) {
             int i = (left + right) / 2;
             int j = half_len - i;
-            //不包含最左边
+            // i < len1的同时可以确保 j > 0
             if (i < len1 && nums2[j - 1] > nums1[i]) {
                 left = i + 1;
-                //不包含最右边
+            // i > 0的同时可以保证j < len2
             } else if (i > 0 && nums1[i - 1] > nums2[j]) {
                 right = i - 1;
             } else {
+                // 这里的else，其实是剩余的这种情况
+                //    (j == 0 or i == m or B[j-1] <= A[i]) and
+                //    (i == 0 or j = n or A[i-1] <= B[j])
                 int maxLeft, minRight;
                 if (i == 0) {
                     maxLeft = nums2[j - 1];

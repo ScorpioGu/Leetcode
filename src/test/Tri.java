@@ -5,8 +5,8 @@ import java.util.*;
 public class Tri {
 
 	//static int[] primes = {964, 524, 356, 268, 212, 172, 148, 124, 116, 104};
-	static int[] primes = {24, 28, 32, 36, 44, 48, 52, 56};
-	//static int[] primes = {48};
+	//static int[] primes = {24, 28, 32, 36, 44, 48, 52, 56};
+	static int[] primes = {36};
 	static int b = 20;
 	static int w = 4;
 	static int circles = 3;
@@ -27,7 +27,7 @@ public class Tri {
 	public static void main(String[] args) {
 		for (int a = 0; a<primes.length; a++) {
 			System.out.println();
-			System.out.println("a:" + primes[a]/w);
+			System.out.println("m:" + primes[a]/w);
 			int[] nums = getArray(primes[a], b, w);
 			double bestAvg = getBestAvg(primes[a], w);
 			int len = nums.length;
