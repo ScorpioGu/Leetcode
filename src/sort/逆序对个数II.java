@@ -24,7 +24,7 @@ import java.util.List;
  * @Date 18-12-25 上午10:21
  *
  **/
-public class 数组中元素在它之后比它小的元素个数 {
+public class 逆序对个数II {
     int[] count;
 
     /**
@@ -73,7 +73,8 @@ public class 数组中元素在它之后比它小的元素个数 {
         int rightCount = 0;
         while (i <= mid && j <= right) {
             if (nums[index[i]] <= nums[index[j]]) {
-                //从左边数组中添加一个元素,新数组中从右半边添加的元素都是原数组中在它之后且比它小的,用rightCount记录
+                //从左边数组中添加一个元素
+                // 新数组中从右半边添加的元素都是原数组中在它之后且比它小的,用rightCount记录
                 //新数组中若添加的顺序若为l r l r r l 则rightcount变化为0 1 1 2 3 3,l r表示元素来自于左半边还是右半边
                 count[index[i]] += rightCount;
                 newIndex[k++] = index[i++];

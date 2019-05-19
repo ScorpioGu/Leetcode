@@ -38,9 +38,7 @@ public class Sort {
         for (int i = 0; i < nums.length; i++) {
             for (int j = i + 1; j < nums.length; j++) {
                 if (nums[i] > nums[j]) {
-                    temp = nums[i];
-                    nums[i] = nums[j];
-                    nums[j] = temp;
+                    swap(nums, i, j);
                 }
             }
         }
@@ -49,21 +47,39 @@ public class Sort {
 /*******************快速排序**********************/
     /**
      * 快速排序优化，ref取三者中中间值  不稳定
-     *
+     * 空间复杂度lgN
      * @param nums
-     * @param head
-     * @param tail
+     * @param l
+     * @param r
      */
-    public static void quickSort(int[] nums, int head, int tail) {
-        if (head >= tail) {
+    public static void quickSort(int[] nums, int l, int r) {
+        if (l >= r) {
             return;
         }
-        int refIndex = partition(nums, head, tail);
-        quickSort(nums, head, refIndex - 1);
-        quickSort(nums, refIndex + 1, tail);
+        swap(nums, l + (int) (Math.random() * (r - l + 1)), r);
+        int[] p = partition(nums, l, r);
+        quickSort(nums, l, p[0] - 1);
+        quickSort(nums, p[1] + 1, r);
     }
 
-/*******************快速排序的非递归实现**********************/
+    public static int[] partition(int[] nums, int l, int r) {
+        int less = l - 1;
+        int more = r + 1;
+        int ref = nums[r];
+        // ref选为nums[r]
+        while (l < more) {
+            if (nums[l] < ref) {
+                swap(nums, ++less, l++);
+            } else if (nums[l] > ref) {
+                swap(nums, --more, l);
+            } else {
+                l++;
+            }
+        }
+        return new int[] {less + 1, more};
+    }
+
+    /*******************快速排序的非递归实现**********************/
     /**
      * 快速排序的非递归实现,递归可能会导致栈溢出
      *
@@ -79,41 +95,16 @@ public class Sort {
         while (!stack.isEmpty()) {
             int right = stack.pop();
             int left = stack.pop();
-            int mid = partition(nums, left, right);
-            if (left < mid - 1) {
+            int[] p = partition(nums, left, right);
+            if (left < p[0] - 1) {
                 stack.push(left);
-                stack.push(mid - 1);
+                stack.push(p[0] - 1);
             }
-            if (right > mid + 1) {
-                stack.push(mid + 1);
+            if (right > p[1] + 1) {
+                stack.push(p[1] + 1);
                 stack.push(right);
             }
         }
-    }
-
-    private static int partition(int[] nums, int left, int right) {
-        int ref = nums[left];
-        int i = left, j = right;
-        while (i < j) {
-            // 从右往左找到第一个比ref小的元素，该元素的下标为j
-            // 从左往右找到第一个比ref大的元素，该元素的下标为i
-            // 将j和i两元素进行交换
-            while (i < j && nums[j] >= ref) {
-                j--;
-            }
-            while (i < j && nums[i] <= ref) {
-                i++;
-            }
-            if (i < j) {
-                int temp = nums[i];
-                nums[i] = nums[j];
-                nums[j] = temp;
-            }
-        }
-        // 此时i=j，将i和left处的ref交换
-        nums[left] = nums[i];
-        nums[i] = ref;
-        return i;
     }
 
 
@@ -180,10 +171,10 @@ public class Sort {
     public static void mergerSort(int nums[], int head, int tail) {
         if (nums == null || nums.length <= 1)
             return;
-        int mid = (head + tail) / 2;
-        if (head >= tail) {
+        if (head == tail) {
             return;
         }
+        int mid = (head + tail) / 2;
         mergerSort(nums, head, mid);
         mergerSort(nums, mid + 1, tail);
         merge(nums, head, mid, tail);
@@ -223,7 +214,7 @@ public class Sort {
     }
 
     /*******************归并排序的非递归实现**********************/
-    public static void mergeSortUsingStack(int[] nums) {
+    public static void mergeSortIter(int[] nums) {
         if (nums == null || nums.length <= 1) {
             return;
         }
@@ -243,45 +234,46 @@ public class Sort {
      *
      * @param nums
      */
-    public static void HeapSort(int[] nums) {
+    public static void heapSort(int[] nums) {
         if (nums == null || nums.length <= 1)
             return;
         int len = nums.length;
-        // i代表参与建堆的最后一个index,i=0的时候就一个元素,所以不用管
-        for (int i = len - 1; i > 0; i--) {
-            buildMaxHeap(nums, i);
-            swap(nums, 0, i);
+        for (int i = 0; i < len; i++) {
+            heapInsert(nums, i);
+        }
+
+        swap(nums, 0, --len);
+        while (len > 0) {
+            heapify(nums, len);
+            swap(nums, 0, --len);
         }
     }
 
-    /**
-     * 建堆，最大值在堆顶
-     *
-     * @param nums
-     * @param lastIndex
-     */
-    private static void buildMaxHeap(int[] nums, int lastIndex) {
-        // 最后一个非叶子节点是 (lastIndex-1)/2
-        for (int i = (lastIndex - 1) / 2; i >= 0; i--) {
-            int k = i;
-            //检测下标为k的节点是否有子节点
-            while (k * 2 + 1 <= lastIndex) {
-                // biggerIndex是k节点的左节点的坐标(如果存在的话)
-                int biggerChild = k * 2 + 1;
-                // 如果右节点也存在的话,从两个节点中选择那个较大的节点,biggerIndex停在它上面
-                if (biggerChild < lastIndex && nums[biggerChild] < nums[biggerChild + 1]) {
-                    biggerChild++;
-                }
-                if (nums[biggerChild] > nums[k]) {
-                    swap(nums, biggerChild, k);
-                    k = biggerChild;
-                } else {
-                    break;
-                }
+    private static void heapInsert(int[] nums, int i) {
+        while (nums[i] > nums[(i - 1) / 2]) {
+            swap(nums, i, (i - 1) / 2);
+            i = (i - 1) / 2;
+        }
+    }
+
+    private static void heapify(int[] nums, int heapSize) {
+        int index = 0;
+        int left = 2 * index + 1;
+        while (left < heapSize) {
+            int largest = left + 1 < heapSize && nums[left] < nums[left + 1]
+                    ? left + 1
+                    : left;
+            if (nums[index] >= nums[largest]) {
+                break;
             }
+            swap(nums, index, largest);
+            index = largest;
+            left = 2 * index + 1;
         }
-
     }
+
+
+
 
     /**
      * 交换nums[i]与nums[j]

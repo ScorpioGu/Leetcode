@@ -20,7 +20,7 @@ import java.util.List;
  * @Date 18-12-25 上午10:21
  *
  **/
-public class 数组中元素在它之后比它小的元素个数 {
+public class 逆序对的个数 {
     int[] count;
 
     /**
