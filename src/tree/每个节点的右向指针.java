@@ -1,7 +1,5 @@
 package tree;
 
-import support.TreeLinkNode;
-
 import java.util.Deque;
 import java.util.LinkedList;
 
@@ -116,5 +114,11 @@ public class 每个节点的右向指针 {
             //下一层
             start = start.left;
         }
+    }
+
+    class TreeLinkNode {
+        TreeLinkNode left;
+        TreeLinkNode right;
+        TreeLinkNode next;
     }
 }

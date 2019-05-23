@@ -14,6 +14,7 @@ package design;
  **/
 public class WordDictionary {
 
+    // 根节点
     private TrieNode root;
     /** Initialize your data structure here. */
     public WordDictionary() {
@@ -62,6 +63,9 @@ public class WordDictionary {
 
     private class TrieNode {
 
+        // 根据需要可以加其他字段项
+        // 比如int path， int end
+        // path代表有多少词以这条路径为前缀，end表示有多少这个词
         boolean isWord;
         TrieNode[] children = new TrieNode[26];
     }

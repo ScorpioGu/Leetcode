@@ -20,7 +20,7 @@ import support.TreeNode;
 public class 完全二叉树的节点数 {
     int count;
     /**
-     * 自然是不能通过全部遍历,会产生TLE,我们知道一颗完全二叉树是由很多完美二叉树组成的
+     * 自然是不能通过全部遍历,会产生TLE,我们知道一颗完全二叉树是由很多满二叉树组成的
      * 而完美二叉树的节点数只要直到了树的高度就可以直接得出.
      * 所以对任一节点,判断其左右子树的深度是否相等,相同则直接返回,否则递归调用其左右子节点
      *
@@ -29,47 +29,22 @@ public class 完全二叉树的节点数 {
      * @return
      */
     public int countNodes(TreeNode root) {
-        int leftHight = 0, rightHight = 0;
-        TreeNode left = root, right = root;
-        while (left != null) {
-            leftHight++;
-            left = left.left;
+        int h = height(root);
+        if (h < 2) {
+            return h;
         }
-        while (right != null) {
-            rightHight++;
-            right = right.right;
-        }
-        if (leftHight == rightHight) {
-            return (int)Math.pow(2, leftHight) - 1;
-        }
-        return countNodes(root.left) + countNodes(root.right) + 1;
+        // 如果右子树的最大深度为h-1，那么左子树肯定是满的，节点个数是2^(h-1)-1,再加上右子树的节点数，再加上本身的1
+        return height(root.right) == h-1 ? (1 << (h - 1)) + countNodes(root.right)
+                //如果右子树的最大深度为h-2，那么右子树是满的，深度为h-2
+                        : (1 << (h-2)) + countNodes(root.left);
     }
 
     /**
-     * 递归做法,这里递归就是在计算数深度的时候用到
+     * 求一颗树的最大深度，完全二叉树的最大深度可以通过向左走得到
      * @param root
      * @return
      */
-    public int countNodes2(TreeNode root) {
-        int leftDepth = getLeftDepth(root);
-        int rightDepth = getRightDepth(root);
-        if (leftDepth == rightDepth) {
-            return (int)Math.pow(2, leftDepth) - 1;
-        }
-        return countNodes(root.left) + countNodes(root.right) + 1;
-    }
-
-    private int getLeftDepth(TreeNode root) {
-        if (root == null) {
-            return 0;
-        }
-        return 1 + getLeftDepth(root.left);
-    }
-
-    private int getRightDepth(TreeNode root) {
-        if (root == null) {
-            return 0;
-        }
-        return 1 + getRightDepth(root.right);
+    int height(TreeNode root) {
+        return root == null ? 0 : 1 + height(root.left);
     }
 }

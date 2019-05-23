@@ -14,17 +14,17 @@ public class 树的遍历非递归 {
         //一般需要保存一下当前节点的前驱,不需要的可以不加
         TreeNode pre = null;
         while (cur != null || !stack.isEmpty()) {
-            while (cur != null) {
+            if (cur != null) {
                 stack.push(cur);
                 cur = cur.left;
+            } else {
+                cur = stack.pop();
+                //这里加一些具体操作
+                System.out.print(cur.val + " ");
+                //root移动到下一个位置
+                pre = cur;
+                cur = cur.right;
             }
-            cur = stack.pop();
-            //这里加一些具体操作
-            System.out.print(cur.val + " ");
-
-            //root移动到下一个位置
-            pre = cur;
-            cur = cur.right;
         }
     }
 
@@ -35,15 +35,16 @@ public class 树的遍历非递归 {
         TreeNode pre = null;
         Stack<TreeNode> stack = new Stack<>();
         while (cur != null || !stack.isEmpty()) {
-            while (cur != null) {
+            if (cur != null) {
                 //这里加一些具体的操作
                 System.out.print(cur.val + " ");
                 stack.push(cur);
                 pre = cur;
                 cur = cur.left;
+            } else {
+                cur = stack.pop();
+                cur = cur.right;
             }
-            cur = stack.pop();
-            cur = cur.right;
         }
     }
 

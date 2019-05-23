@@ -21,13 +21,13 @@ public class 寻找中序遍历顺序下的下一个节点 {
             }
             return cur;
         }
-        // 在不存在右子树的情况下
-        // 寻找这样一个节点，符合它父节点的左孩子是它自己
-        while (pNode.next != null) {
-            if (pNode.next.left == pNode) {
-                return pNode.next;
+        // 在不存在右子树的情况下，寻找这样一个节点，这个节点的左子树的最后一个元素是pNode
+        // 寻找这样一个节点，符合 它父节点的左孩子是它自己，那么这个节点的parent就是我们要找的
+        while (pNode.parent != null) {
+            if (pNode.parent.left == pNode) {
+                return pNode.parent;
             }
-            pNode = pNode.next;
+            pNode = pNode.parent;
         }
         // 到这里还没找到的话，那么pNode就是中序遍历的最后一个了，下一个节点是null
         return null;

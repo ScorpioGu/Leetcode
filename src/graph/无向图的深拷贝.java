@@ -32,16 +32,18 @@ public class 无向图的深拷贝 {
         }
         return newNode;
     }
+
+    class Node {
+        public int val;
+        public List<Node> neighbors;
+
+        public Node() {}
+
+        public Node(int _val,List<Node> _neighbors) {
+            val = _val;
+            neighbors = _neighbors;
+        }
+    };
 }
 
-class Node {
-    public int val;
-    public List<Node> neighbors;
 
-    public Node() {}
-
-    public Node(int _val,List<Node> _neighbors) {
-        val = _val;
-        neighbors = _neighbors;
-    }
-};

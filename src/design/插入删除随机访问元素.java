@@ -15,7 +15,7 @@ import java.util.*;
 public class 插入删除随机访问元素 {
     /**
      * 存储数
-     * ArrayList插入的时间复杂度为o(1),删除的时间复杂度为o(1)
+     * ArrayList插入的时间复杂度为o(1),删除的时间复杂度为o(n)
      */
     private List<Integer> nums;
     /**
@@ -49,10 +49,15 @@ public class 插入删除随机访问元素 {
         }
         int index = map.get(val);
         if (index < nums.size() - 1) {
-            int last = nums.get(nums.size() - 1);
-            nums.set(index, last);
-            map.put(last, index);
+            int lastValue = nums.get(nums.size() - 1);
+            nums.set(index, lastValue);
+            map.put(lastValue, index);
         }
+
+        // nums如果要删除0-size-1上的一个值，比如这个值的key为k,value为v
+        // 那么我们把最后一行的value作为k的v，然后删掉最后一行，同时对map进行修改。
+        // 删掉最后一行，arraylist是不会进行数组元素拷贝的，如果删除的是0-size-1的元素，会把后面的元素往前拷贝，时间复杂度是o(n)
+        // 这样让arraylist上不要出现空洞
         nums.remove(nums.size() - 1);
         map.remove(val);
         return true;

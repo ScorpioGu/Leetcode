@@ -25,25 +25,27 @@ rotate the input matrix in-place such that it becomes:
  * @Date 18-10-22 上午11:27
  **/
 public class 旋转图像 {
-    public void rotate(int[][] matrix) {
 
-        int n = matrix.length;
-        //分圈旋转，不论这个矩阵的长度宽度为奇为偶，都是旋转length/2个圈
-        for (int i = 0; i < n/2; i++) {
-            //从最外层圈开始旋转
-            for (int j = i; j < n-i-1; j++) {
-                //每一层要经过3次元素的交换
-                int x = i, y = j;
-                for (int k = 0; k < 3; k++) {
-                    int temp = matrix[x][y];
-                    matrix[x][y] = matrix[y][n-1-x];
-                    matrix[y][n-1-x] = temp;
 
-                    int tempx = x;
-                    x = n - 1 - y;
-                    y = tempx;
-                }
-            }
+    public  void rotate(int[][] matrix) {
+        int tR = 0;
+        int tC = 0;
+        int dR = matrix.length - 1;
+        int dC = matrix[0].length - 1;
+        while (tR < dR) {
+            rotateEdge(matrix, tR++, tC++, dR--, dC--);
+        }
+    }
+
+    public  void rotateEdge(int[][] m, int tR, int tC, int dR, int dC) {
+        int times = dC - tC;
+        int tmp = 0;
+        for (int i = 0; i != times; i++) {
+            tmp = m[tR][tC + i];
+            m[tR][tC + i] = m[dR - i][tC];
+            m[dR - i][tC] = m[dR][dC - i];
+            m[dR][dC - i] = m[tR + i][dC];
+            m[tR + i][dC] = tmp;
         }
     }
 

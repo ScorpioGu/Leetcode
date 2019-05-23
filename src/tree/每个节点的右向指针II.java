@@ -1,7 +1,5 @@
 package tree;
 
-import support.TreeLinkNode;
-
 /**
  * @Desc https://leetcode.com/problems/populating-next-right-pointers-in-each-node-ii/description/
  *
@@ -132,5 +130,10 @@ public class 每个节点的右向指针II {
         }
     }
 
+    class TreeLinkNode {
+        TreeLinkNode left;
+        TreeLinkNode right;
+        TreeLinkNode next;
+    }
 
 }

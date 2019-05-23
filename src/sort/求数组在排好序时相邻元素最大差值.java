@@ -28,47 +28,44 @@ public class 求数组在排好序时相邻元素最大差值 {
      * @param num
      * @return
      */
-    public int maximumGap(int[] num) {
-        if (num == null || num.length < 2) {
+    public static int maxGap(int[] nums) {
+        if (nums == null || nums.length < 2) {
             return 0;
         }
-        int min = num[0];
-        int max = num[0];
-        for (int i:num) {
-            min = Math.min(min, i);
-            max = Math.max(max, i);
+        int len = nums.length;
+        int min = Integer.MAX_VALUE;
+        int max = Integer.MIN_VALUE;
+        for (int i = 0; i < len; i++) {
+            min = Math.min(min, nums[i]);
+            max = Math.max(max, nums[i]);
         }
-        //ceil是向上取整,这是一个桶存放的区间.而最大间距一定是大于这个值的,所以两个数一定是存在两个不同的桶中的
-        int gap = (int)Math.ceil((double)(max - min)/(num.length - 1));
-        //初始化桶,桶内只需要存放两个元素,区间内的最大值与最小值,对于第i个桶,它存的元素放到bucketsMIN[i]与bucketsMAX[i]
-        //但是最大值与最小值不放到桶里
-        int[] bucketsMIN = new int[num.length - 1];
-        int[] bucketsMAX = new int[num.length - 1];
-        Arrays.fill(bucketsMIN, Integer.MAX_VALUE);
-        Arrays.fill(bucketsMAX, Integer.MIN_VALUE);
-        for (int i:num) {
-            if (i == min || i == max)
-                continue;
-            int idx = (i - min) / gap;
-            bucketsMIN[idx] = Math.min(i, bucketsMIN[idx]);
-            bucketsMAX[idx] = Math.max(i, bucketsMAX[idx]);
+        if (min == max) {
+            return 0;
         }
-        // scan the buckets for the max gap
-        int maxGap = Integer.MIN_VALUE;
-        int previous = min;
-        for (int i = 0; i < num.length - 1; i++) {
-            //n-2个元素放到n-1桶里面肯定会有空桶的
-            if (bucketsMIN[i] == Integer.MAX_VALUE && bucketsMAX[i] == Integer.MIN_VALUE)
-                // empty bucket
-                continue;
-            // min value minus the previous value is the current gap
-            maxGap = Math.max(maxGap, bucketsMIN[i] - previous);
-            // update previous bucket value
-            previous = bucketsMAX[i];
+        boolean[] hasNum = new boolean[len + 1];
+        int[] maxs = new int[len + 1];
+        int[] mins = new int[len + 1];
+        int bid = 0;
+        for (int i = 0; i < len; i++) {
+            bid = bucket(nums[i], len, min, max);
+            mins[bid] = hasNum[bid] ? Math.min(mins[bid], nums[i]) : nums[i];
+            maxs[bid] = hasNum[bid] ? Math.max(maxs[bid], nums[i]) : nums[i];
+            hasNum[bid] = true;
         }
-        // updata the final max value gap
-        maxGap = Math.max(maxGap, max - previous);
-        return maxGap;
+        int res = 0;
+        int lastMax = maxs[0];
+        int i = 1;
+        for (; i <= len; i++) {
+            if (hasNum[i]) {
+                res = Math.max(res, mins[i] - lastMax);
+                lastMax = maxs[i];
+            }
+        }
+        return res;
+    }
+
+    public static int bucket(long num, long len, long min, long max) {
+        return (int) ((num - min) * len / (max - min));
     }
 
     /**
