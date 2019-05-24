@@ -35,7 +35,7 @@ public class 背包问题 {
             for (int j = 1; j <= limit; j++) {
                 if (weights[i - 1] <= j) {
                     // 放得下
-                    int num = Math.min(nums[i-1], j/weights[i-1])
+                    int num = Math.min(nums[i-1], j/weights[i-1]);
                     dp[i][j] = Math.max(dp[i - 1][j], dp[i - 1][j - num * weights[i - 1]] + values[i - 1] * num);
                 } else {
                     // 放不下
