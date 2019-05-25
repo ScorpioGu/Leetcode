@@ -10,7 +10,7 @@ public class Sort {
      *
      * @param nums
      */
-    public static void BubbleSort(int[] nums) {
+    public static void bubbleSort(int[] nums) {
         if (nums == null || nums.length <= 1)
             return;
         int temp;
@@ -44,6 +44,26 @@ public class Sort {
         }
     }
 
+    /*******************插入排序**********************/
+    /**
+     * 插入排序 稳定
+     *
+     * @param nums
+     */
+    public static void insertSort(int[] nums) {
+        if (nums == null || nums.length <= 1)
+            return;
+        for (int i = 1; i < nums.length; i++) {
+            for (int j = i - 1; j >= 0; j--) {
+                if (nums[j] > nums[j + 1]) {
+                    swap(nums, j, j + 1);
+                } else {
+                    break;
+                }
+            }
+        }
+    }
+
 /*******************快速排序**********************/
     /**
      * 快速排序优化，ref取三者中中间值  不稳定
@@ -69,14 +89,17 @@ public class Sort {
         // ref选为nums[r]
         while (l < more) {
             if (nums[l] < ref) {
+                //因为l是大于less的，less+1处肯定已经被访问过了，并且等于ref
+                //交换过来之后，没有必要对这个换过来的元素再进行判断了，所以可以l++
                 swap(nums, ++less, l++);
             } else if (nums[l] > ref) {
+                //这种情况下交换过来的元素还没有被访问过，所以交换过来还要比较一次，所以不能l++
                 swap(nums, --more, l);
             } else {
                 l++;
             }
         }
-        return new int[] {less + 1, more};
+        return new int[] {less + 1, more - 1};
     }
 
     /*******************快速排序的非递归实现**********************/
@@ -107,33 +130,6 @@ public class Sort {
         }
     }
 
-
-/*******************插入排序**********************/
-    /**
-     * 插入排序 稳定
-     *
-     * @param nums
-     */
-    public static void insertSort(int[] nums) {
-        if (nums == null || nums.length <= 1)
-            return;
-        int temp;
-        int j;
-        // nums[i]是待插入的元素
-        for (int i = 1; i < nums.length; i++) {
-            // 从后往前找，找到第一个比nums[i]小的元素的位置，则该位置+1就是nums[i]应该存放的位置
-            // 该位置之后的元素都向后移动一个位置
-            // 从后往前找比较合适，一边可以寻找到插入的位置，一边可以将比nums[i]大的元素往后移动。平均下来插入一个元素的是(n/2)
-            // 如果是从前往后找，平均下来插入一个元素是o(n)
-            j = i - 1;
-            temp = nums[i];
-            while (j >= 0 && nums[j] > temp) {
-                nums[j + 1] = nums[j];
-                j--;
-            }
-            nums[j + 1] = temp;
-        }
-    }
 
 /*******************希尔排序**********************/
     /**
@@ -257,18 +253,18 @@ public class Sort {
     }
 
     private static void heapify(int[] nums, int heapSize) {
-        int index = 0;
-        int left = 2 * index + 1;
+        int parent = 0;
+        int left = 2 * parent + 1;
         while (left < heapSize) {
             int largest = left + 1 < heapSize && nums[left] < nums[left + 1]
                     ? left + 1
                     : left;
-            if (nums[index] >= nums[largest]) {
+            if (nums[parent] >= nums[largest]) {
                 break;
             }
-            swap(nums, index, largest);
-            index = largest;
-            left = 2 * index + 1;
+            swap(nums, parent, largest);
+            parent = largest;
+            left = 2 * parent + 1;
         }
     }
 
@@ -305,7 +301,7 @@ public class Sort {
         for (int i = 0; i < nums.length; i++) {
             count[nums[i]]++;
         }
-        for (int i = 0; i < max; i++) {
+        for (int i = 0; i <= max; i++) {
             for (int j = 0; j < count[i]; j++) {
                 nums[k++] = i;
             }
