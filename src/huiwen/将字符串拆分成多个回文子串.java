@@ -1,4 +1,4 @@
-package string;
+package huiwen;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -56,7 +56,6 @@ public class 将字符串拆分成多个回文子串 {
      * @param res
      * @param cur
      * @param s
-     *
      * @param begin
      * @param isPal
      */
@@ -72,5 +71,9 @@ public class 将字符串拆分成多个回文子串 {
                 }
             }
         }
+    }
+
+    public static void main(String[] args) {
+        new 将字符串拆分成多个回文子串().partition("abbab");
     }
 }

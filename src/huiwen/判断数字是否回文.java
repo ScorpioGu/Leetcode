@@ -1,4 +1,4 @@
-package math;
+package huiwen;
 
 /**
  * https://leetcode.com/problems/palindrome-number/description/

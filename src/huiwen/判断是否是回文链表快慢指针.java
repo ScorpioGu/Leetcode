@@ -1,8 +1,9 @@
-package list;
+package huiwen;
 
+import list.逆转链表;
 import support.ListNode;
 
-public class 判断是否时回文链表快慢指针 {
+public class 判断是否是回文链表快慢指针 {
     public boolean isPalindrome(ListNode head) {
     	if(head == null || head.next == null) 
     		return true;
