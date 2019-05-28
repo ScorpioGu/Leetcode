@@ -130,32 +130,6 @@ public class Sort {
         }
     }
 
-
-/*******************希尔排序**********************/
-    /**
-     * 希尔排序 不稳定
-     *
-     * @param nums
-     */
-    public static void shellSort(int[] nums) {
-        if (nums == null || nums.length <= 1)
-            return;
-        int temp;
-        for (int increment = nums.length / 2; increment > 0; increment /= 2) {
-            for (int i = increment; i < nums.length; i++) {
-                if (nums[i] < nums[i - increment]) {
-                    int j = i - increment;
-                    temp = nums[i];
-                    while (j >= 0 && nums[j] > temp) {
-                        nums[j + increment] = nums[j];
-                        j -= increment;
-                    }
-                    nums[j + increment] = temp;
-                }
-            }
-        }
-    }
-
 /*******************归并排序**********************/
     /**
      * 归并排序 稳定
@@ -227,6 +201,8 @@ public class Sort {
 /*******************堆排序**********************/
     /**
      * 堆排序
+     * 初始建堆的时间复杂度为o(n)
+     * 调整堆结构的时间复杂度为o(nlgn)
      *
      * @param nums
      */
@@ -429,5 +405,30 @@ public class Sort {
             maxbit = s.length() > maxbit ? s.length() : maxbit;
         }
         return maxbit;
+    }
+
+    /*******************希尔排序**********************/
+    /**
+     * 希尔排序 不稳定
+     *
+     * @param nums
+     */
+    public static void shellSort(int[] nums) {
+        if (nums == null || nums.length <= 1)
+            return;
+        int temp;
+        for (int increment = nums.length / 2; increment > 0; increment /= 2) {
+            for (int i = increment; i < nums.length; i++) {
+                if (nums[i] < nums[i - increment]) {
+                    int j = i - increment;
+                    temp = nums[i];
+                    while (j >= 0 && nums[j] > temp) {
+                        nums[j + increment] = nums[j];
+                        j -= increment;
+                    }
+                    nums[j + increment] = temp;
+                }
+            }
+        }
     }
 }

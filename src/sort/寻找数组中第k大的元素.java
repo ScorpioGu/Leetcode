@@ -1,8 +1,5 @@
 package sort;
 
-import java.util.PriorityQueue;
-import java.util.Random;
-
 /**
  * @Desc https://leetcode.com/problems/kth-largest-element-in-an-array/description/
  * Find the kth largest element in an unsorted array. Note that it is the kth largest element in the sorted order, not the kth distinct element.
@@ -20,84 +17,57 @@ import java.util.Random;
  **/
 public class 寻找数组中第k大的元素 {
     /**
-     * 利用优先级队列,将时间复杂度降为o(Nlogk),因为队列的长度不超过k
-     * 所以每次插入一个元素,耗费的时间平均为logk.
-     * @param nums
-     * @param k
-     * @return
-     */
-    public int findKthLargest2(int[] nums, int k) {
-        //优先级队列存储int时,默认较小元素放队列头
-        PriorityQueue<Integer> pq = new PriorityQueue<>();
-        for (int num : nums) {
-            pq.offer(num);
-            if (pq.size() > k) {
-                pq.poll();
-            }
-        }
-        return pq.peek();
-    }
-
-    /**
      * 寻找到第k大的元素,前两种做法都是对整个数组进行排序
      * 但是寻找第k大的元素,并不需要前k-1整体排好序.只要所有元素小于第k个就行了
      * 使用快排实现
+     *
+     * 期望是o(n)，但是最坏情况是o(n^2)
      * @param nums
      * @param k
      * @return
      */
-    public int findKthLargest3(int[] nums, int k) {
-        shuffle(nums);
+    public int findKthLargest(int[] nums, int k) {
         //第k大的元素的位置在nums.length - k下标
         k = nums.length - k;
         int left = 0, right = nums.length - 1;
         while (left <= right) {
-            int mid = getMiddle(nums, left, right);
-            if (mid == k) {
-                return nums[k];
-            } else if (mid > k) {
-                right = mid - 1;
+            int[] p = partition(nums, left, right);
+            if (k < p[0]) {
+                right = p[0] - 1;
+            } else if (k > p[1]) {
+                left = p[1] + 1;
             } else {
-                left = mid + 1;
+                return nums[p[0]];
             }
         }
         return nums[left];
     }
 
-    /**
-     * @param nums
-     * @param head
-     * @param tail
-     * @return
-     */
-    private int getMiddle(int[] nums, int head, int tail) {
-        int ref = nums[head];
-        while (head < tail) {
-            while (head < tail && nums[tail] >= ref) {
-                tail--;
+    public static int[] partition(int[] nums, int l, int r) {
+        int less = l - 1;
+        int more = r + 1;
+        int ref = nums[r];
+        // ref选为nums[r]
+        while (l < more) {
+            if (nums[l] < ref) {
+                //因为l是大于less的，less+1处肯定已经被访问过了，并且等于ref
+                //交换过来之后，没有必要对这个换过来的元素再进行判断了，所以可以l++
+                swap(nums, ++less, l++);
+            } else if (nums[l] > ref) {
+                //这种情况下交换过来的元素还没有被访问过，所以交换过来还要比较一次，所以不能l++
+                swap(nums, --more, l);
+            } else {
+                l++;
             }
-            nums[head] = nums[tail];
-            while (head < tail && nums[head] <= ref) {
-                head++;
-            }
-            nums[tail] = nums[head];
         }
-        nums[head] = ref;
-        return head;
+        return new int[] {less + 1, more - 1};
     }
 
-    /**
-     * 对输入进行随机化处理,避免最坏的情况
-     * @param nums
-     */
-    private void shuffle(int nums[]) {
-        Random random = new Random();
-        for(int i = 1; i < nums.length; i++) {
-            //nextInt(r)取随机数[0,r)
-            final int r = random.nextInt(i + 1);
-            int temp = nums[r];
-            nums[r] = nums[i];
-            nums[i] = temp;
-        }
+    private static void swap(int[] nums, int i, int j) {
+        int tmp = nums[i];
+        nums[i] = nums[j];
+        nums[j] = tmp;
     }
+
+
 }

@@ -30,42 +30,6 @@ import java.util.Stack;
  **/
 
 public class 从数字中删除k位使剩余数最大 {
-    /**
-     * 这是我自己做的一个方法,缺点在于每删除一个字符,findFirstPeak就要被调用一次
-     * 比较耗时
-     * @param num
-     * @param k
-     * @return
-     */
-    public String removeKdigits(String num, int k) {
-        //正则表达式把前面的0都删了
-        num = num.replaceAll("^(0+)", "");
-        if (k == 0) {
-            return num.equals("") ? "0" : num;
-        }
-        int len = num.length();
-        if (k >= len) {
-            return "0";
-        }
-        //首先看一下第一个0出现在哪儿,如果出现在k之前,直接把0前面的都删了
-        //如果第一个0出现在k以后,删除第一个顶峰
-        int first0 = num.indexOf('0');
-        if (first0 <= k && first0 != -1) {
-            return removeKdigits(num.substring(first0), k - first0);
-        } else {
-            int removeIndex = findFirstPeak(num);
-            return removeKdigits(new StringBuilder(num).deleteCharAt(removeIndex).toString(), k - 1);
-        }
-    }
-
-    private int findFirstPeak(String nums) {
-        for (int i = 0; i < nums.length() - 1; i++) {
-            if (nums.charAt(i) > nums.charAt(i + 1)) {
-                return i;
-            }
-        }
-        return nums.length() - 1;
-    }
 
     /**
      * 这是使用栈来做的
@@ -73,7 +37,7 @@ public class 从数字中删除k位使剩余数最大 {
      * @param k
      * @return
      */
-    public String removeKdigitsUsingStack(String num, int k) {
+    public String removeKdigits(String num, int k) {
         int len = num.length();
         if (len == k) {
             return "0";

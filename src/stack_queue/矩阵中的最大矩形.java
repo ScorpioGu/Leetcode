@@ -19,7 +19,8 @@ import java.util.Stack;
  **/
 public class 矩阵中的最大矩形 {
     /**
-     * 与直方图中最大矩形那题类似，对每个元素，求其高度，左右边界。
+     * 与直方图中最大矩形那题类似，对每个元素，求其包含在内的往上数连续1的个数（高度）。
+     * 每一行就可以形成一个一维数组，问题转化成对每一行的一维数组，求直方图的最大矩形
      * @param matrix
      * @return
      */
@@ -31,7 +32,8 @@ public class 矩阵中的最大矩形 {
         int rlen = matrix.length;
         int clen = matrix[0].length;
         // heights[i]记录i这个竖着有多少个连续1,就是这个位置的高度,这个数组的长度为clen+1
-        // 其中heights[clen] = 0,等效一下方便计算
+        // 其中heights[clen] = 0,等效一下方便计算,最后一个位置放0，那么height[i] 一直 < heights[stack.peek()]
+        // 可以把stack掏空，否则还要再写一个while循环
         int[] heights = new int[clen + 1];
         heights[clen] = 0;
 
@@ -47,15 +49,13 @@ public class 矩阵中的最大矩形 {
                     }
                 }
 
-                if (stack.isEmpty() || heights[j] >= heights[stack.peek()]) {
-                    stack.push(j);
-                } else {
-                    while (!stack.isEmpty() && heights[i] < heights[stack.peek()]) {
-                        int height = heights[stack.pop()];
-                        max = Math.max(max, height * (stack.isEmpty() ? j : j - 1 - stack.peek()));
-                    }
-                    stack.push(j);
+                while (!stack.isEmpty() && heights[i] < heights[stack.peek()]) {
+                    int height = heights[stack.pop()];
+                    int l = stack.isEmpty() ? -1 : stack.peek();
+                    int r = j;
+                    max = Math.max(max, height * (r - l - 1));
                 }
+                stack.push(j);
             }
         }
         return max;

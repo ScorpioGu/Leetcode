@@ -27,23 +27,23 @@ public class 直方图中最大矩形 {
         // 若leftINdex不存在,则以height[i]为高度的矩阵的面积为height[i] * (rightIndex)
 
         int len = heights.length;
-        // stack存储单调增序列的索引,对于每个栈的元素,它在栈中的下一个元素就是它的leftIndex
+        // stack存储单调增序列的索引（栈底到栈顶单调增）,对于每个栈的元素,它在栈中的下一个元素就是它的leftIndex
         // 遍历heights,遇到比栈顶元素大的就入栈,否则就计算面积,此时遍历的索引i,就是栈顶元素的rightIndex
         Stack<Integer> stack = new Stack();
 
         int max = 0;
         // 注意要遍历到i = len,不然最后一个元素没法算了
         for (int i = 0; i <= len; i++) {
+            // 在i == len时，设h=0，这个小技巧，
             int h = (i == len ? 0 : heights[i]);
-            if (stack.isEmpty() || h >= heights[stack.peek()]) {
-                stack.push(i);
-            } else {
-                while (!stack.isEmpty() && h < heights[stack.peek()]) {
-                    int cur = stack.pop();
-                    max = Math.max(max, heights[cur] * (stack.isEmpty() ? i : i - 1 - stack.peek()));
-                }
-                stack.push(i);
+
+            while (!stack.isEmpty() && h < heights[stack.peek()]) {
+                int cur = stack.pop();
+                int r = i;
+                int l = stack.isEmpty() ? -1 : stack.peek();
+                max = Math.max(max, heights[cur] * (r - l - 1));
             }
+            stack.push(i);
         }
         return max;
     }
