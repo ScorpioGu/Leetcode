@@ -3,7 +3,7 @@
  * Date:     18-5-1 下午3:06
  * Description: https://leetcode.com/problems/minimum-depth-of-binary-tree/description/
  */
-package tree;
+package tree_dp;
 
 import support.TreeNode;
 

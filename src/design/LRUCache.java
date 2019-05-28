@@ -6,21 +6,22 @@ import java.util.Map;
 /**
  * @Desc https://leetcode.com/problems/lru-cache/description/
  * 实现LRU缓存, get, put的时间复杂度为o(1)
- *
+ * <p>
  * 使用HashMap配合双向链表,一方面是通过key查找需要操作的节点时间复杂度要o(1),那么想到使用HashMap
  * 双向链表删除和添加节点的时间复杂度是o(1),并且双向链表可以自己删除自己.
  * @Author gcc
  * @Date 18-11-17 下午3:07
  **/
-public class LRUCache {
+public class LRUCache<K, V> {
     int count;
     int capacity;
     Node head;
     Node tail;
-    Map<Integer, Node> map = new HashMap<>();
+    Map<K, Node<K, V>> map = new HashMap<>();
 
     /**
      * 节点删除自身
+     *
      * @param node
      */
     private void deleteSelf(Node node) {
@@ -32,6 +33,7 @@ public class LRUCache {
 
     /**
      * 添加node到队头
+     *
      * @param node
      */
     private void offer(Node node) {
@@ -68,16 +70,16 @@ public class LRUCache {
         tail.next = null;
     }
 
-    public int get(int key) {
-        Node node = map.get(key);
+    public V get(K key) {
+        Node<K, V> node = map.get(key);
         if (node == null) {
-            return -1;
+            return null;
         }
         removeToHead(node);
         return node.value;
     }
 
-    public void put(int key, int value) {
+    public void put(K key, V value) {
         Node node = map.get(key);
         if (node == null) {
             node = new Node();
@@ -97,9 +99,11 @@ public class LRUCache {
     }
 }
 
-class Node {
-    int key;
-    int value;
+class Node<K, V> {
+    // 这个key保存在节点里面，对于把节点从map中删除有作用
+    K key;
+    V value;
     Node pre;
     Node next;
+
 }
