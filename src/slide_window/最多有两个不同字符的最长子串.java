@@ -14,6 +14,12 @@ import java.util.Map;
  * @Date 18-11-19 下午8:36
  **/
 public class 最多有两个不同字符的最长子串 {
+    /**
+     * 使用双指针要保持单调性，在这个题目里的体现，就是右边界扩，不同字符个数不会减只会增加或者不变
+     * 左边界扩，不同字符个数不会增加只会减少或者不变
+     * @param s
+     * @return
+     */
     public int lengthOfLongestSubstringTwoDistinct(String s) {
         if (s == null || s.length() == 0) {
             return 0;

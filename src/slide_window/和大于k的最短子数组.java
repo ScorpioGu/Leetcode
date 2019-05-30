@@ -12,9 +12,10 @@ package slide_window;
  * @Author gcc
  * @Date 18-11-23 下午9:29
  **/
-public class 寻找和大于k的最短子数组 {
+public class 和大于k的最短子数组 {
     /**
      * 就是典型的双指针的做法,时间复杂度o(n),虽然两层循环,但是指针都是往前走的.每个元素都只访问了两次
+     * 注意这里给出的nums是一个正数数组，所以可以这样做
      * @param s
      * @param nums
      * @return

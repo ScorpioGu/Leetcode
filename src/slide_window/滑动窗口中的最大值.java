@@ -18,6 +18,7 @@ import java.util.LinkedList;
  * @Date 18-12-3 下午3:50
  **/
 public class 滑动窗口中的最大值 {
+
     public int[] maxSlidingWindow(int[] nums, int k) {
         if (nums == null || k <= 0) {
             return new int[0];

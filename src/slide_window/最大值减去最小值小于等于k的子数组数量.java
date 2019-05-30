@@ -8,7 +8,14 @@ import java.util.LinkedList;
  * @Author gcc
  * @Date 19-5-27 下午3:04
  **/
-public class 最大值减去最小值小于等于k的窗口数量 {
+public class 最大值减去最小值小于等于k的子数组数量 {
+    /**
+     * 单调性在这个题目的里的体现是，右边界扩，最大值不可能减小，最小值不可能增大
+     * 左边界扩，最大值不能增大，最小值不可能减少
+     * @param nums
+     * @param k
+     * @return
+     */
     int getNum(int[] nums, int k) {
         Deque<Integer> maxQueue = new LinkedList<>();
         Deque<Integer> minQueue = new LinkedList<>();
