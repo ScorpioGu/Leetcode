@@ -1,6 +1,6 @@
 package huiwen;
 
-import list.逆转链表;
+import linklist.逆转链表;
 import support.ListNode;
 
 public class 判断是否是回文链表快慢指针 {

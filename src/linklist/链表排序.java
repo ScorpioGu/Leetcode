@@ -1,10 +1,10 @@
-package list;
+package linklist;
 
 import support.ListNode;
 
 /**
- * @Desc https://leetcode.com/problems/sort-list/description/
- * Sort a linked list in O(n log n) time using constant space complexity.
+ * @Desc https://leetcode.com/problems/sort-linklist/description/
+ * Sort a linked linklist in O(n log n) time using constant space complexity.
  *
  * Example 1:
  *

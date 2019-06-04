@@ -4,7 +4,7 @@ import java.util.List;
 
 /**
  * @Desc https://www.cnblogs.com/grandyang/p/5187041.html
- * Given a list of words and two words word1 and word2, return the shortest distance between these two words in the list.
+ * Given a linklist of words and two words word1 and word2, return the shortest distance between these two words in the linklist.
  *
  * For example,
  * Assume that words = ["practice", "makes", "perfect", "coding", "makes"].
@@ -13,7 +13,7 @@ import java.util.List;
  * Given word1 = "makes", word2 = "coding", return 1.
  *
  * Note:
- * You may assume that word1 does not equal to word2, and word1 and word2 are both in the list
+ * You may assume that word1 does not equal to word2, and word1 and word2 are both in the linklist
  * @Author gcc
  * @Date 18-12-4 上午9:36
  **/

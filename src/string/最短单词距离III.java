@@ -4,9 +4,9 @@ package string;
  * @Desc http://www.cnblogs.com/grandyang/p/5192426.html
  * This is a follow up of Shortest Word Distance. The only difference is now word1 could be the same as word2.
  *
- * Given a list of words and two words word1 and word2, return the shortest distance between these two words in the list.
+ * Given a linklist of words and two words word1 and word2, return the shortest distance between these two words in the linklist.
  *
- * word1 and word2 may be the same and they represent two individual words in the list.
+ * word1 and word2 may be the same and they represent two individual words in the linklist.
  *
  * For example,
  * Assume that words = ["practice", "makes", "perfect", "coding", "makes"].
@@ -15,7 +15,7 @@ package string;
  * Given word1 = "makes", word2 = "makes", return 3.
  *
  * Note:
- * You may assume word1 and word2 are both in the list.
+ * You may assume word1 and word2 are both in the linklist.
  *
  * 与第一题的区别,在于word1与word2可能相同
  * @Author gcc

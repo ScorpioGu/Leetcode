@@ -25,7 +25,7 @@ public class 生成螺旋矩阵 {
         int value = 1;
         while (rowBegin <= rowEnd && colBegin <= colEnd) {
             for (int i = colBegin; i <= colEnd; i++) {
-                //list.add(matrix[rowBegin][i]);
+                //linklist.add(matrix[rowBegin][i]);
                 res[rowBegin][i] = value++;
             }
             rowBegin++;

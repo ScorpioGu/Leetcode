@@ -5,11 +5,11 @@ import support.ListNode;
 import java.util.Random;
 
 /**
- * @Desc https://leetcode.com/problems/linked-list-random-node/
- * Given a singly linked list, return a random node's value from the linked list. Each node must have the same probability of being chosen.
+ * @Desc https://leetcode.com/problems/linked-linklist-random-node/
+ * Given a singly linked linklist, return a random node's value from the linked linklist. Each node must have the same probability of being chosen.
  *
  * Follow up:
- * What if the linked list is extremely large and its length is unknown to you? Could you solve this efficiently without using extra space?
+ * What if the linked linklist is extremely large and its length is unknown to you? Could you solve this efficiently without using extra space?
  *
  * 蓄水池抽样算法解决的是这样一个问题,有一个数据流很大,大小也不知道.但是让你去随机取其中的元素,兵器保证概率相同
  * 如果我们直到数据流有多大,产生一个该范围的随机数就可以做,不清楚总的数据个数,又要求等概率,这就有点难办
@@ -26,7 +26,7 @@ import java.util.Random;
 public class 蓄水池抽样算法 {
     ListNode head;
     Random rand;
-    /** @param head The linked list's head.
+    /** @param head The linked linklist's head.
     Note that the head is guaranteed to be not null, so it contains at least one node. */
     public 蓄水池抽样算法(ListNode head) {
         this.head = head;

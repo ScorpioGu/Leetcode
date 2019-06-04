@@ -51,7 +51,7 @@ public class 和为目标数的序列组合 {
         } else if (remain == 0) {
             list.add(new ArrayList<>(cur));
             //注意不能写成下面这种，必须复制一份存储。因为cur后续的搜寻中还会变
-            //list.add(cur);
+            //linklist.add(cur);
         } else {
             for (int i = start; i < candidates.length; i++) {
                 //depth+1

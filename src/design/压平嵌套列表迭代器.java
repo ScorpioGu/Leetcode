@@ -5,10 +5,10 @@ import java.util.List;
 import java.util.Stack;
 
 /**
- * @Desc https://leetcode.com/problems/flatten-nested-list-iterator/
- * Given a nested list of integers, implement an iterator to flatten it.
+ * @Desc https://leetcode.com/problems/flatten-nested-linklist-iterator/
+ * Given a nested linklist of integers, implement an iterator to flatten it.
  *
- * Each element is either an integer, or a list -- whose elements may also be integers or other lists.
+ * Each element is either an integer, or a linklist -- whose elements may also be integers or other lists.
  *
  * Example 1:
  *
@@ -72,14 +72,14 @@ public class 压平嵌套列表迭代器 implements Iterator<Integer> {
 
   interface NestedInteger {
 
-      // @return true if this NestedInteger holds a single integer, rather than a nested list.
+      // @return true if this NestedInteger holds a single integer, rather than a nested linklist.
       boolean isInteger();
 
       // @return the single integer that this NestedInteger holds, if it holds a single integer
-      // Return null if this NestedInteger holds a nested list
+      // Return null if this NestedInteger holds a nested linklist
       Integer getInteger();
 
-      // @return the nested list that this NestedInteger holds, if it holds a nested list
+      // @return the nested linklist that this NestedInteger holds, if it holds a nested linklist
       // Return null if this NestedInteger holds a single integer
       List<NestedInteger> getList();
   }

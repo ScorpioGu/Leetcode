@@ -3,7 +3,7 @@ package tree;
 import support.TreeNode;
 
 /**
- * @Desc https://leetcode.com/problems/flatten-binary-tree-to-linked-list/description/
+ * @Desc https://leetcode.com/problems/flatten-binary-tree-to-linked-linklist/description/
  * For example, given the following tree:
  *
  *     1

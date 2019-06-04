@@ -22,7 +22,7 @@ rose -> ros (remove 'e')
  * @Author gcc
  * @Date 18-10-29 上午9:51
  **/
-public class 用最少的操作完成字符串转换 {
+public class 编辑距离 {
     /**
      * @param word1
      * @param word2
@@ -60,7 +60,7 @@ public class 用最少的操作完成字符串转换 {
     }
 
     public static void main(String[] args) {
-        System.out.println(new 用最少的操作完成字符串转换().minDistance("horse", "ros"));
+        System.out.println(new 编辑距离().minDistance("horse", "ros"));
 
     }
 }

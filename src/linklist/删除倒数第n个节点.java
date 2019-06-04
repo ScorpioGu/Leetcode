@@ -1,4 +1,4 @@
-package list;
+package linklist;
 
 import support.ListNode;
 //未写博客

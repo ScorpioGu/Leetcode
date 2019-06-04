@@ -7,7 +7,7 @@ import java.util.Set;
 
 /**
  * @Desc https://leetcode.com/problems/frog-jump/
- * Given a list of stones' positions (in units) in sorted ascending order,
+ * Given a linklist of stones' positions (in units) in sorted ascending order,
  * determine if the frog is able to cross the river by landing on the last
  * stone. Initially, the frog is on the first stone and assume the first
  * jump must be 1 unit.

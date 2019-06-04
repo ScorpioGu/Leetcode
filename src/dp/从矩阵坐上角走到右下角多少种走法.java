@@ -9,18 +9,6 @@ package dp;
  * @date:           2018年4月8日        上午11:18:45
  */
 public class 从矩阵坐上角走到右下角多少种走法 {
-	/**
-	 * @Description:递归做法，自顶向下，有重复计算，时间复杂度太高
-	 * @param m
-	 * @param n
-	 * @return
-	 */
-    public int uniquePathsByRecursion(int m, int n) {
-        if (m == 1 || n==1)
-        	return 1;
-        return uniquePathsByRecursion(m-1, n) + uniquePathsByRecursion(m, n-1);
-    }
-    
     /**
      * @Description:第i,j位置的可由第i-1,j和第i,j-1两个位置得来，这就是递推式子。使用二维数组来存储第i,j位置的步数，供递推
      * @param m
@@ -60,11 +48,5 @@ public class 从矩阵坐上角走到右下角多少种走法 {
     		}
     	}
     	return res[m-1];
-    }
-
-    public void test() {
-    	System.out.println(uniquePathsByRecursion(3, 7));
-    	System.out.println(uniquePaths(3, 7));
-    	System.out.println(uniquePaths2(3, 7));
     }
 }

@@ -7,9 +7,9 @@ import java.util.Map;
 
 /**
  * @Desc http://www.cnblogs.com/grandyang/p/5187640.html
- * This is a follow up of Shortest Word Distance. The only difference is now you are given the list of words and your method will be called repeatedly many times with different parameters. How would you optimize it?
+ * This is a follow up of Shortest Word Distance. The only difference is now you are given the linklist of words and your method will be called repeatedly many times with different parameters. How would you optimize it?
  * <p>
- * Design a class which receives a list of words in the constructor, and implements a method that takes two words word1 and word2 and return the shortest distance between these two words in the list.
+ * Design a class which receives a linklist of words in the constructor, and implements a method that takes two words word1 and word2 and return the shortest distance between these two words in the linklist.
  * <p>
  * For example,
  * Assume that words = ["practice", "makes", "perfect", "coding", "makes"].
@@ -18,7 +18,7 @@ import java.util.Map;
  * Given word1 = "makes", word2 = "coding", return 1.
  * <p>
  * Note:
- * You may assume that word1 does not equal to word2, and word1 and word2 are both in the list.
+ * You may assume that word1 does not equal to word2, and word1 and word2 are both in the linklist.
  * <p>
  * 这道题是之前那道Shortest Word Distance的拓展，不同的是这次我们需要多次调用求最短单词距离的函数.以空间复杂度换取时间复杂度
  * @Author gcc

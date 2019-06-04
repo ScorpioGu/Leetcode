@@ -1,4 +1,4 @@
-package list;
+package linklist;
 
 import support.ListNode;
 //寻找两个链表的交叉点,因为节点的next指针只有一个,所以必然有公共尾部

@@ -1,4 +1,4 @@
-package list;
+package linklist;
 
 public class ReverseList {
 

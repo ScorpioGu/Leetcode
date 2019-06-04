@@ -1,8 +1,8 @@
-package list;
+package linklist;
 
 import support.ListNode;
 
-//Given 1->2->3->4, you should return the list as 2->1->4->3.
+//Given 1->2->3->4, you should return the linklist as 2->1->4->3.
 public class 交换相邻的两个节点 {
     public ListNode swapPairs(ListNode head) {
         if(head == null) {

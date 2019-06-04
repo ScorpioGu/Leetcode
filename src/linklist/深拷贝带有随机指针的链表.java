@@ -1,10 +1,10 @@
-package list;
+package linklist;
 
 /**
- * @Desc https://leetcode.com/problems/copy-list-with-random-pointer/description/
- * A linked list is given such that each node contains an additional random pointer which could point to any node in the list or null.
+ * @Desc https://leetcode.com/problems/copy-linklist-with-random-pointer/description/
+ * A linked linklist is given such that each node contains an additional random pointer which could point to any node in the linklist or null.
  *
- * Return a deep copy of the list.
+ * Return a deep copy of the linklist.
  * @Author gcc
  * @Date 18-11-16 下午10:14
  **/

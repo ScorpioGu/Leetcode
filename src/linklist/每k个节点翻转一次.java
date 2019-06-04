@@ -1,4 +1,4 @@
-package list;
+package linklist;
 
 import support.ListNode;
 //https://leetcode.com/problems/reverse-nodes-in-k-group/description/

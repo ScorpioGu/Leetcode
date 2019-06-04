@@ -1,4 +1,4 @@
-package binarySearch;
+package greedy;
 
 import java.util.Arrays;
 

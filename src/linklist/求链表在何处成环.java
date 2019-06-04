@@ -1,12 +1,12 @@
-package list;
+package linklist;
 
 import support.ListNode;
 
 /**
- * @Desc https://leetcode.com/problems/linked-list-cycle-ii/description/
- * Given a linked list, return the node where the cycle begins. If there is no cycle, return null.
+ * @Desc https://leetcode.com/problems/linked-linklist-cycle-ii/description/
+ * Given a linked linklist, return the node where the cycle begins. If there is no cycle, return null.
  *
- * Note: Do not modify the linked list.
+ * Note: Do not modify the linked linklist.
  * @Author gcc
  * @Date 18-11-17 下午12:57
  **/

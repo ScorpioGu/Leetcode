@@ -1,9 +1,9 @@
-package list;
+package linklist;
 
 import support.ListNode;
 
 /**
- * @Desc https://leetcode.com/problems/insertion-sort-list/description/
+ * @Desc https://leetcode.com/problems/insertion-sort-linklist/description/
  *
  * Example1:
  * 5 6 3 1 8
@@ -36,7 +36,7 @@ public class 链表插入排序 {
         ListNode pre = dummy;
         // 记录下一个待插入的节点，因为cur插入之后，next指针要发生改变，所以这里需要记录
         ListNode next;
-        //not the end of input list
+        //not the end of input linklist
         while( cur != null ){
             //find the right place to insert
             while( pre.next != null && pre.next.val < cur.val ){

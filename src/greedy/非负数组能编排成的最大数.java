@@ -5,7 +5,7 @@ import java.util.Comparator;
 
 /**
  * @Desc https://leetcode.com/problems/largest-number/description/
- * Given a list of non negative integers, arrange them such that they form the largest number.
+ * Given a linklist of non negative integers, arrange them such that they form the largest number.
  *
  * Example 1:
  *

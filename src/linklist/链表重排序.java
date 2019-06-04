@@ -1,13 +1,13 @@
-package list;
+package linklist;
 
 import support.ListNode;
 
 /**
- * @Desc https://leetcode.com/problems/reorder-list/description/
- * Given a singly linked list L: L0→L1→…→Ln-1→Ln,
+ * @Desc https://leetcode.com/problems/reorder-linklist/description/
+ * Given a singly linked linklist L: L0→L1→…→Ln-1→Ln,
  * reorder it to: L0→Ln→L1→Ln-1→L2→Ln-2→…
  *
- * You may not modify the values in the list's nodes, only nodes itself may be changed.
+ * You may not modify the values in the linklist's nodes, only nodes itself may be changed.
  *
  * Example 1:
  *

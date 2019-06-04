@@ -1,11 +1,11 @@
-package list;
+package linklist;
 
 import support.ListNode;
 
 /**
  * https://leetcode.com/problems/linked-list-cycle/description/
  * <p>
- * Given a linked list, determine if it has a cycle in it.
+ * Given a linked linklist, determine if it has a cycle in it.
  */
 public class 判断链表是否成环快慢指针 {
     /**
