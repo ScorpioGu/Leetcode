@@ -6,8 +6,8 @@ public class Tri {
 
 	//static int[] primes = {964, 524, 356, 268, 212, 172, 148, 124, 116, 104};
 	//static int[] primes = {24, 28, 32, 36, 44, 48, 52, 56};
-	static int[] primes = {36};
-	static int b = 20;
+	static int[] primes = {104};
+	static int b = 964;
 	static int w = 4;
 	static int circles = 3;
 	/**
