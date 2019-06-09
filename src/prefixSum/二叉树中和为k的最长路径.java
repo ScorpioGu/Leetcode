@@ -1,4 +1,4 @@
-package tree;
+package prefixSum;
 
 import support.TreeNode;
 
@@ -15,10 +15,10 @@ public class 二叉树中和为k的最长路径 {
         // 存储前缀和（从根节点出发），及其前缀和末端的层级
         HashMap<Integer, Integer> sumMap = new HashMap<Integer, Integer>();
         sumMap.put(0, 0); // important
-        return preOrder(head, sum, 0, 1, 0, sumMap);
+        return helper(head, sum, 0, 1, 0, sumMap);
     }
 
-    private static int preOrder(TreeNode cur, int sum, int preSum, int level, int maxLen, HashMap<Integer, Integer> sumMap) {
+    private static int helper(TreeNode cur, int sum, int preSum, int level, int maxLen, HashMap<Integer, Integer> sumMap) {
         if (cur == null) {
             return maxLen;
         }
@@ -31,8 +31,8 @@ public class 二叉树中和为k的最长路径 {
             maxLen = Math.max(maxLen, level - sumMap.get(curSum));
         }
 
-        maxLen = preOrder(cur.left, sum, curSum, level + 1, maxLen, sumMap);
-        maxLen = preOrder(cur.right, sum, curSum, level + 1, maxLen, sumMap);
+        maxLen = helper(cur.left, sum, curSum, level + 1, maxLen, sumMap);
+        maxLen = helper(cur.right, sum, curSum, level + 1, maxLen, sumMap);
 
         // 此时这个节点下的路径已经全部访问过，要访问其他节点了，所以要把这个节点下的前缀和给删除
         // 不同的节点下可能存在相同的前缀和，比如 1->-1->1,对应第1和第三个节点来说，前缀和都为1，根据level来判断属于自己的

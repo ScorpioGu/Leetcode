@@ -1,4 +1,4 @@
-package array;
+package prefixSum;
 
 import java.util.HashMap;
 

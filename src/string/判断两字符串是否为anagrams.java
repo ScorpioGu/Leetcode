@@ -15,7 +15,7 @@ package string;
  * @Author gcc
  * @Date 18-12-3 下午5:07
  **/
-public class 判断两字符串是否互为变位词 {
+public class 判断两字符串是否为anagrams {
     /**
      * 因为只有小写字母,所以可以用一个长度为26的数组保存字符出现的次数
      * @param s

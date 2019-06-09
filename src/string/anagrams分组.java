@@ -15,7 +15,7 @@ import java.util.*;
  * @Author gcc
  * @Date 18-10-22 下午7:23
  **/
-public class 错位词分组 {
+public class anagrams分组 {
     public List<List<String>> groupAnagrams(String[] strs) {
         if (strs == null || strs.length == 0) {
             return new ArrayList<List<String>>();

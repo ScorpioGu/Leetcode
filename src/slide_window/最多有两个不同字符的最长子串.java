@@ -29,14 +29,17 @@ public class 最多有两个不同字符的最长子串 {
         //map存字符及其出现的次数
         Map<Character, Integer> map = new HashMap<>();
         while (r < s.length()) {
-            map.put(s.charAt(r), map.getOrDefault(s.charAt(r), 0) + 1);
+            char rchar = s.charAt(r);
+            map.put(rchar, map.getOrDefault(rchar, 0) + 1);
 
             // from invalid to valid
             while (map.size() > 2) {
                 //先不断减少次数,并向右移动left,当次数到0的时候remove掉
-                map.put(s.charAt(l),map.get(s.charAt(l)) - 1);
-                if (map.get(s.charAt(l)) == 0) {
-                    map.remove(s.charAt(l));
+                char lchar = s.charAt(l);
+                //先不断减少次数,并向右移动left,当次数到0的时候remove掉
+                map.put(lchar,map.get(lchar) - 1);
+                if (map.get(lchar) == 0) {
+                    map.remove(lchar);
                 }
                 l++;
             }

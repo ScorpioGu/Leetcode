@@ -1,4 +1,4 @@
-package array;
+package prefixSum;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -12,7 +12,7 @@ import java.util.Map;
  * Because nums[0] + nums[1] = 2 + 7 = 9,
  * return [0, 1].
  */
-public class 查找和为k的两个数 {
+public class 寻找和为k的两个数 {
     public int[] twoSum(int[] numbers, int target) {
     	if(numbers == null || numbers.length == 0)
 			return null;

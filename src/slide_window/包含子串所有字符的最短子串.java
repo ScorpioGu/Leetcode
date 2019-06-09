@@ -34,48 +34,44 @@ public class 包含子串所有字符的最短子串 {
         for (Character c:t.toCharArray()) {
             map.put(c, map.getOrDefault(c, 0) + 1);
         }
-        //窗口左边界，随着主串遍历一直向前滑动
-        int left = 0, right = 0;
+        int l = 0, r = 0;
         //记录最短的窗口的左边界
         int minLeft = 0;
-        //记录包含子串的字符数量，如果该值等于子串长度了，则当前窗口全部包括了子串的所有字符
-        int count = 0;
-        //记录最短的窗口的长度
         int minLen = Integer.MAX_VALUE;
+        //记录窗口中为匹配上子串还需要的字符数量，如果该值等于0了，则当前窗口全部包括了子串的所有字符
+        int count = map.size();
 
-        while (right < s.length()) {
-            //先扩张右边界
-            if (map.containsKey(s.charAt(right))) {
-                int need = map.get(s.charAt(right));
-                if (need > 0) {
-                    count++;
-                }
-                map.put(s.charAt(right), need - 1);
-                //举个例子"ADBANC"，T = "ABC"，先一直扩张右边界，直到窗口为ADBANC匹配上了，然后要收缩左边界直到不匹配。
-                while (count == t.length()) {
-                    // 更新最优解
-                    if (right - left + 1 < minLen) {
-                        minLen = right - left + 1;
-                        minLeft = left;
-                    }
-
-                    //当遇到子串中的字符时，首先更新map，进行判断是否这个字符是多余的，即是否窗口中含有该字符的数量已经大于子串中该字符串的数量了
-                    //对应的情形是map中该字符对应的value是负值。而如果map中该字符对应的value>=0，则该字符是必要的，左边界移动之后
-                    //该窗口便不再能够包含子串中的所有字符了，此时要更新count。
-                    if (map.containsKey(s.charAt(left))) {
-                        need = map.get(s.charAt(left));
-                        // 如果need < 0 说明这个字符已经多余了，收缩左边界就随它去吧。如果是>=0，则count--
-                        if (need >= 0) {
-                            count--;
-                        }
-                        map.put(s.charAt(left), need + 1);
-                    }
-
-                    //最终left移动到使得窗口不匹配的第一个位置，然后跳出while循环，继续移动右边界，寻找在该左边界的条件下的匹配窗口。
-                    left++;
+        while (r < s.length()) {
+            char rchar = s.charAt(r);
+            if (map.containsKey(rchar)) {
+                map.put(rchar, map.get(rchar) - 1);
+                if (map.get(rchar) == 0) {
+                    count--;
                 }
             }
-            right++;
+            while (count == 0) {
+
+                //当遇到子串中的字符时，首先更新map，进行判断是否这个字符是多余的，即是否窗口中含有该字符的数量已经大于子串中该字符串的数量了
+                //对应的情形是map中该字符对应的value是负值。而如果map中该字符对应的value>=0，则该字符是必要的，左边界移动之后
+                //该窗口便不再能够包含子串中的所有字符了，此时要更新count。
+                char lchar = s.charAt(l);
+                if (map.containsKey(lchar)) {
+                    map.put(lchar, map.get(lchar) + 1);
+                    if (map.get(lchar) > 0) {
+                        count++;
+                    }
+                }
+
+                // 更新最优解
+                if (r - l + 1 < minLen) {
+                    minLen = r - l + 1;
+                    minLeft = l;
+                }
+
+                //最终left移动到使得窗口不匹配的第一个位置，然后跳出while循环，继续移动右边界，寻找在该左边界的条件下的匹配窗口。
+                l++;
+            }
+            r++;
         }
         return minLen == Integer.MAX_VALUE ? "" : s.substring(minLeft, minLeft + minLen);
     }
