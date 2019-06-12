@@ -1,4 +1,4 @@
-package huiwen;
+package palindrome;
 
 import java.util.ArrayList;
 import java.util.List;

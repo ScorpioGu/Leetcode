@@ -1,4 +1,4 @@
-package huiwen;
+package palindrome;
 
 /**
  * https://leetcode.com/problems/longest-palindromic-substring/description/

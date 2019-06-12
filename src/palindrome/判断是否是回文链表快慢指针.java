@@ -1,4 +1,4 @@
-package huiwen;
+package palindrome;
 
 import linklist.逆转链表;
 import support.ListNode;

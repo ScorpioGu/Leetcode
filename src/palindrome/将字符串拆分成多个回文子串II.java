@@ -1,4 +1,4 @@
-package huiwen;
+package palindrome;
 
 /**
  * @Desc https://leetcode.com/problems/palindrome-partitioning-ii/description/
