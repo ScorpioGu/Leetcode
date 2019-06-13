@@ -2,8 +2,15 @@ package linklist;
 
 import support.ListNode;
 
-//Given 1->2->3->4, you should return the linklist as 2->1->4->3.
-public class 交换相邻的两个节点 {
+
+/**
+ * https://leetcode.com/problems/swap-nodes-in-pairs/
+ *
+ * //Given 1->2->3->4, you should return the linklist as 2->1->4->3.
+ *
+ * 6-13
+ */
+public class 每两个节点逆转一次 {
     public ListNode swapPairs(ListNode head) {
         if(head == null) {
         	return null;

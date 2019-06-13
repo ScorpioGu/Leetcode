@@ -4,8 +4,10 @@ import support.ListNode;
 
 /**
  * https://leetcode.com/problems/reverse-linked-list-ii/submissions/
+ *
+ * 6-13
  */
-public class 逆转链表中的部分 {
+public class 逆转链表III {
     public ListNode reverseBetween(ListNode head, int m, int n) {
         if (head == null) {
             return null;

@@ -1,9 +1,21 @@
 package linklist;
 
 import support.ListNode;
-//https://leetcode.com/problems/reverse-nodes-in-k-group/description/
-public class 每k个节点翻转一次 {
+/**
+ * https://leetcode.com/problems/reverse-nodes-in-k-group/
+ * Example:
+ *
+ * Given this linked list: 1->2->3->4->5
+ *
+ * For k = 2, you should return: 2->1->4->3->5
+ *
+ * For k = 3, you should return: 3->2->1->4->5
+ *
+ * 6-13
+ */
+public class 每k个节点逆转一次 {
     public ListNode reverseKGroup(ListNode head, int k) {
+
         ListNode cur = head;
 
         // 判断是否有k个节点，如果没则不用反转
@@ -39,11 +51,12 @@ public class 每k个节点翻转一次 {
             // 1<2<3 4<5
             // 3>2>1>4>5
             ListNode pre = null, curr = head;
-            while (count-- != 0) {
+            while (count != 0) {
                 ListNode temp = curr.next;
                 curr.next = pre;
                 pre = curr;
                 curr = temp;
+                count--;
             }
             head.next = cur;
             return curr;

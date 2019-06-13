@@ -6,8 +6,10 @@ import support.ListNode;
  * https://leetcode.com/problems/linked-list-cycle/description/
  * <p>
  * Given a linked linklist, determine if it has a cycle in it.
+ *
+ * 6-13
  */
-public class 判断链表是否成环快慢指针 {
+public class 判断链表是否成环 {
     /**
      * 快慢指针
      *

@@ -12,30 +12,34 @@ package tree;
 import support.ListNode;
 import support.TreeNode;
 
+/**
+ * https://leetcode.com/problems/convert-sorted-list-to-binary-search-tree/
+ *
+ * 6-13
+ */
 public class 排好序的链表转成BST {
     public TreeNode sortedListToBST(ListNode head) {
         if (head == null) {
             return null;
         }
-        return helper(head, null);
-    }
-
-    private TreeNode helper(ListNode head, ListNode tail) {
-        if (head == tail) {
-            return null;
+        if (head.next == null) {
+            return new TreeNode(head.val);
         }
-
+        // 双指针跑到终点
         ListNode fast = head;
         ListNode slow = head;
-        //快慢指针，先找到root节点
-        while (fast != tail && fast.next != tail) {
+        ListNode pre = null;
+        while (fast != null && fast.next != null) {
             fast = fast.next.next;
+            pre = slow;
             slow = slow.next;
         }
+
         TreeNode root = new TreeNode(slow.val);
-        //递归解决
-        root.left = helper(head, slow);
-        root.right = helper(slow.next, tail);
+        if (pre != null)
+            pre.next = null;
+        root.left = sortedListToBST(head);
+        root.right = sortedListToBST(slow.next);
         return root;
     }
 

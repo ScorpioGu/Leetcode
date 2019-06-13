@@ -5,6 +5,8 @@ package linklist;
  * A linked linklist is given such that each node contains an additional random pointer which could point to any node in the linklist or null.
  *
  * Return a deep copy of the linklist.
+ *
+ * TODO
  * @Author gcc
  * @Date 18-11-16 下午10:14
  **/

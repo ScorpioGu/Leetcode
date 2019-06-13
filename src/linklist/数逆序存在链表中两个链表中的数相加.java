@@ -11,7 +11,9 @@ import support.ListNode;
 //其实逆序降低了难度，进位往下一个位置进就行了，如果是顺序，进位还要访问前一个元素。
 
 /**
+ * https://leetcode.com/problems/add-two-numbers/
  * 头条笔试题
+ * 6-13
  */
 public class 数逆序存在链表中两个链表中的数相加 {
     public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
@@ -24,7 +26,7 @@ public class 数逆序存在链表中两个链表中的数相加 {
          ListNode cur = dummy.next;
          int sum = 0;
          while(a1 != null || a2 != null) {
-        	 sum /= 10; //代表进位
+        	 sum /= 10;
         	 if(a1 != null) {
         		 sum += a1.val;
         		 a1 = a1.next;

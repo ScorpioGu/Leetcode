@@ -25,6 +25,9 @@ public class 链表重排序 {
             return;
         }
         ListNode fast = head, slow = head;
+
+        // 如果链表长度为偶数，slow要停在前一半的最后一个节点上
+        // 如果为奇数，恰好停在中间
         while (fast.next != null && fast.next.next != null) {
             fast = fast.next.next;
             slow = slow.next;
