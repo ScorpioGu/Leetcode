@@ -16,6 +16,8 @@ import support.ListNode;
  * Output: -1->0->3->4->5
  * @Author gcc
  * @Date 18-11-18 上午10:31
+ *
+ * 6-13
  **/
 public class 链表排序 {
     /**
@@ -28,51 +30,40 @@ public class 链表排序 {
         if (head == null || head.next == null) {
             return head;
         }
-        //将链表分成两截,pre保存着slow的前驱,用于截断链表
-        //右半边链表的链表头一定是slow，而不能是slow.next,所以需要去记录slow的前驱用于截断
-        //想象一下一个只能两个节点的链表，slow最终将停在第2个节点处。如果用slow.next做第二段的链表头
-        //分割下来，第一段有两个节点，第二段有0个节点，显然这是不合适的
-        ListNode slow = head, fast = head, pre = null;
-        while (fast != null && fast.next != null) {
-            pre = slow;
-            slow = slow.next;
-            fast = fast.next.next;
-        }
-        pre.next = null;
 
+        // 在链表长度为偶数时，如果希望slow停在前一半的最后一个，则while中条件为fast.next != null && fast.next.next ！= null
+        // 如果希望slow停在后一半的第一个，则while中条件为fast != null && fast.next !=null。
+        ListNode fast = head, slow = head;
+        while (fast.next != null && fast.next.next != null) {
+            fast = fast.next.next;
+            slow = slow.next;
+        }
+        ListNode right = slow.next;
+        slow.next = null;
         ListNode left = sortList(head);
-        ListNode right = sortList(slow);
+        right = sortList(right);
 
         return merge(left, right);
     }
 
-    /**
-     * 合并两链表
-     * @param left
-     * @param right
-     * @return
-     */
     private ListNode merge(ListNode left, ListNode right) {
-        ListNode res = new ListNode(0);
-        ListNode cur = res;
+        ListNode dummy = new ListNode(0);
+        ListNode cur = dummy;
         while (left != null && right != null) {
-            if (left.val > right.val) {
-                cur.next = right;
-                right = right.next;
-            } else {
+            if (left.val < right.val) {
                 cur.next = left;
                 left = left.next;
+            } else {
+                cur.next = right;
+                right = right.next;
             }
             cur = cur.next;
         }
-        //执行到这里可能有左边或者右边还有剩着的,因为是链表,所以直接cur.next = left/right
-        //把一条链表整体放在了新链表后面
-        if (left != null) {
+        if (left == null) {
+            cur.next = right;
+        } else {
             cur.next = left;
         }
-        if (right != null) {
-            cur.next = right;
-        }
-        return res.next;
+        return dummy.next;
     }
 }

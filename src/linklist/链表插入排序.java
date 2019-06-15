@@ -15,6 +15,8 @@ import support.ListNode;
  *
  * @Author gcc
  * @Date 18-11-17 下午4:42
+ *
+ * 6-13
  **/
 public class 链表插入排序 {
     /**
@@ -28,31 +30,18 @@ public class 链表插入排序 {
         if( head == null ){
             return head;
         }
-
         ListNode dummy = new ListNode(0);
-        // 当前待插入的节点
         ListNode cur = head;
-        // 用于寻找插入位置，最终将cur插入到pre的后面，每次插入一个新节点，pre要还原回head
-        ListNode pre = dummy;
-        // 记录下一个待插入的节点，因为cur插入之后，next指针要发生改变，所以这里需要记录
-        ListNode next;
-        //not the end of input linklist
-        while( cur != null ){
-            //find the right place to insert
-            while( pre.next != null && pre.next.val < cur.val ){
-                pre = pre.next;
+        while (cur != null) {
+            ListNode pos = dummy;
+            while (pos.next != null && pos.next.val < cur.val) {
+                pos = pos.next;
             }
-            // 记录下一个待插入的节点
-            next = cur.next;
-            //insert between pre and pre.next
-            cur.next = pre.next;
-            pre.next = cur;
-
-            // 修改指针，准备下一次插入
-            pre = dummy;
+            ListNode next = cur.next;
+            cur.next = pos.next;
+            pos.next = cur;
             cur = next;
         }
-
         return dummy.next;
     }
 }
