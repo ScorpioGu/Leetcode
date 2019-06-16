@@ -10,6 +10,8 @@ import support.ListNode;
  * Output: 1->2->2->4->3->5
  *
  * 6-13
+ *
+ * 荷兰国旗问题，链表
  */
 public class 根据特定值x划分链表 {
     public ListNode partition(ListNode head, int x) {
