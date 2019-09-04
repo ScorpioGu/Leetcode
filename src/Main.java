@@ -1,7 +1,4 @@
-import java.util.LinkedList;
-import java.util.Queue;
 import java.util.Scanner;
-import java.util.Stack;
 
 /**
  * @Desc TODO
@@ -9,33 +6,64 @@ import java.util.Stack;
  * @Date 19-9-1 下午3:02
  **/
 public class Main {
+    static int m;
+    static int n;
+    static int[] a;
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        String s = sc.nextLine();
-        StringBuilder sb = new StringBuilder();
-        Stack<Character> stack = new Stack<>();
-        for (char c : s.toCharArray()) {
-            if (c == ')') {
-                Queue<Character> q = new LinkedList<>();
-                while (!stack.isEmpty() && stack.peek() != '(') {
-                    q.offer(stack.pop());
-                }
-                stack.pop();
-                while (!q.isEmpty()) {
-                    stack.push(q.poll());
-                }
-            } else {
-                stack.push(c);
-            }
+        m = sc.nextInt();
+        n = sc.nextInt();
+        a = new int[n];
+        for (int i = 0; i < n; i++) {
+            a[i] = sc.nextInt();
         }
-        while (!stack.isEmpty()) {
-            char c = stack.pop();
-            if (c == '(' || c == ')') {
-                System.out.println("");
-                return;
-            }
-            sb.append(c);
-        }
-        System.out.println(sb.reverse().toString());
+        int res = BinarySearch(a, n, m);
+        System.out.println(res);
     }
+
+    static int BinarySearch(int A[], int n, int k) {
+        int lo = getMax(A, n);
+        int hi = getSum(A, n);
+
+        while (lo < hi) {
+            int mid = lo + (hi - lo) / 2;
+            int requiredPainters = getRequiredPainters(A, n, mid);
+            if (requiredPainters <= k)
+                hi = mid;
+            else
+                lo = mid + 1;
+        }
+        return lo;
+    }
+
+    static int getMax(int A[], int n) {
+        int max = Integer.MIN_VALUE;
+        for (int i = 0; i < n; i++) {
+            if (A[i] > max){ max = A[i];}
+
+        }
+        return max;
+    }
+
+    static int getSum(int A[], int n) {
+        int total = 0;
+        for (int i = 0; i < n; i++) {
+            total += A[i];
+        }
+
+        return total;
+    }
+
+    static int getRequiredPainters(int A[], int n, int maxLengthPerPainter) {
+        int total = 0, numPainters = 1;
+        for (int i = 0; i < n; i++) {
+            total += A[i];
+            if (total > maxLengthPerPainter) {
+                total = A[i];
+                numPainters++;
+            }
+        }
+        return numPainters;
+    }
+
 }
