@@ -6,64 +6,55 @@ import java.util.Scanner;
  * @Date 19-9-1 下午3:02
  **/
 public class Main {
-    static int m;
-    static int n;
-    static int[] a;
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        m = sc.nextInt();
-        n = sc.nextInt();
-        a = new int[n];
+        int n = Integer.parseInt(sc.nextLine());
+        String[] ss = new String[n];
+
         for (int i = 0; i < n; i++) {
-            a[i] = sc.nextInt();
+            ss[i] = sc.nextLine();
         }
-        int res = BinarySearch(a, n, m);
-        System.out.println(res);
-    }
-
-    static int BinarySearch(int A[], int n, int k) {
-        int lo = getMax(A, n);
-        int hi = getSum(A, n);
-
-        while (lo < hi) {
-            int mid = lo + (hi - lo) / 2;
-            int requiredPainters = getRequiredPainters(A, n, mid);
-            if (requiredPainters <= k)
-                hi = mid;
-            else
-                lo = mid + 1;
-        }
-        return lo;
-    }
-
-    static int getMax(int A[], int n) {
-        int max = Integer.MIN_VALUE;
         for (int i = 0; i < n; i++) {
-            if (A[i] > max){ max = A[i];}
-
-        }
-        return max;
-    }
-
-    static int getSum(int A[], int n) {
-        int total = 0;
-        for (int i = 0; i < n; i++) {
-            total += A[i];
-        }
-
-        return total;
-    }
-
-    static int getRequiredPainters(int A[], int n, int maxLengthPerPainter) {
-        int total = 0, numPainters = 1;
-        for (int i = 0; i < n; i++) {
-            total += A[i];
-            if (total > maxLengthPerPainter) {
-                total = A[i];
-                numPainters++;
+            String s = ss[i];
+            if (s.length() < 8) {
+                System.out.println("NO");
+                continue;
             }
-        }
-        return numPainters;
-    }
+            if (Character.isDigit(s.charAt(0))) {
+                System.out.println("NO");
+                continue;
+            }
+            boolean hasA = false, hasa = false, has1 = false;
+            for (char c : s.toCharArray()) {
+                if (c >= '0' && c <= '9') {
+                    has1 = true;
+                    continue;
+                }
+                if (c >= 'a' && c <= 'z') {
+                    hasa = true;
+                    continue;
+                }
+                if (c >= 'A' && c <= 'Z') {
+                    hasA = true;
+                }
+            }
 
+            int count = 0;
+            if (hasA) {
+                count++;
+            }
+            if (hasa) {
+                count++;
+            }
+            if (has1) {
+                count++;
+            }
+            if (count < 2) {
+                System.out.println("NO");
+                continue;
+            }
+            System.out.println("YES");
+        }
+
+    }
 }
