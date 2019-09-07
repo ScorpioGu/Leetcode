@@ -1,56 +1,55 @@
-## 求解满足一些限制条件的子串问题，通常使用hashmap配合双指针
-
-```
-int findSubstring(string s){
-        vector<int> map(128,0);
-        int counter; // check whether the substring is valid
-        int begin=0, end=0; //two pointers, one point to tail and one  head
-        int d; //the length of substring
-
-        for() { /* initialize the hash map here */ }
-
-        while(end<s.size()){
-
-            if(map[s[end++]]-- ?){  /* modify counter here */ }
-
-            while(/* counter condition */){ 
-                 
-                 /* update d here if finding minimum*/
-
-                //increase begin to make it invalid/valid again
-                
-                if(map[s[begin++]]++ ?){ /*modify counter here*/ }
-            }  
-
-            /* update d here if finding maximum*/
-        }
-        return d;
-  }
-```
-## 如果是求解最小窗口，则在内循环中更新。如果是求解最大窗口，则是在外循环中更新。
-```
-    包含两个不同字符的最长窗口
-    public int lengthOfLongestSubstringTwoDistinct(String s) {
-        if (s == null || s.length() == 0) {
-            return 0;
-        }
-        int len = 0;
-        int l = 0, r = 0;
-        //map存字符及其出现的次数
+   
+    public List<Integer> slidingWindowTemplateByHarryChaoyangHe(String s, String t) {
+    
+        // 初始化一个集合或者数或者字符串保存结果，根据题目的需求
+        List<Integer> result = new LinkedList<>();
+        if(t.length()> s.length()) return result;
+        
+        // 保存字符的每个字符出现的次数
         Map<Character, Integer> map = new HashMap<>();
-        while (r < s.length())
-            map.put(s.charAt(r), map.getOrDefault(s.charAt(r), 0) + 1);
-            while (map.size() > 2) {
-                //先不断减少次数,并向右移动left,当次数到0的时候remove掉
-                map.put(s.charAt(l),map.get(s.charAt(l)) - 1);
-                if (map.get(s.charAt(l)) == 0) {
-                    map.remove(s.charAt(l));
-                }
-                l++;
-            }
-            len = Math.max(len, r - l + 1);
-            r++;
+        for(char c : t.toCharArray()){
+            map.put(c, map.getOrDefault(c, 0) + 1);
         }
-        return len;
+        
+        // 计数器，对窗口计数，作为判断条件
+        int counter = map.size();
+
+        int begin = 0, end = 0;
+        
+        //the length of the substring which match the target string.
+        int len = Integer.MAX_VALUE; 
+        
+        //loop at the begining of the source string
+        while(end < s.length()){
+            
+            char c = s.charAt(end);//get a character
+            
+            // 更新map和counter
+            if( map.containsKey(c) ){
+                map.put(c, map.get(c)-1);// plus or minus one
+                if(map.get(c) == 0) counter--;//modify the counter according the requirement(different condition).
+            }
+            
+            // while循环中，左指针向右移动。
+            // 如果要求最小窗口，那么这个循环是from valid to invalid，然后最优值的更新是在循环内
+            // 如果要求最大窗口，那么这个循环是from invalid to valid, 然后最优值的更新是在循环外
+            while(counter == 0 /* counter condition. different question may have different condition */){
+                
+                char tempc = s.charAt(begin);//***be careful here: choose the char at begin pointer, NOT the end pointer
+                if(map.containsKey(tempc)){
+                    map.put(tempc, map.get(tempc) + 1);//plus or minus one
+                    if(map.get(tempc) > 0) counter++;//modify the counter according the requirement(different condition).
+                }
+                
+                /*在这里更新最小窗口*
+                
+                begin++;
+            }
+            
+            /*在这里更新最大窗口*/
+            
+            end++;
+        }
+        return result;
     }
-```
+}

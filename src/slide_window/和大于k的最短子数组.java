@@ -25,16 +25,21 @@ public class 和大于k的最短子数组 {
             return 0;
         }
 
-        int right = 0, left = 0, sum = 0, minLen = Integer.MAX_VALUE;
-        while (right < nums.length) {
-            sum += nums[right];
+        int r = 0, l = 0, sum = 0, minLen = Integer.MAX_VALUE;
+        while (r < nums.length) {
+            int rval = nums[r];
+            sum += rval;
 
             // from valid to invalid
             while (sum >= s) {
-                minLen = Math.min(minLen, right - left + 1);
-                sum -= nums[left++];
+                int lval = nums[l];
+                sum -= lval;
+
+                minLen = Math.min(minLen, r - l + 1);
+
+                l++;
             }
-            right++;
+            r++;
         }
         return minLen == Integer.MAX_VALUE ? 0 : minLen;
     }

@@ -1,6 +1,10 @@
 package graph;
 
 
+import support.Edge;
+import support.Graph;
+import support.Node;
+
 import java.util.*;
 
 //undirected graph only

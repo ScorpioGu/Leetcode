@@ -1,5 +1,9 @@
 package graph;
 
+import support.Edge;
+import support.Graph;
+import support.Node;
+
 public class GraphGenerator {
 
 	public static Graph createGraph(Integer[][] matrix) {

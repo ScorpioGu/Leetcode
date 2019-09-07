@@ -20,14 +20,14 @@ public class 不含重复字符的最长子串 {
         int max = 0;
         int l = 0, r = 0;
         while (r < s.length()) {
-
+            char rchar = s.charAt(r);
             // from invalid to valid
-            if (map.containsKey(s.charAt(r))) {
+            if (map.containsKey(rchar)) {
                 //当发现重复元素但是重复元素在当前子串的起始位置之前，子串的起始位置是不需要变的
                 //只有当重复元素的位置大于左边界时，子串需要改变，因为当前子串中存在了重复字符
-                l = Math.max(l, map.get(s.charAt(r)) + 1);
+                l = Math.max(l, map.get(rchar) + 1);
             }
-            map.put(s.charAt(r), r);
+            map.put(rchar, r);
             max = Math.max(max, r - l + 1);
             r++;
         }

@@ -1,5 +1,8 @@
 package graph;
 
+import support.Edge;
+import support.Node;
+
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map.Entry;
