@@ -34,16 +34,16 @@ public class Main {
                 dp[0][0] = days[i];
                 dp[0][1] = Math.min(old0[1], Math.min(old1[1], old2[1])) + costs[0];
             }
-            if (old1[1] < days[i]) {
+            if (old1[0] < days[i]) {
                 dp[1][0] = days[i] + 6;
-                dp[1][1] = Math.min(old0[1], Math.min(old1[1], old2[1])) + costs[1]
+                dp[1][1] = Math.min(old0[1], Math.min(old1[1], old2[1])) + costs[1];
             }
-            if (old2[1] < days[i]) {
+            if (old2[0] < days[i]) {
                 dp[2][0] = days[i] + 29;
                 dp[2][1] = Math.min(old0[1], Math.min(old1[1], old2[1])) + costs[2];
             }
 //            StringBuilder sb = new StringBuilder();
-//            sb.append(old0[0] + ":"+ old0[1] + " " + old1[0] + ":"+ old1[1] + " " + old2[0] + ":"+ old2[1]);
+//            sb.append(dp[0][0] + ":"+ dp[0][1] + " " + dp[1][0] + ":"+ dp[1][1] + " " + dp[2][0] + ":"+ dp[2][1]);
 //            System.out.println(sb.toString());
         }
         System.out.println(Math.min(dp[0][1], Math.min(dp[1][1], dp[2][1])));
