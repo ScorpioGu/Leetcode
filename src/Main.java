@@ -6,57 +6,42 @@ public class Main {
     }
 
     public static int solution(int[] arr) {
-        if (arr == null || arr.length == 0) {
-            return 0;
+        List<Integer> A = new ArrayList<>();
+        for (int i = 0; i < arr.length; i++) {
+            A.add(arr[i]);
         }
-        int sum = (arr.length * (arr.length - 1))/2;
-        int inverse = mergeSort(arr, 0, arr.length - 1);
-        return Math.min(inverse, sum - inverse);
-    }
-
-    private static int mergeSort(int[] array, int head, int tail) {
-        if (head == tail) {
-            return 0;
+        int count = 0;
+        Map<Integer,Integer> map = new HashMap<Integer, Integer>();
+        List<Integer> B = new ArrayList<>(A);
+        Collections.sort(B);
+        for(int i = 0; i < B.size();i++){
+            map.put(B.get(i), i);
         }
-        int mid = (head + tail) >> 1;
-        return mergeSort(array, head, mid)
-                + mergeSort(array, mid + 1, tail)
-                + merge(array, head, mid, tail);
-    }
-
-    private static int merge(int[] array, int head, int mid, int tail) {
-        int[] temp = new int[tail - head + 1];
-        int i = head;
-        int j = mid + 1;
-        int k = 0;
-        int res = 0;
-        while (i <= mid && j <= tail) {
-            if (array[i] <= array[j]) {
-                temp[k++] = array[i++];
-            } else {
-                temp[k++] = array[j++];
-                // 到这里array[i] > array[j],
-                // 因为array[head]-array[mid]是排好序的,所以array[i]...array[mid]都>array[j]
-                // 共mid-i+1个
-
-                //下面两句应该意思是一样的,只是角度不同
-                res += mid - i + 1;
-                //res = j - mid;
+        //DFS
+        ArrayList<Integer> C = new ArrayList<>(A);
+        ArrayList<Integer> D = new ArrayList<>();
+        for(int i = 0; i < C.size();i++){
+            if(D.contains(C.get(i)))continue;
+            int cycleSize = 1;
+            if(C.get(i)!=B.get(i)){
+                D.add(C.get(i));
+                int a = C.get(i);
+                while(true){
+                    int curA = map.get(a);//当前元素的正确位置
+                    int num = C.get(curA);//当前元素的正确位置上实际的元素
+                    int curNum = map.get(num);//当前元素的正确位置上的实际元素的正确位置(是否能形成cycle)
+                    cycleSize++;
+                    D.add(num);
+                    if(curNum==i){
+                        break;
+                    }
+                    a=num;
+                }
+                count+=(cycleSize-1);
             }
         }
+        return count;
 
-        while (i <= mid) {
-            temp[k++] = array[i++];
-        }
-
-        while (j <= tail) {
-            temp[k++] = array[j++];
-        }
-
-        for (int l = 0; l < temp.length; l++) {
-            array[l + head] = temp[l];
-        }
-        return res;
     }
 }
 
