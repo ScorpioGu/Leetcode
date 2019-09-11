@@ -9,7 +9,9 @@ public class Main {
         if (arr == null || arr.length == 0) {
             return 0;
         }
-        return mergeSort(arr, 0, arr.length - 1);
+        int sum = (arr.length * (arr.length - 1))/2;
+        int inverse = mergeSort(arr, 0, arr.length - 1);
+        return Math.min(inverse, sum - inverse);
     }
 
     private static int mergeSort(int[] array, int head, int tail) {
