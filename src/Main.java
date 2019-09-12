@@ -4,7 +4,7 @@ import support.TreeNode;
 import java.util.*;
 
 public class Main {
-    public static int candy(int[] ratings) {
+    public int candy(int[] ratings) {
         if (ratings == null || ratings.length == 0) {
             return 0;
         }
@@ -19,10 +19,11 @@ public class Main {
             }
         }
 
-        //从右往左,最后一个元素是不会改变的
-        for (int i = ratings.length - 2; i >= 0 ; i--) {
-            if (ratings[i] > ratings[i + 1] && candies[i] <= candies[i + 1]) {
-                candies[i] = candies[i + 1] + 1;
+        //从右往后遍历,最后一个元素是不会改变的
+        for (int i = ratings.length - 1; i > 0 ; i--) {
+            if (ratings[i] < ratings[i - 1]) {
+                candies[i - 1] = Math.max(candies[i - 1], candies[i] + 1);
+
             }
             res += candies[i];
         }
