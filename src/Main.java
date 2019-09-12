@@ -4,7 +4,7 @@ import support.TreeNode;
 import java.util.*;
 
 public class Main {
-    public int candy(int[] ratings) {
+    public static int candy(int[] ratings) {
         if (ratings == null || ratings.length == 0) {
             return 0;
         }
