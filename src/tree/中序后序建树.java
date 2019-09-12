@@ -10,6 +10,7 @@ import support.TreeNode;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
+import java.util.Stack;
 
 /**
  * https://leetcode.com/problems/construct-binary-tree-from-inorder-and-postorder-traversal/description/
@@ -30,6 +31,7 @@ import java.util.Scanner;
  *     /  \
  */
 public class 中序后序建树 {
+
     public TreeNode buildTree(int[] inorder, int[] postorder) {
         // 存储每个值在中序数组中的索引
         Map<Integer, Integer> map = new HashMap<Integer, Integer>();
@@ -50,22 +52,26 @@ public class 中序后序建树 {
         return root;
     }
 
-    //这个是一个工具方法，根据输入的中序与后序，输出前序，输入的时候分隔符是空格
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        System.out.println("中序：");
-        String[] in = sc.nextLine().split(" ");
-        System.out.println("后序：");
-        String[] post = sc.nextLine().split(" ");
-        int[] inOrder = new int[in.length];
-        int[] postOrder = new int[post.length];
-        for (int i=0; i<in.length; i++) {
-            inOrder[i] = Integer.parseInt(in[i]);
-            postOrder[i] = Integer.parseInt(post[i]);
+    public static String bianli(TreeNode cur) {
+        if (cur == null) {
+            return "";
         }
-
-        TreeNode root = new 中序后序建树().buildTree(inOrder, postOrder);
-        树的遍历非递归.前序(root);
+        StringBuilder sb = new StringBuilder();
+        TreeNode pre = null;
+        Stack<TreeNode> stack = new Stack<>();
+        while (cur != null || !stack.isEmpty()) {
+            if (cur != null) {
+                //这里加一些具体的操作
+                sb.append(cur.val);
+                stack.push(cur);
+                pre = cur;
+                cur = cur.left;
+            } else {
+                cur = stack.pop();
+                cur = cur.right;
+            }
+        }
+        return sb.toString();
     }
 
 }

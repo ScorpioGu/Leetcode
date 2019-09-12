@@ -52,6 +52,6 @@ public class 小孩分糖果求最少 {
     }
 
     public static void main(String[] args) {
-        System.out.println(new 小孩分糖果求最少().candy(new int[]{1, 3, 4,5 ,2}));
+        System.out.println(new 小孩分糖果求最少().candy(new int[]{3, 6, 3, 5 , 6, 2}));
     }
 }
