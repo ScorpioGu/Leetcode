@@ -2,31 +2,31 @@ import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
-        System.out.println(solution(new int[]{4, 2, 7, 6}));
-    }
-
-    public static int solution(int[] arr) {
-        int[] z = Arrays.copyOf(arr, arr.length);
-        Arrays.sort(z);
-        Map<Integer, Integer> map = new HashMap<>();
-        for (int i = 0; i < z.length; i++) {
-            map.put(z[i], i);
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int[][] nums = new int[n][n];
+        for (int i = 0; i < n * n; i++) {
+            nums[i/n][i%n] = sc.nextInt();
         }
-        int loops = 0;//循环节个数
-        boolean[] flag = new boolean[arr.length];
-        //找出循环节的个数
-        for (int i = 0; i < arr.length; i++){
-            if (!flag[i]) {//已经访问过的位置不再访问
-                int j = i;
-                while (!flag[j]) {
-                    flag[j] = true;
-                    j = map.get(arr[j]);
+        System.out.println(maxSumSubMatrix(nums));
+    }
+    public static int maxSumSubMatrix(int[][] nums) {
+        if (nums == null || nums[0] == null) {
+            return 0;
+        }
+        int max = Integer.MIN_VALUE;
+        int m = nums.length, n = nums[0].length;
+        for (int k = 0; k < m; k++) {
+            int[] colSum = new int[n];
+            for (int i = 0; i < m; i++) {
+                int arraySum = 0;
+                for (int j = 0; j < n; j++) {
+                    colSum[j] += nums[i][j];
+                    arraySum = colSum[j] + (arraySum > 0 ? arraySum : 0);
+                    max = Math.max(max, arraySum);
                 }
-                loops++;
             }
         }
-        return arr.length - loops;
-
+        return max;
     }
 }
-
