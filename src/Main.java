@@ -1,43 +1,76 @@
-import greedy.小孩分糖果求最少;
-import support.TreeNode;
 
 import java.util.*;
 
 public class Main {
-    public static int candy(int[] ratings) {
-        if (ratings == null || ratings.length == 0) {
-            return 0;
-        }
-        int res = 0;
-        int[] candies = new int[ratings.length];
-        candies[0] = 1;
-        //从左往右遍历,第0个元素是不会改变的
-        for (int i = 1; i < ratings.length; i++) {
-            candies[i] = 1;
-            if (ratings[i] > ratings[i - 1]) {
-                candies[i] = candies[i-1] + 1;
-            }
-        }
-
-        //从右往后遍历,最后一个元素是不会改变的
-        for (int i = ratings.length - 1; i > 0 ; i--) {
-            if (ratings[i] < ratings[i - 1]) {
-                candies[i - 1] = Math.max(candies[i - 1], candies[i] + 1);
-
-            }
-            res += candies[i];
-        }
-        res += candies[0];
-        return res;
-    }
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
+        int x = sc.nextInt();
+        int y = sc.nextInt();
         int n = sc.nextInt();
-        int[] nums = new int[n];
+        Point end = new Point(x, y);
+        Set<Point> stones = new HashSet<>();
         for (int i = 0; i < n; i++) {
-            nums[i] = sc.nextInt();
+            stones.add(new Point(sc.nextInt(), sc.nextInt()));
         }
-        System.out.println(candy(nums));
+        Set<Point> his = new HashSet<>();
+        LinkedList<Point> queue = new LinkedList<>();
+        queue.add(new Point(0, 0));
+        int path = 0;
+
+        while (!queue.isEmpty()) {
+            int size = queue.size();
+            while (size > 0) {
+                Point p = queue.poll();
+                if (p.equals(end)) {
+                    System.out.println(path);
+                    return;
+                }
+                size--;
+                Point left = new Point(p.x - 11, p.y);
+                if (!stones.contains(left) && !his.contains(left)) {
+                    queue.offer(left);
+                }
+                Point right = new Point(p.x + 1, p.y);
+                if (!stones.contains(right) && !his.contains(right)) {
+                    queue.offer(right);
+                }
+                Point down = new Point(p.x, p.y - 1);
+                if (!stones.contains(down) && !his.contains(down)) {
+                    queue.offer(down);
+                }
+                Point up = new Point(p.x, p.y + 1);
+                if (!stones.contains(up) && !his.contains(up)) {
+                    queue.offer(up);
+                }
+                his.add(p);
+            }
+            path++;
+        }
+    }
+
+}
+
+class Point {
+    int x;
+    int y;
+
+    public Point(int x, int y) {
+        this.x = x;
+        this.y = y;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Point point = (Point) o;
+        return x == point.x &&
+                y == point.y;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(x, y);
     }
 }
