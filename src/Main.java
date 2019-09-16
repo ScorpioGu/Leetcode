@@ -41,44 +41,55 @@ public class Main {
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        System.out.println(maxLcpsLength(sc.nextLine()));
+        System.out.println(longestPalindrome(sc.nextLine()));
     }
 
-    public static char[] manacherString(String str) {
-        char[] charArr = str.toCharArray();
-        char[] res = new char[str.length() * 2 + 1];
+    public static String longestPalindrome(String string) {
+
+        //-----------------------------------
+        //转换字符串
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("#");
+        for (int i = 0; i < string.length(); i++) {
+            stringBuilder.append(string.charAt(i));
+            stringBuilder.append("#");
+        }
+        //-----------------------------------
+        int rightIndex = 0;
+        int centerIndex = 0;
+        //求len中的最大
+        int answer = 0;
+        //answer最大时的中心
         int index = 0;
-        for (int i = 0; i != res.length; i++) {
-            res[i] = (i & 1) == 0 ? '#' : charArr[index++];
-        }
-        return res;
-    }
-
-    public static int maxLcpsLength(String str) {
-        if (str == null || str.length() == 0) {
-            return 0;
-        }
-        char[] charArr = manacherString(str);
-        int[] pArr = new int[charArr.length];
-        int index = -1;
-        int pR = -1;
-        int max = Integer.MIN_VALUE;
-        for (int i = 0; i != charArr.length; i++) {
-            pArr[i] = pR > i ? Math.min(pArr[2 * index - i], pR - i) : 1;
-            while (i + pArr[i] < charArr.length && i - pArr[i] > -1) {
-                if (charArr[i + pArr[i]] == charArr[i - pArr[i]])
-                    pArr[i]++;
-                else {
-                    break;
-                }
+        int len[] = new int[stringBuilder.length() ];
+        for (int i = 1; i < stringBuilder.length(); i++) {
+            //当rightIndex > i，那么我们就在rightIndex - i 与len[2 * centerIndex - i](len[j])，取得最小值
+            //因为当i + len[j] < rightIndex时，我们就把len[i]更新为len[j]
+            //但是如果i + len[j] >= rightIndex时，我们暂且将len[i]定更新为rightIndex - i,超出的部分需要我们一个一个的匹配
+            if (rightIndex > i) {
+                len[i] = Math.min(rightIndex - i, len[2 * centerIndex - i]);
+            } else {
+                len[i] = 1;
             }
-            if (i + pArr[i] > pR) {
-                pR = i + pArr[i];
+            //一个一个匹配
+            //要么是超出的部分，要么是i > rightIndex
+            while(i - len[i] >= 0 && i + len[i] < stringBuilder.length() && stringBuilder.charAt(i - len[i]) == stringBuilder.charAt(i + len[i])) {
+                len[i]++;
+            }
+            //当 len[i] + i > rightIndex,我们需要更新centerIndex和rightIndex
+            //至于为什么会这样做，理解一下rightIndex和centerIndex的含义
+            if(len[i] + i > rightIndex) {
+                rightIndex = len[i] + i;
+                centerIndex = i;
+            }
+            if(len[i] > answer) {
+                answer = len[i];
                 index = i;
             }
-            max = Math.max(max, pArr[i]);
         }
-        return max - 1;
+        //截取字符串
+        //为什么index - answer + 1,因为len[i] - 1才是原来的回文字符串长度，而answer记录的是len中最大值
+        return stringBuilder.substring(index - answer + 1, index + answer).replace("#", "");
     }
 }
 
