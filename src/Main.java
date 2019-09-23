@@ -1,25 +1,57 @@
-import java.util.Arrays;
-import java.util.Scanner;
+import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        String[] ss = sc.nextLine().split(",");
-        int[] xs = new int[ss.length];
-        int[] ys = new int[ss.length];
-        for (int i = 0; i < ss.length; i++) {
-            String[] cur = ss[i].split(" ");
-            xs[i] = Integer.parseInt(cur[0]);
-            ys[i] = Integer.parseInt(cur[1]);
+        String[] s = sc.nextLine().split(" ");
+        Set<String> set = new HashSet<>();
+        // 去重
+        for (String s1 : s) {
+            set.add(s1);
         }
-        int l = 231, r = -231, d = 231, u = -231;
-        for (int i = 0; i < ss.length; i++) {
-            l = Math.min(l, xs[i]);
-            r = Math.max(r, xs[i]);
-            d = Math.min(d, ys[i]);
-            u = Math.max(u, ys[i]);
+
+        // 计数
+        Map<String, Node> map = new HashMap<>();
+        for (String s1 : set) {
+            String city = s1.split("-")[1];
+            if (map.containsKey(city)) {
+                map.get(city).count++;
+            } else {
+                map.put(city, new Node(city));
+            }
         }
-        System.out.println(l + " " + d + "," + l + " " + u + "," + r + " " + u + "," + r + " " + d);
+
+        PriorityQueue<Node> pq = new PriorityQueue<Node>((a,b)->{
+            if (a.count == b.count) {
+                return a.city.compareTo(b.city);
+            } else {
+                return b.count - a.count;
+            }
+        });
+
+        for (Node node : map.values()) {
+            pq.add(node);
+        }
+
+        for (int i = 0; i < 3; i++) {
+            System.out.println(pq.poll());
+        }
+
+    }
+
+    static class Node {
+        String city;
+        int count;
+
+        public Node(String city) {
+            this.city = city;
+            this.count = 1;
+        }
+
+        @Override
+        public String toString() {
+            return this.city + " " + this.count;
+        }
     }
 }
 
